@@ -18920,10 +18920,11 @@ exports.default = void 0;
 var _default = {
   "pages": [{
     "path": "pages/index/index",
+    "app-plus": {
+      "titleNView": false
+    },
     "style": {
-      "navigationBarTitleText": "签字",
-      "enablePullDownRefresh": false,
-      "pageOrientation": "landscape",
+      "navigationBarTitleText": "",
       "backgroundColor": "#f8f8f8",
       "navigationStyle": "custom"
     }
@@ -19001,9 +19002,7 @@ exports.default = void 0;
 var _default = {
   "pages": {
     "pages/index/index": {
-      "navigationBarTitleText": "签字",
-      "enablePullDownRefresh": false,
-      "pageOrientation": "landscape",
+      "navigationBarTitleText": "",
       "backgroundColor": "#f8f8f8",
       "navigationStyle": "custom"
     },
@@ -21313,64 +21312,6 @@ var dateUtils = {
 };
 exports.dateUtils = dateUtils;
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 2)["default"]))
-
-/***/ }),
-/* 52 */,
-/* 53 */,
-/* 54 */,
-/* 55 */,
-/* 56 */,
-/* 57 */,
-/* 58 */,
-/* 59 */,
-/* 60 */,
-/* 61 */,
-/* 62 */,
-/* 63 */,
-/* 64 */,
-/* 65 */,
-/* 66 */,
-/* 67 */,
-/* 68 */,
-/* 69 */,
-/* 70 */,
-/* 71 */,
-/* 72 */,
-/* 73 */,
-/* 74 */,
-/* 75 */,
-/* 76 */,
-/* 77 */
-/*!******************************************************!*\
-  !*** D:/家庭签约/familySign/components/my-sign/index.js ***!
-  \******************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.formatSize = formatSize;
-exports.isNumber = isNumber;
-/**
- * 判断是否未数值
- * @param {Object} val
- */
-function isNumber(val) {
-  return !isNaN(Number(val));
-}
-
-/**
- * 处理大小单位
- * @param {Object} val
- */
-function formatSize(val) {
-  var unit = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 'rpx';
-  return isNumber(val) ? "".concat(val).concat(unit) : val;
-}
 
 /***/ })
 ]]);

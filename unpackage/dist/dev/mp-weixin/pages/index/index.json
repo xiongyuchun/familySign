@@ -1,10 +1,6 @@
 {
-  "navigationBarTitleText": "签字",
-  "enablePullDownRefresh": false,
-  "pageOrientation": "landscape",
+  "navigationBarTitleText": "",
   "backgroundColor": "#f8f8f8",
   "navigationStyle": "custom",
-  "usingComponents": {
-    "my-sign": "/components/my-sign/index"
-  }
+  "usingComponents": {}
 }

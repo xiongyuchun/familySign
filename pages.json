@@ -2,10 +2,13 @@
 	"pages": [
 		{
 			"path": "pages/index/index",
+			"app-plus": {
+				"titleNView": false
+			},
 			"style": {
-				"navigationBarTitleText": "签字",
-				"enablePullDownRefresh": false,
-				"pageOrientation": "landscape",
+				"navigationBarTitleText": "",
+				// "enablePullDownRefresh": false, // 下拉刷新
+				// "pageOrientation": "landscape", // 横屏
 				"backgroundColor": "#f8f8f8",
 				"navigationStyle": "custom"
 			}
