@@ -1,11 +1,146 @@
 <template>
-	<view class="">
-		my
+	<view class="my">
+		<view class="navbar">
+			<view class="navbar_title flex justify-center">我的</view>
+			<view class="navbar-info flex">
+				<view class="navbar-info_photo"><img src="@/static/default.jpg" class="navbar-info_photo_img" alt="" srcset=""></view>
+				<view class="navbar-info_introduce flex flex-column">
+					<view class="navbar-info_introduce_name mb-3 font">催磊</view>
+					<view class="navbar-info_introduce_main flex align-center">
+						<text class="font-small flex justify-center align-center text">男</text>
+						<text class="font-small flex justify-center align-center text">45</text>
+					</view>
+				</view>
+			</view>
+		</view>
+		<view class="my-list shadow">
+			<view class="my-list-item flex align-center justify-between">
+				<view class="flex align-center">
+					<img class="my-list-item_img" src="@/static/my/info.png" alt="">
+					<text class="my-list-item_info">个人资料</text>
+				</view>
+				<view class="flex align-center">
+					<uni-icons class="my-list-item_icon" type="forward"></uni-icons>
+				</view>
+			</view>
+			<view class="my-list-item flex align-center justify-between">
+				<view class="flex align-center">
+					<img class="my-list-item_img" src="@/static/my/review.png" alt="">
+					<text class="my-list-item_info">查看健康档案</text>
+				</view>
+				<view class="flex align-center">
+					<uni-icons class="my-list-item_icon" type="forward"></uni-icons>
+				</view>
+			</view>
+			<view class="my-list-item flex align-center justify-between">
+				<view class="flex align-center">
+					<img class="my-list-item_img" src="@/static/my/email.png" style="height: 30rpx;" alt="">
+					<text class="my-list-item_info">联系我们</text>
+				</view>
+				<view class="flex align-center">
+					<uni-icons class="my-list-item_icon" type="forward"></uni-icons>
+				</view>
+			</view>
+			<view class="my-list-item flex align-center justify-between" @click="goto('/pages/my/about/index')">
+				<view class="flex align-center">
+					<img class="my-list-item_img" src="@/static/my/about.png" alt="">
+					<text class="my-list-item_info">关于</text>
+				</view>
+				<view class="flex align-center">
+					<uni-icons class="my-list-item_icon" type="forward"></uni-icons>
+				</view>
+			</view>
+		</view>
 	</view>
 </template>
 
 <script>
+	export default {
+		data() {
+			return {
+				
+			}
+		},
+		methods: {
+			goto(path) {
+				uni.navigateTo({
+					url: path,
+				});
+			}
+		},
+	}
 </script>
 
-<style>
+<style scoped lang="scss">
+	.navbar_title {
+		margin-top: 68rpx;
+		color: #fff;
+		font-size: 32rpx;
+		margin-bottom: 42rpx;
+	}
+	.navbar-info {
+		padding: 0 30rpx;
+		&_photo {
+			margin-right: 24rpx;
+			&_img {
+				width: 128rpx;
+				height: 128rpx;
+				border-radius: 50%;
+				background-color: transparent;
+			}
+			
+		}
+		
+		&_introduce {
+			color: #fff;
+			&_name {
+			}
+			
+			&_main {
+				
+			}
+			
+		}
+	}
+	
+	.my-list {
+		margin: 0 30rpx;
+		border-radius: 30rpx;
+		margin-top: -70rpx;
+		background-color: #fff;
+		
+		&-item {
+			height: 100rpx;
+			padding: 0 30rpx;
+			background-color: transparent;
+			border-bottom: 1rpx solid #EEEFF7;
+			
+			&_img {
+				width: 40rpx;
+				height: 40rpx;
+				margin-right: 23px;
+				background-color: transparent;
+			}
+			
+			&_info {
+				color: #333333;
+				font-size: 28rpx;
+			}
+			
+			&_icon {
+				color: #BBBBBB;
+			}
+			
+		}
+		
+	}
+	
+	.text {
+		color: #fff;
+		background-color: #4eb4f8;
+		width: 50rpx;
+		height: 32rpx;
+		border-radius: 8rpx;
+		margin-right: 16rpx;
+	} 
 </style>

@@ -17,7 +17,27 @@
 			"path": "pages/msg/index"
 		},
 		{
-			"path": "pages/my/index"
+			"path": "pages/my/index",
+			"app-plus": {
+				"titleNView": false
+			},
+			"style": {
+				"navigationBarTitleText": "",
+				// "enablePullDownRefresh": false, // 下拉刷新
+				// "pageOrientation": "landscape", // 横屏
+				"backgroundColor": "#f8f8f8",
+				"navigationStyle": "custom"
+			}
+		},
+		{
+			"path": "pages/my/about/index",
+			"app-plus": {
+				"titleNView": false
+			},
+			"style": {
+				"navigationBarTitleText": "",
+				"navigationStyle": "custom"
+			}
 		}
 	],
 	"globalStyle": {
