@@ -36,7 +36,4 @@
 	::-webkit-scrollbar{
 		display: none;
 	}
-	image{
-		background-color: #CCCCCC;
-	}
 </style>

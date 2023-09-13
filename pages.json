@@ -9,7 +9,7 @@
 				"navigationBarTitleText": "",
 				// "enablePullDownRefresh": false, // 下拉刷新
 				// "pageOrientation": "landscape", // 横屏
-				"backgroundColor": "#f8f8f8",
+				"backgroundColor": "#fdfdfd",
 				"navigationStyle": "custom"
 			}
 		},
@@ -23,14 +23,12 @@
 			},
 			"style": {
 				"navigationBarTitleText": "",
-				// "enablePullDownRefresh": false, // 下拉刷新
-				// "pageOrientation": "landscape", // 横屏
 				"backgroundColor": "#f8f8f8",
 				"navigationStyle": "custom"
 			}
 		},
 		{
-			"path": "pages/my/about/index",
+			"path": "pages/user/my/about/index",
 			"app-plus": {
 				"titleNView": false
 			},
