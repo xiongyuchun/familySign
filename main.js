@@ -2,11 +2,13 @@ import Vue from 'vue'
 import App from './App'
 import store from './store/index.js';
 
-Vue.prototype.$store = store
+Vue.prototype.$store = store;
 
-Vue.config.productionTip = false
+Vue.config.productionTip = false;
 
 // 引入全局组件
+import myNavBar from './components/navbar/index.vue';
+Vue.component('my-navbar',myNavBar);
 // import divider from './components/common/divider.vue';
 // Vue.component('divider',divider)
 // import noThing from './components/common/no-thing.vue';
