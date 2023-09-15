@@ -9,6 +9,8 @@ Vue.config.productionTip = false;
 // 引入全局组件
 import myNavBar from './components/navbar/index.vue';
 Vue.component('my-navbar',myNavBar);
+import specialNavbar from './components/special-navbar/index.vue';
+Vue.component('special-navbar',specialNavbar);
 // import divider from './components/common/divider.vue';
 // Vue.component('divider',divider)
 // import noThing from './components/common/no-thing.vue';

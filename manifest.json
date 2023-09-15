@@ -115,7 +115,13 @@
         },
         "uniStatistics" : {
             "enable" : true
-        }
+        },
+		 "requiredPrivateInfos": [     
+			 "getLocation",    
+			 "onLocationChange",    
+			 "startLocationUpdateBackground",  
+			 "chooseAddress"
+		 ]
     },
     "mp-alipay" : {
         "usingComponents" : true,

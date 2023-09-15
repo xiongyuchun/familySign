@@ -34,6 +34,27 @@
 	background: linear-gradient(to right, #05a6f6, #1482fd);
 }
 
+.navbar-childer {
+	width: 100vw;
+	height: 408rpx;
+	position: relative;
+	z-index: -1;
+	overflow: hidden;
+}
+
+.navbar-childer::after {
+	content: '';
+	width: 140%;
+	height: 408rpx;
+	position: absolute;
+	left: -20%;
+	top: 0;
+	z-index: -1;
+	border-radius: 0 0 40% 40%;
+	background: linear-gradient(to right, #05a6f6, #1482fd);
+}
+
+
 .navbar-dep {
 	display: flex;
 	align-items: center;
