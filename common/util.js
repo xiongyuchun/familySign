@@ -60,6 +60,26 @@ function pathToBase64(path) {
 	})
 	return promise
 }
+
+// 跳转到指定页面 非tabbar
+function gotoPage(path) {
+	uni.navigateTo({
+		url: path
+	})
+}
+
+// 跳转到指定页面tabbar
+function gotoPageTab(path) {
+	uni.switchTab({
+		url: path
+	})
+}
+
+// 返回上指定页
+function backPage(num) {
+	uni.navigateBack(num)
+}
+
 var dateUtils = {
 	UNITS: {
 		'年': 31557600000,
@@ -97,10 +117,13 @@ var dateUtils = {
 	}
 };
 
-export {
+export default {
 	formatTime,
 	formatLocation,
 	onNetWork,
 	dateUtils,
-	pathToBase64
+	pathToBase64,
+	gotoPage,
+	gotoPageTab,
+	backPage
 }

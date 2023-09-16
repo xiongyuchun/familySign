@@ -2,9 +2,15 @@
 	<view class="upload-info">
 		<view class="top-bg">
 			<img class="w-100 bg-upload" src="@/static/my/bg-upload.png" alt="" srcset="">
-			<view class="title text-white font flex justify-center">建档/完善信息</view>
+			<view :style="{ height: statusBarHeight }" class="w-100"></view>
+			<view class="title text-white font flex justify-center align-center">
+				<view @click="$U.backPage(1)">
+					<uni-icons class="back" type="back" size="20" color="#fff"></uni-icons>
+				</view>
+				<view class="">建档/完善信息</view>
+			</view>
 		</view>
-		<view style="padding: 0 30rpx; position: relative; margin-top: -349rpx;">
+		<view style="padding: 0 30rpx; position: relative; margin-top: -300rpx;">
 			<view class="upload-info_item">
 				<uni-forms ref="baseForm" :modelValue="alignmentFormData" label-position="top">
 					<uni-forms-item label="头像" required>
@@ -61,6 +67,7 @@
 	export default {
 		data() {
 			return {
+				statusBarHeight: 25,
 				// 基础表单数据
 				baseFormData: {
 					photo: '',
@@ -125,6 +132,9 @@
 				]
 			}
 		},
+		created() {
+			this.statusBarHeight = uni.getSystemInfoSync().statusBarHeight + 'px'
+		},
 		methods: {
 			onnodeclick(e) {
 				console.log(e);
@@ -171,17 +181,24 @@
 </style>
 
 <style scoped lang="scss">
+	.back {
+		position: absolute;
+		left: 30rpx;
+		top: 14px;
+		color: #fff;
+	}
 	.top-bg {
 		height: 493rpx;
 		width: 100%;
 		// background: linear-gradient(to right, #05a6f6, #1482fd);
-		padding-top: 93rpx;
+		// padding-top: 93rpx;
 		position: relative;
 	}
 
 	.title {
 		position: relative;
 		z-index: 3;
+		height: 44px;
 	}
 
 	.upload-info_item {

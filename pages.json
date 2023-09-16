@@ -76,6 +76,46 @@
 				"navigationBarTitleText": "",
 				"navigationStyle": "custom"
 			}
+		},
+		{
+			"path": "pages/user/my/sign-tip/index",
+			"app-plus": {
+				"titleNView": false
+			},
+			"style": {
+				"navigationBarTitleText": "",
+				"navigationStyle": "custom"
+			}
+		},
+		{
+			"path": "pages/user/my/un-sign/index",
+			"app-plus": {
+				"titleNView": false
+			},
+			"style": {
+				"navigationBarTitleText": "",
+				"navigationStyle": "custom"
+			}
+		},
+		{
+			"path": "pages/user/my/unbound-user/index",
+			"app-plus": {
+				"titleNView": false
+			},
+			"style": {
+				"navigationBarTitleText": "",
+				"navigationStyle": "custom"
+			}
+		},
+		{
+			"path": "pages/user/my/online-signing/index",
+			"app-plus": {
+				"titleNView": false
+			},
+			"style": {
+				"navigationBarTitleText": "",
+				"navigationStyle": "custom"
+			}
 		}
 	],
 	"globalStyle": {

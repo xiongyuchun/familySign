@@ -36,7 +36,7 @@
 
 .navbar-childer {
 	width: 100vw;
-	height: 408rpx;
+	height: 358rpx;
 	position: relative;
 	z-index: -1;
 	overflow: hidden;
@@ -45,7 +45,7 @@
 .navbar-childer::after {
 	content: '';
 	width: 140%;
-	height: 408rpx;
+	height: 358rpx;
 	position: absolute;
 	left: -20%;
 	top: 0;
@@ -64,4 +64,20 @@
 	color: #fff;
 	font-size: 32rpx;
 	background: linear-gradient(to right, #05a6f6, #1482fd);
+}
+
+/* 限制文本内容的行数，超过1行将被隐藏 */
+.overflow-hidden-1 {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  -webkit-line-clamp: 1; /* 限制文本行数为1行 */
+}
+
+/* 限制文本内容的行数，超过两行将被隐藏 */
+.overflow-hidden-2 {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  -webkit-line-clamp: 2; /* 限制文本行数为2行 */
 }

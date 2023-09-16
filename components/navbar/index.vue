@@ -3,7 +3,7 @@
 		<view :style="{ height: statusBarHeight }" class="w-100"></view>
 		<view class="my-navbar-main bg-linear-gradient">
 			<slot name="left">
-				<view class="my-navbar-main_left">
+				<view class="my-navbar-main_left" @click="$U.backPage(1)">
 					<uni-icons v-if="mode === 'navbar'" :color="leftIconColor" type="back" size="20" />
 				</view>
 			</slot>
@@ -65,7 +65,7 @@
 				align-items: center;
 				position: absolute;
 				left: 30rpx;
-				top: 4px;
+				top: 14px;
 			}
 			
 			&_content {

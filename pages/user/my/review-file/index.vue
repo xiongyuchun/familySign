@@ -1,7 +1,12 @@
 <template>
 	<view class="">
-		<special-navbar :mode="1">
-			<view class="top-title text-white">查阅健康档案</view>
+		<special-navbar>
+			<view class="top-title text-white flex align-center justify-center">
+				<view @click="$U.backPage(1)">
+					<uni-icons class="back" type="back" size="20" color="#fff"></uni-icons>
+				</view>
+				<view>查阅健康档案</view>
+			</view>
 		</special-navbar>
 		<view class="user-info pl-3">
 			<view class="user-info-main flex">
@@ -50,6 +55,7 @@
 		},
 		data() {
 			return {
+				statusBarHeight: 25,
 				stepList: [
 					{
 						"id": 1,
@@ -83,6 +89,9 @@
 				]
 			}
 		},
+		created() {
+			this.statusBarHeight = uni.getSystemInfoSync().statusBarHeight + 'px'
+		},
 		methods: {
 			
 		},
@@ -90,6 +99,12 @@
 </script>
 
 <style scoped lang="scss">
+	.back {
+		position: absolute;
+		left: 30rpx;
+		top: 14px;
+		color: #fff;
+	}
 	.user-time-icon {
 		margin-left: calc(10% + 56rpx);
 		position: relative;
@@ -111,10 +126,11 @@
 		color: #fff;
 		justify-content: center;
 		align-items: center;
+		position: relative;
 	}
 	.user-info {
 		position: relative;
-		margin-top: -260rpx;
+		margin-top: -270rpx;
 		padding-right: 70rpx;
 		
 		&-main {
@@ -198,5 +214,13 @@
 		width: 47rpx;
 		height: 47rpx;
 		margin-left: -2rpx;
+	}
+	
+	::v-deep .navbar {
+		height: 468rpx;
+		
+		&::after {
+			height: 468rpx;
+		}
 	}
 </style>

@@ -1,6 +1,6 @@
 <template>
 	<view class="my">
-		<view class="navbar">
+		<!-- <view class="navbar">
 			<view class="navbar_title flex justify-center">我的</view>
 			<view class="navbar-info flex">
 				<view class="navbar-info_photo"><img src="@/static/default.jpg" class="navbar-info_photo_img" alt="" srcset=""></view>
@@ -12,12 +12,54 @@
 					</view>
 				</view>
 			</view>
-		</view>
+		</view> -->
+		<special-navbar>
+			<view class="flex flex-column" style="position: relative;">
+				<view class="top-title">我的</view>
+				<view class="navbar-info flex">
+					<view class="navbar-info_photo"><img src="@/static/default.jpg" class="navbar-info_photo_img" alt="" srcset=""></view>
+					<view class="navbar-info_introduce flex flex-column w-100">
+						<view class="navbar-info_introduce_name mb-3 font flex justify-between align-center w-100">
+							<view class="flex align-center">
+								<text>催磊</text>
+								<text class="un-sign">未签约</text>
+							</view>
+							<view class="flex align-center">
+								<img style="width: 29rpx; height: 29rpx;" src="@/static/my/change-user.png" alt="" srcset="">
+								<text style="font-size: 25rpx;margin-left: 10rpx;" class="text-white">切换成员</text>
+							</view>
+						</view>
+						<view class="navbar-info_introduce_main flex align-center">
+							<text class="font-small flex justify-center align-center text">男</text>
+							<text class="font-small flex justify-center align-center text">45</text>
+						</view>
+					</view>
+				</view>
+			</view>
+		</special-navbar>
 		<view class="my-list shadow">
 			<view class="my-list-item flex align-center justify-between">
 				<view class="flex align-center">
 					<img class="my-list-item_img" src="@/static/my/info.png" alt="">
 					<text class="my-list-item_info">个人资料</text>
+				</view>
+				<view class="flex align-center">
+					<uni-icons class="my-list-item_icon" type="forward"></uni-icons>
+				</view>
+			</view>
+			<view class="my-list-item flex align-center justify-between">
+				<view class="flex align-center">
+					<img class="my-list-item_img" src="@/static/my/bind-user.png" alt="">
+					<text class="my-list-item_info">绑定成员</text>
+				</view>
+				<view class="flex align-center">
+					<uni-icons class="my-list-item_icon" type="forward"></uni-icons>
+				</view>
+			</view>
+			<view class="my-list-item flex align-center justify-between">
+				<view class="flex align-center">
+					<img class="my-list-item_img" src="@/static/index/uploadInfo.png" alt="">
+					<text class="my-list-item_info">上传健康档案</text>
 				</view>
 				<view class="flex align-center">
 					<uni-icons class="my-list-item_icon" type="forward"></uni-icons>
@@ -41,7 +83,7 @@
 					<uni-icons class="my-list-item_icon" type="forward"></uni-icons>
 				</view>
 			</view>
-			<view class="my-list-item flex align-center justify-between" @click="goto('/pages/my/about/index')">
+			<view @click="$U.gotoPage('/pages/user/my/about/index')" class="my-list-item flex align-center justify-between">
 				<view class="flex align-center">
 					<img class="my-list-item_img" src="@/static/my/about.png" alt="">
 					<text class="my-list-item_info">关于</text>
@@ -72,6 +114,26 @@
 </script>
 
 <style scoped lang="scss">
+	.un-sign {
+		font-size: 25rpx;
+		font-weight: 500;
+		color: #FFFFFF;
+		border: 1px solid #fff;
+		border-radius: 40rpx;
+		margin-left: 16rpx;
+		padding: 0rpx 11rpx;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+	}
+	.top-title {
+		height: 44px;
+		display: flex;
+		color: #fff;
+		justify-content: center;
+		align-items: center;
+		position: relative;
+	}
 	.navbar_title {
 		margin-top: 68rpx;
 		color: #fff;
@@ -80,6 +142,7 @@
 	}
 	.navbar-info {
 		padding: 0 30rpx;
+		padding-top: 20rpx;
 		&_photo {
 			margin-right: 24rpx;
 			&_img {
@@ -106,7 +169,7 @@
 	.my-list {
 		margin: 0 30rpx;
 		border-radius: 30rpx;
-		margin-top: -70rpx;
+		margin-top: -110rpx;
 		background-color: #fff;
 		
 		&-item {
@@ -143,4 +206,11 @@
 		border-radius: 8rpx;
 		margin-right: 16rpx;
 	} 
+	::v-deep .navbar {
+		height: 468rpx;
+		
+		&::after {
+			height: 468rpx;
+		}
+	}
 </style>
