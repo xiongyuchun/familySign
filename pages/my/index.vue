@@ -24,7 +24,7 @@
 								<text>催磊</text>
 								<text class="un-sign">未签约</text>
 							</view>
-							<view class="flex align-center">
+							<view @click="$U.gotoPage('/pages/user/my/change-user/index')" class="flex align-center">
 								<img style="width: 29rpx; height: 29rpx;" src="@/static/my/change-user.png" alt="" srcset="">
 								<text style="font-size: 25rpx;margin-left: 10rpx;" class="text-white">切换成员</text>
 							</view>
@@ -56,7 +56,7 @@
 					<uni-icons class="my-list-item_icon" type="forward"></uni-icons>
 				</view>
 			</view>
-			<view class="my-list-item flex align-center justify-between">
+			<view @click="$U.gotoPage('/pages/user/my/add-file/index')" class="my-list-item flex align-center justify-between">
 				<view class="flex align-center">
 					<img class="my-list-item_img" src="@/static/index/uploadInfo.png" alt="">
 					<text class="my-list-item_info">上传健康档案</text>
@@ -65,7 +65,7 @@
 					<uni-icons class="my-list-item_icon" type="forward"></uni-icons>
 				</view>
 			</view>
-			<view class="my-list-item flex align-center justify-between">
+			<view  @click="$U.gotoPage('/pages/user/my/review-file/index')" class="my-list-item flex align-center justify-between">
 				<view class="flex align-center">
 					<img class="my-list-item_img" src="@/static/my/review.png" alt="">
 					<text class="my-list-item_info">查看健康档案</text>
@@ -74,7 +74,7 @@
 					<uni-icons class="my-list-item_icon" type="forward"></uni-icons>
 				</view>
 			</view>
-			<view class="my-list-item flex align-center justify-between">
+			<view @click="$U.gotoPage('/pages/user/my/contact-us/index')" class="my-list-item flex align-center justify-between">
 				<view class="flex align-center">
 					<img class="my-list-item_img" src="@/static/my/email.png" style="height: 30rpx;" alt="">
 					<text class="my-list-item_info">联系我们</text>

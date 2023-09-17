@@ -1,7 +1,6 @@
 <template>
 	<view class="">
-		<!-- <view class="" :style="{'height': statusBarHeight + 'px'}"></view> -->
-		<view class="navbar-dep">关于我们</view>
+		<my-navbar title="关于我们"></my-navbar>
 		<view class="about">
 			<view class="flex w-100 justify-center">
 				<img class="logo" src="@/static/my/about-logo.png" alt="" srcset="">

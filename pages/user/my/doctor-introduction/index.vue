@@ -20,7 +20,7 @@
 					<uni-icons class="flex" type="bottom" size="14" color="#999"></uni-icons>
 				</view>
 			</view>
-			<view class="doc-list">
+			<view @click="$U.gotoPage('/pages/user/my/doctor-details/index')" class="doc-list">
 				<view class="doc-list-photo flex align-center">
 					<view class="mr-2">
 						<img class="doc-list-photo_img" src="@/static/default.jpg" alt="" srcset="">
@@ -39,19 +39,35 @@
 				</view>
 				<view class="doc-list-score flex justify-between align-center mb-3">
 					<view class="flex align-center">
-						<view class="star-review">医师星评：</view>
-						<view class="">5</view>
+						<view class="star-review">医师星评:</view>
+						<view class="">
+							<view class="flex align-center">
+								<img class="score" src="@/static/my/score.png" alt="" srcset="">
+								<img class="score" src="@/static/my/score.png" alt="" srcset="">
+								<img class="score" src="@/static/my/score.png" alt="" srcset="">
+								<img class="score" src="@/static/my/score.png" alt="" srcset="">
+								<img class="score" src="@/static/my/un-score.png" alt="" srcset="">
+							</view>
+						</view>
 					</view>
 					<view class="flex align-center">
-						<view class="star-review">医院星评：</view>
-						<view class="">5</view>
+						<view class="star-review">医院星评:</view>
+						<view class="">
+							<view class="flex align-center">
+								<img class="score" src="@/static/my/score.png" alt="" srcset="">
+								<img class="score" src="@/static/my/score.png" alt="" srcset="">
+								<img class="score" src="@/static/my/score.png" alt="" srcset="">
+								<img class="score" src="@/static/my/score.png" alt="" srcset="">
+								<img class="score" src="@/static/my/un-score.png" alt="" srcset="">
+							</view>
+						</view>
 					</view>
 				</view>
 				<view class="doc-list-desc mb-3 overflow-hidden-2">
 					主治：擅长中西医治疗方法，消化病（营养不良、腹泻腹痛等）、呼吸系统疾病（感冒、发烧、咳嗽、浑身乏力等）
 				</view>
 				<view class="flex justify-end">
-					<view class="go-sign mr-3">
+					<view @click.stop="$U.gotoPage('/pages/user/my/online-signing/index')" class="go-sign mr-3">
 						去签约
 					</view>
 					<view class="go-seek">医生咨询</view>
@@ -73,6 +89,11 @@
 	}
 </style>
 <style scoped lang="scss">
+	.score {
+		width: 26rpx;
+		height: 26rpx;
+		margin-right: 6rpx;
+	}
 	.go-sign {
 		padding: 14rpx 42rpx;
 		background-color: #FFFFFF;

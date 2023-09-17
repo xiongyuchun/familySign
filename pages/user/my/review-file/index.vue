@@ -2,8 +2,8 @@
 	<view class="">
 		<special-navbar>
 			<view class="top-title text-white flex align-center justify-center">
-				<view @click="$U.backPage(1)">
-					<uni-icons class="back" type="back" size="20" color="#fff"></uni-icons>
+				<view @click="$U.backPage(1)" class="back">
+					<uni-icons type="back" size="20" color="#fff"></uni-icons>
 				</view>
 				<view>查阅健康档案</view>
 			</view>
@@ -93,7 +93,9 @@
 			this.statusBarHeight = uni.getSystemInfoSync().statusBarHeight + 'px'
 		},
 		methods: {
-			
+			handleClick() {
+				console.log(123);
+			}
 		},
 	}
 </script>
@@ -104,6 +106,7 @@
 		left: 30rpx;
 		top: 14px;
 		color: #fff;
+		z-index: 990;
 	}
 	.user-time-icon {
 		margin-left: calc(10% + 56rpx);

@@ -38,7 +38,7 @@
 						style="width: 93rpx; height: 101rpx;margin-right: 9rpx;">
 					<text class="font-30 text-333">在线续约</text>
 				</view>
-				<view class="grid-shadow flex align-center bg-white flex-1 bg-white px-3">
+				<view @click="$U.gotoPage('/pages/user/my/doctor-introduction/index')" class="grid-shadow flex align-center bg-white flex-1 bg-white px-3">
 					<img src="@/static/index/signdot.png" alt="" srcset=""
 						style="width: 114rpx; height: 83rpx;margin-right: 12rpx;">
 					<text class="font-30 text-333">签约医生</text>

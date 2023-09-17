@@ -23,9 +23,6 @@
 			this.statusBarHeight = uni.getSystemInfoSync().statusBarHeight + 'px'
 		},
 		methods: {
-			name() {
-				
-			}
 		},
 	}
 </script>
