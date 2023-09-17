@@ -116,6 +116,26 @@
 				"navigationBarTitleText": "",
 				"navigationStyle": "custom"
 			}
+		},
+		{
+			"path": "pages/user/my/doctor-introduction/index",
+			"app-plus": {
+				"titleNView": false
+			},
+			"style": {
+				"navigationBarTitleText": "",
+				"navigationStyle": "custom"
+			}
+		},
+		{
+			"path": "pages/user/my/doctor-details/index",
+			"app-plus": {
+				"titleNView": false
+			},
+			"style": {
+				"navigationBarTitleText": "",
+				"navigationStyle": "custom"
+			}
 		}
 	],
 	"globalStyle": {
