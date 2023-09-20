@@ -9,6 +9,11 @@
 						<view class="navbar-info_introduce_name mb-3 font flex justify-between align-center w-100">
 							<view class="flex align-center">
 								<text>催磊</text>
+								<text class="un-sign">未签约</text>
+							</view>
+							<view @click="$U.gotoPage('/pages/user/my/change-user/index')" class="flex align-center">
+								<img style="width: 29rpx; height: 29rpx;" src="@/static/my/change-user.png" alt="" srcset="">
+								<text style="font-size: 25rpx;margin-left: 10rpx;" class="text-white">切换成员</text>
 							</view>
 						</view>
 						<view class="navbar-info_introduce_main flex align-center">
@@ -24,6 +29,24 @@
 				<view class="flex align-center">
 					<img class="my-list-item_img" src="@/static/my/info.png" alt="">
 					<text class="my-list-item_info">个人资料</text>
+				</view>
+				<view class="flex align-center">
+					<uni-icons class="my-list-item_icon" type="forward"></uni-icons>
+				</view>
+			</view>
+			<view class="my-list-item flex align-center justify-between">
+				<view class="flex align-center">
+					<img class="my-list-item_img" src="@/static/my/bind-user.png" alt="">
+					<text class="my-list-item_info">绑定成员</text>
+				</view>
+				<view class="flex align-center">
+					<uni-icons class="my-list-item_icon" type="forward"></uni-icons>
+				</view>
+			</view>
+			<view @click="$U.gotoPage('/pages/user/my/add-file/index')" class="my-list-item flex align-center justify-between">
+				<view class="flex align-center">
+					<img class="my-list-item_img" src="@/static/index/uploadInfo.png" alt="">
+					<text class="my-list-item_info">上传健康档案</text>
 				</view>
 				<view class="flex align-center">
 					<uni-icons class="my-list-item_icon" type="forward"></uni-icons>
@@ -133,7 +156,7 @@
 	.my-list {
 		margin: 0 30rpx;
 		border-radius: 30rpx;
-		margin-top: -70rpx;
+		margin-top: -110rpx;
 		background-color: #fff;
 		
 		&-item {

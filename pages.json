@@ -156,8 +156,61 @@
 				"navigationBarTitleText": "",
 				"navigationStyle": "custom"
 			}
+		},
+		{
+			"path": "pages/user/my/index",
+			"app-plus": {
+				"titleNView": false
+			},
+			"style": {
+				"navigationBarTitleText": "",
+				"navigationStyle": "custom"
+			}
+		},
+		{
+			"path": "pages/doctor/my/number-of-services/index",
+			"app-plus": {
+				"titleNView": false
+			},
+			"style": {
+				"navigationBarTitleText": "",
+				"navigationStyle": "custom"
+			}
+		},
+		{
+			"path": "pages/doctor/my/number-of-signatories/index",
+			"app-plus": {
+				"titleNView": false
+			},
+			"style": {
+				"navigationBarTitleText": "",
+				"navigationStyle": "custom"
+			}
 		}
 	],
+	"subPackages": [
+		{
+			"root": "pages/sub-packages-doctor",
+			"pages": [
+				{
+					"path": "my/statistics-manage/index",
+					"app-plus": {
+						"titleNView": false
+					},
+					"style": {
+						"navigationBarTitleText": "",
+						"navigationStyle": "custom"
+					}
+				}
+			]
+		}
+	],
+	"preloadRule": {
+		"pages/index/index": {
+			"network": "all",
+			"packages": ["pages/sub-packages-doctor"]
+		}
+	},
 	"globalStyle": {
 		"navigationBarTextStyle": "black",
 		"navigationBarTitleText": "家庭签约",

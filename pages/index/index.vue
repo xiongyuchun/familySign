@@ -1,14 +1,17 @@
 <template>
 	<view>
-		<userIndex></userIndex>
+		<!-- <user-Index></user-Index> -->
+		<doctor-index></doctor-index>
 	</view>
 </template>
 
 <script>
 	import userIndex from '@/pages/user/index/index.vue';
+	import doctorIndex from '@/pages/doctor/index/index.vue'
 	export default {
 		components: {
-			userIndex
+			userIndex,
+			doctorIndex
 		},
 		data() {
 			return {
