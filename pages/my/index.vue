@@ -1,7 +1,9 @@
 <template>
 	<view>
-		<!-- <my-index></my-index> -->
-		<doctor-index></doctor-index>
+		<template>
+			<my-index v-if="userType"></my-index>
+			<doctor-index v-else></doctor-index>
+		</template>
 	</view>
 </template>
 
@@ -12,6 +14,14 @@
 		components: {
 			myIndex,
 			doctorIndex
+		},
+		computed: {
+			userType() {
+				const {name} = this.$store.state.user
+				console.log('name:', name)
+				if(name === 'user') return true
+				return false
+			},
 		},
 		data() {
 			return {

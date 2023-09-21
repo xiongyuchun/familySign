@@ -160,7 +160,8 @@
 		{
 			"path": "pages/user/my/index",
 			"app-plus": {
-				"titleNView": false
+				"titleNView": false,
+				"bounce": "none"
 			},
 			"style": {
 				"navigationBarTitleText": "",
@@ -186,6 +187,26 @@
 				"navigationBarTitleText": "",
 				"navigationStyle": "custom"
 			}
+		},
+		{
+			"path": "pages/login/register",
+			"app-plus": {
+				"titleNView": false
+			},
+			"style": {
+				"navigationBarTitleText": "",
+				"navigationStyle": "custom"
+			}
+		},
+		{
+			"path": "pages/login/index",
+			"app-plus": {
+				"titleNView": false
+			},
+			"style": {
+				"navigationBarTitleText": "",
+				"navigationStyle": "custom"
+			}
 		}
 	],
 	"subPackages": [
@@ -195,7 +216,8 @@
 				{
 					"path": "my/statistics-manage/index",
 					"app-plus": {
-						"titleNView": false
+						"titleNView": false,
+						"bounce": "none"
 					},
 					"style": {
 						"navigationBarTitleText": "",

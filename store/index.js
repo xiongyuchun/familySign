@@ -54,6 +54,7 @@ export default new Vuex.Store({
 		loginStatus:false,
 		token:false,
 		user:{
+			name: '',
 			// "id": 7,
 			// "username": "zcmcss",
 			// "userpic": "https://tangzhe123-com.oss-cn-shenzhen.aliyuncs.com/Appstatic/qsbk/demo/userpic/1.jpg",
@@ -126,7 +127,7 @@ export default new Vuex.Store({
 			state.user = user
 			state.token = state.user.token
 			uni.setStorageSync('user', JSON.stringify(user));
-			uni.$emit('updateIndex')
+			// uni.$emit('updateIndex')
 		},
 		// 退出登录
 		logout(state){
@@ -134,7 +135,7 @@ export default new Vuex.Store({
 			state.user = {}
 			state.token = false
 			uni.removeStorageSync('user');
-			uni.$emit('updateIndex')
+			// uni.$emit('updateIndex')
 		},
 		// 修改用户信息(手机号,邮箱,密码)
 		editUserInfo(state,{ key,value }){
@@ -178,8 +179,6 @@ export default new Vuex.Store({
 				state.user = JSON.parse(user)
 				state.loginStatus = true
 				state.token = state.user.token
-				// 打开socket
-				dispatch('openSocket')
 			}
 		},
 		// 关闭socket
