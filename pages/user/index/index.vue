@@ -21,24 +21,24 @@
 		</view>
 		<view class="grid px-3 mt-5">
 			<view class="flex mb-3">
-				<view @click="$U.gotoPage('/pages/user/my/upload-info/index')" class="grid-shadow flex align-center bg-white flex-1 mr-3 bg-white px-1">
+				<view @click="$U.gotoPage('/pages/sub-packages-user/my/upload-info/index')" class="grid-shadow flex align-center bg-white flex-1 mr-3 bg-white px-1">
 					<img src="@/static/index/uploadInfo.png" alt="" srcset=""
 						style="width: 108rpx; height: 103rpx;margin-right: 4rpx;">
 					<text class="font-30 text-333">上传健康档案</text>
 				</view>
-				<view @click="$U.gotoPage('/pages/user/my/un-sign/index')" class="grid-shadow flex align-center bg-white flex-1 bg-white px-3">
+				<view @click="$U.gotoPage('/pages/sub-packages-user/my/un-sign/index')" class="grid-shadow flex align-center bg-white flex-1 bg-white px-3">
 					<img src="@/static/index/sign.png" alt="" srcset=""
 						style="width: 95rpx; height: 101rpx;margin-right: 19rpx;">
 					<text class="font-30 text-333">在线签约</text>
 				</view>
 			</view>
 			<view class="flex">
-				<view @click="$U.gotoPage(`/pages/user/my/online-signing/index?title=在线续约`)" class="grid-shadow flex align-center bg-white flex-1 mr-3 bg-white px-2">
+				<view @click="$U.gotoPage(`/pages/sub-packages-user/my/online-signing/index?title=在线续约`)" class="grid-shadow flex align-center bg-white flex-1 mr-3 bg-white px-2">
 					<img src="@/static/index/container.png" alt="" srcset=""
 						style="width: 93rpx; height: 101rpx;margin-right: 9rpx;">
 					<text class="font-30 text-333">在线续约</text>
 				</view>
-				<view @click="$U.gotoPage('/pages/user/my/doctor-introduction/index')" class="grid-shadow flex align-center bg-white flex-1 bg-white px-3">
+				<view @click="$U.gotoPage('/pages/sub-packages-user/my/doctor-introduction/index')" class="grid-shadow flex align-center bg-white flex-1 bg-white px-3">
 					<img src="@/static/index/signdot.png" alt="" srcset=""
 						style="width: 114rpx; height: 83rpx;margin-right: 12rpx;">
 					<text class="font-30 text-333">签约医生</text>
@@ -55,7 +55,7 @@
 					<img src="@/static/index/reservation.png" alt="" srcset="" style="width: 85rpx; height: 90rpx;">
 					<text class="font-small text-333">在线预约</text>
 				</view>
-				<view @click="$U.gotoPage('/pages/user/my/review-file/index')" class="flex flex-column justify-center align-center">
+				<view @click="$U.gotoPage('/pages/sub-packages-user/my/review-file/index')" class="flex flex-column justify-center align-center">
 					<img src="@/static/index/review.png" alt="" srcset="" style="width: 82rpx; height: 85rpx;">
 					<text class="font-small text-333">查阅健康档案</text>
 				</view>

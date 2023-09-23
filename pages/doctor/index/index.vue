@@ -1,32 +1,42 @@
 <template>
 	<view class="">
-		<special-navbar :mode="1">
+		<view class="doctor-top">
+			<img class="doctor-top-bg" src="@/static/index/doctor-bg.png" alt="" srcset="">
+			<!-- 状态栏 -->
+			<view :style="{ height: statusBarHeight }" class="w-100"></view>
 			<view class="top-navbar">
 				<img src="@/static/index/map.png" class="bg-transparent mr-1 map" alt="" srcset="">
 				<text class="text-white font-sm mr-2">签约单位地址</text>
 				<text class="text-white font-small">景德镇第三人民医院</text>
 			</view>
-		</special-navbar>
-		<view class="rotation px-3">
-			<uni-swiper-dot class="uni-swiper-dot-box" :current="current" mode="round" :dots-styles="dotsStyles"
-				field="content">
-				<swiper class="swiper-box" @change="change" :current="swiperDotIndex">
-					<swiper-item v-for="(item, index) in 1" :key="index">
-						<view class="swiper-item">
-							<img src="@/static/index/horse.png" class="w-100 bg-transparent" alt="" srcset="">
-						</view>
-					</swiper-item>
-				</swiper>
-			</uni-swiper-dot>
+			<view class="doctor-top-photo flex">
+				<img class="mr-2" style="width: 137rpx;height: 137rpx;border-radius: 50%;" src="@/static/default.jpg" alt="" srcset="">
+				<text class="mt-2 text-white" style="font-size: 28rpx;">蓝医生</text>
+			</view>
+			<view class="px-4 mt-3">
+				<view class="px-2 py-2 flex position-relative" style="height: 125rpx; border-top: 2rpx solid rgba(255, 255, 255, 0.4);">
+					<view class="flex flex-column flex-1 justify-center align-center">
+						<text class="text-white mb-1" style="font-size: 58rpx; font-weight: 500;line-height: 1">23</text>
+						<text class="text-white" style="font-size: 25rpx;line-height: 1">签约人数</text>
+					</view>
+					<view class="position-absolute doctor-top-line">
+						
+					</view>
+					<view class="flex flex-column flex-1 justify-center align-center">
+						<text class="text-white mb-1" style="font-size: 58rpx; font-weight: 500;line-height: 1;">32</text>
+						<text class="text-white" style="font-size: 25rpx;line-height: 1">服务次数</text>
+					</view>
+				</view>
+			</view>
 		</view>
 		<view class="grid px-3 mt-5">
 			<view class="flex">
-				<view @click="$U.gotoPage(`/pages/user/my/online-signing/index?title=在线续约`)" class="grid-shadow flex align-center bg-white flex-1 mr-3 bg-white px-2">
+				<view @click="$U.gotoPage(`/pages/sub-packages-doctor/my/online-signing-list/index?title=在线续约`)" class="grid-shadow flex align-center bg-white flex-1 mr-3 bg-white px-2">
 					<img src="@/static/index/container.png" alt="" srcset=""
 						style="width: 93rpx; height: 101rpx;margin-right: 9rpx;">
 					<text class="font-30 text-333">在线续约</text>
 				</view>
-				<view @click="$U.gotoPage('/pages/user/my/un-sign/index')" class="grid-shadow flex align-center bg-white flex-1 bg-white px-3">
+				<view @click="$U.gotoPage(`/pages/sub-packages-doctor/my/online-signing-list/index?title=在线签约`)" class="grid-shadow flex align-center bg-white flex-1 bg-white px-3">
 					<img src="@/static/index/sign.png" alt="" srcset=""
 						style="width: 95rpx; height: 101rpx;margin-right: 19rpx;">
 					<text class="font-30 text-333">在线签约</text>
@@ -57,41 +67,14 @@
 		name: 'userIndex',
 		data() {
 			return {
-				last_id: '',
-				reload: false,
-				modeIndex: -1,
-				styleIndex: -1,
-				current: 0,
-				dotsStyles: {
-					backgroundColor: 'rgba(127, 180, 249, .3)',
-					border: '1px rgba(255, 255, 255, .3) solid',
-					color: '#fff',
-					selectedBackgroundColor: 'rgba(255, 255, 255, .9)',
-					selectedBorder: '1px rgba(255, 255, 255, .9) solid'
-				},
-				swiperDotIndex: 0
+				statusBarHeight: 25
 			}
 		},
+		created() {
+			this.statusBarHeight = uni.getSystemInfoSync().statusBarHeight + 'px'
+		},
 		methods: {
-			change(e) {
-				this.current = e.detail.current
-			},
-			selectStyle(index) {
-				this.dotsStyles = this.dotStyle[index]
-				this.styleIndex = index
-			},
-			selectMode(mode, index) {
-				this.mode = mode
-				this.modeIndex = index
-				this.styleIndex = -1
-				this.dotsStyles = this.dotStyle[0]
-			},
-			clickItem(e) {
-				this.swiperDotIndex = e
-			},
-			onBanner(index) {
-				console.log(22222, index);
-			}
+			
 		},
 	}
 </script>
@@ -103,6 +86,32 @@
 </style>
 
 <style scoped lang="scss">
+	.doctor-top {
+		position: relative;
+		width: 100%;
+		height: 563rpx;
+		
+		&-line {
+			height: 70rpx; 
+			border: 2rpx solid rgba(255, 255, 255, 0.4);
+			left: calc(50% - 2rpx);
+			top: 46rpx;
+		}
+		
+		&-bg {
+			position: absolute;
+			top: 0;
+			left: 0;
+			height: 100%;
+			width: 100%;
+			z-index: -1;
+		}
+		
+		&-photo {
+			margin-left: 55rpx;
+		}
+		
+	}
 	.top-navbar {
 		height: 44px;
 		display: flex;
@@ -133,25 +142,6 @@
 		border-radius: 16rpx;
 		height: 200rpx;
 		justify-content: space-around;
-	}
-
-	.rotation {
-		margin-top: -163rpx;
-	}
-
-	.swiper-box {
-		height: 260rpx;
-	}
-
-	.swiper-item {
-		/* #ifndef APP-NVUE */
-		display: flex;
-		/* #endif */
-		flex-direction: column;
-		justify-content: center;
-		align-items: center;
-		height: 260rpx;
-		color: #fff;
 	}
 	
 </style>

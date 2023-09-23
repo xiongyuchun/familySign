@@ -10,23 +10,22 @@
 		<view class="signBtn-box">
 			<view class="signBtn-item1">
 				<button type="default" plain="true" class="lnvestor-btn" hover-class="hover"
-					@click="cancelBtn">取消</button>
+					@click="$U.backPage(1)">取消</button>
 			</view>
 			<view class="signBtn-item2">
 				<button type="default" plain="true" class="lnvestor-btn1" hover-class="hover"
 					@click="clear">清空重写</button>
 				<button type="primary" class="lnvestor-btn2" hover-class="hover"
-					@click="submitBtn" :disabled="vsignDisabled">提交签名</button>
-				<button @click="saveTempFilePath">保存临时图片路径</button>
-				<button @click="saveImage">保存图片</button>
+					@click="saveTempFilePath" :disabled="vsignDisabled">提交签名</button>
+				<!-- <button @click="saveTempFilePath">保存临时图片路径</button>
+				<button @click="saveImage">保存图片</button> -->
 			</view>
 		</view>
 	</view>
 </template>
 
 <script>
-	import mySign from '../../components/my-sign/index.vue'
-	import { pathToBase64 } from '../../common/util.js'
+	import mySign from '@/components/my-sign/index.vue'
 	export default {
 		components: {
 			mySign
@@ -41,23 +40,12 @@
 			var that = this;
 			uni.getSystemInfo({
 				success: function(res) {
-					console.log('屏幕信息', res)
+					// console.log('屏幕信息', res)
 					that.signHeight = (res.windowHeight-130)+"px";
 				}
 			})
 		},
 		methods: {
-			submitBtn(){
-				uni.redirectTo({
-					url: '/qualifyLnvestor/qualifyLnvestor/result'
-				})
-			},
-			// 取消
-			cancelBtn(){
-				uni.navigateBack({
-					delta: 1
-				})
-			},
 			// 清除
 			clear() {
 				this.signCtx.clear();
@@ -70,11 +58,7 @@
 			endConfirm() {
 				this.vsignDisabled = false;
 			},
-			// 保存为临时图片路径，h5返回 base64
-			// async saveTempFilePath() {
-			// 	const res = await this.signCtx.canvasToTempFilePath()
-			// 	console.log(res)
-			// },
+			// 保存为临时图片路
 			// 保存 png 图片
 			saveImage() {
 				this.signCtx.saveImage()
@@ -86,10 +70,12 @@
 					src: res,
 					quality: 15,
 					success: ret => {
-						pathToBase64(ret.tempFilePath)
+						this.$U.pathToBase64(ret.tempFilePath)
 							.then(path => {
 								this.signBase64 = path;
-								console.log('path：', path)
+								uni.redirectTo({
+									url: `/pages/sub-packages-user/my/online-signing/index?path=${path}`
+								});
 							})
 							.catch(error => {
 								console.error(error)

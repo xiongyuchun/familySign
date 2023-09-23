@@ -191,7 +191,7 @@
 	.set-2::before {
 		content: "\e64d";
 		/* 必须存在如果没有图标就留空 */
-		color: #c6c6c6;
+		color: #069CF8;
 		/* 设置颜色 */
 		position: absolute;
 		/* 定位 */
@@ -210,6 +210,7 @@
 		/* 图标样式在复制的图标文件中复制相对应的图标样式必须存在 */
 		-moz-osx-font-smoothing: grayscale;
 		/* 图标样式在复制的图标文件中复制相对应的图标样式必须存在 */
+		z-index: 1;
 	}
 	
 	.info {

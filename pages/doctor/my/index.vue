@@ -29,7 +29,7 @@
 					<uni-icons class="my-list-item_icon" type="forward"></uni-icons>
 				</view>
 			</view>
-			<view  @click="$U.gotoPage('/pages/user/my/review-file/index')" class="my-list-item flex align-center justify-between">
+			<view  class="my-list-item flex align-center justify-between">
 				<view class="flex align-center">
 					<img class="my-list-item_img" src="@/static/my/review.png" alt="">
 					<text class="my-list-item_info">查看健康档案</text>
@@ -38,7 +38,7 @@
 					<uni-icons class="my-list-item_icon" type="forward"></uni-icons>
 				</view>
 			</view>
-			<view @click="$U.gotoPage('/pages/user/my/contact-us/index')" class="my-list-item flex align-center justify-between">
+			<view @click="$U.gotoPage('/pages/sub-packages-user/my/contact-us/index')" class="my-list-item flex align-center justify-between">
 				<view class="flex align-center">
 					<img class="my-list-item_img" src="@/static/my/email.png" style="height: 30rpx;" alt="">
 					<text class="my-list-item_info">联系我们</text>
@@ -47,7 +47,7 @@
 					<uni-icons class="my-list-item_icon" type="forward"></uni-icons>
 				</view>
 			</view>
-			<view @click="$U.gotoPage('/pages/user/my/about/index')" class="my-list-item flex align-center justify-between">
+			<view @click="$U.gotoPage('/pages/sub-packages-user/my/about/index')" class="my-list-item flex align-center justify-between">
 				<view class="flex align-center">
 					<img class="my-list-item_img" src="@/static/my/about.png" alt="">
 					<text class="my-list-item_info">关于</text>

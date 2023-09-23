@@ -2,9 +2,10 @@
 	<view class="">
 		<view class="top-bg">
 			<img style="width: 100%;" src="@/static/my/user-login.png" alt="" srcset="">
+			<text class="top-bg-txt">登录</text>
 		</view>
 		<view class="register-main">
-			<view class="bg-white px-3 register-main-item">
+			<view class="bg-white register-main-item">
 				<uni-forms ref="baseForm" :modelValue="baseFormData" label-position="top">
 					<uni-forms-item label-width="280rpx" label="账户" label-align="left">
 						<template v-slot:label>
@@ -31,7 +32,7 @@
 								<text style="font-size: 34rpx; color: #333;">居住地</text>
 							</view>
 						</template>
-						<uni-easyinput disabled v-model="baseFormData.introduction" placeholder="江西省景德镇市" />
+						<view class="" style="font-size: 27rpx; color: #999;">{{baseFormData.introduction}}</view>
 					</uni-forms-item>
 				</uni-forms>
 			</view>
@@ -40,7 +41,7 @@
 			<view @click="login" class="submit-btn">
 				立即登录
 			</view>
-			<view class="" style="font-size: 27rpx; color: #999; margin-top: 60rpx;">
+			<view class="" style="font-size: 27rpx; color: #999; margin-top: 40rpx;">
 				<text>还没有账号？</text><text @click="$U.gotoPage('/pages/login/register')" style="color: #1A85EB;">注册</text>
 			</view>
 		</view>
@@ -80,7 +81,7 @@
 					name: this.baseFormData.name,
 					token: 'token'
 				})
-				this.$U.gotoPage('/pages/index/index')
+				this.$U.gotoPage('/pages/index/index');
 				// 显示tabbar
 				uni.showTabBar({ animation: true });
 			}
@@ -88,24 +89,40 @@
 	}
 </script>
 
+<style>
+	page {
+		background-color: #fff !important;
+	}
+</style>
+
 <style scoped lang="scss">
 	.top-bg {
 		height: 463rpx;
+		display: flex;
+		justify-content: center;
+		position: relative;
+		
+		&-txt {
+			position: absolute;
+			top: 240rpx;
+			color: #fff;
+			font-size: 50rpx;
+		}
+		
 	}
 	.height-50rpx {
 		height: 50rpx;
-		margin-bottom: 36rpx;
+		margin-bottom: 20rpx;
 	}
 	.register-main {
-		background-color: #fdfdfd;
 		border-radius: 35rpx;
 		padding: 50rpx 20rpx;
 		position: relative;
 		
 		&-item {
 			padding: 30rpx;
-			border-radius: 35rpx;
-			box-shadow: 0rpx 0rpx 40rpx 0rpx rgba(0, 0, 0, 0.06);
+			// border-radius: 35rpx;
+			// box-shadow: 0rpx 0rpx 40rpx 0rpx rgba(0, 0, 0, 0.06);
 		}
 		
 	}
@@ -158,9 +175,10 @@
 	}
 	::v-deep .uni-forms-item {
 		display: flex;
-		height: 159rpx;
+		height: 160rpx;
 		border-bottom: 1rpx solid #EEEFF7;
 		margin-bottom: 0;
 		padding: 18rpx 0;
+		box-sizing: border-box;
 	}
 </style>

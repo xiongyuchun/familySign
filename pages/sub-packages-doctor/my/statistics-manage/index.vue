@@ -33,8 +33,8 @@
 </template>
 
 <script>
-	import * as echarts from "@/static/echarts.min.js"; //这里根据自己存放的路径修改
-	import myEcharts from "@/components/mpvue-echarts/echarts.vue"; //这里根据自己存放的路径修改
+	import * as echarts from "../../static/echarts.min.js"; //这里根据自己存放的路径修改
+	import myEcharts from "@/pages/sub-packages-doctor/components/mpvue-echarts/echarts.vue"; //这里根据自己存放的路径修改
 
 	let chart = null; //放外层方便拿到echart实例
 	export default {

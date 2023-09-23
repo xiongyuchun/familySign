@@ -28,160 +28,10 @@
 			}
 		},
 		{
-			"path": "pages/user/my/about/index",
-			"app-plus": {
-				"titleNView": false
-			},
-			"style": {
-				"navigationBarTitleText": "",
-				"navigationStyle": "custom"
-			}
-		},
-		{
-			"path": "pages/user/my/upload-info/index",
-			"app-plus": {
-				"titleNView": false
-			},
-			"style": {
-				"navigationBarTitleText": "",
-				"navigationStyle": "custom"
-			}
-		},
-		{
-			"path": "pages/user/my/change-user/index",
-			"app-plus": {
-				"titleNView": false
-			},
-			"style": {
-				"navigationBarTitleText": "",
-				"navigationStyle": "custom"
-			}
-		},
-		{
-			"path": "pages/user/my/review-file/index",
-			"app-plus": {
-				"titleNView": false
-			},
-			"style": {
-				"navigationBarTitleText": "",
-				"navigationStyle": "custom"
-			}
-		},
-		{
-			"path": "pages/user/my/contact-us/index",
-			"app-plus": {
-				"titleNView": false
-			},
-			"style": {
-				"navigationBarTitleText": "",
-				"navigationStyle": "custom"
-			}
-		},
-		{
-			"path": "pages/user/my/sign-tip/index",
-			"app-plus": {
-				"titleNView": false
-			},
-			"style": {
-				"navigationBarTitleText": "",
-				"navigationStyle": "custom"
-			}
-		},
-		{
-			"path": "pages/user/my/un-sign/index",
-			"app-plus": {
-				"titleNView": false
-			},
-			"style": {
-				"navigationBarTitleText": "",
-				"navigationStyle": "custom"
-			}
-		},
-		{
-			"path": "pages/user/my/unbound-user/index",
-			"app-plus": {
-				"titleNView": false
-			},
-			"style": {
-				"navigationBarTitleText": "",
-				"navigationStyle": "custom"
-			}
-		},
-		{
-			"path": "pages/user/my/online-signing/index",
-			"app-plus": {
-				"titleNView": false
-			},
-			"style": {
-				"navigationBarTitleText": "",
-				"navigationStyle": "custom"
-			}
-		},
-		{
-			"path": "pages/user/my/doctor-introduction/index",
-			"app-plus": {
-				"titleNView": false
-			},
-			"style": {
-				"navigationBarTitleText": "",
-				"navigationStyle": "custom"
-			}
-		},
-		{
-			"path": "pages/user/my/doctor-details/index",
-			"app-plus": {
-				"titleNView": false
-			},
-			"style": {
-				"navigationBarTitleText": "",
-				"navigationStyle": "custom"
-			}
-		},
-		{
-			"path": "pages/user/my/add-file/index",
-			"app-plus": {
-				"titleNView": false
-			},
-			"style": {
-				"navigationBarTitleText": "",
-				"navigationStyle": "custom"
-			}
-		},
-		{
-			"path": "pages/doctor/my/online-signing-list/index",
-			"app-plus": {
-				"titleNView": false
-			},
-			"style": {
-				"navigationBarTitleText": "",
-				"navigationStyle": "custom"
-			}
-		},
-		{
 			"path": "pages/user/my/index",
 			"app-plus": {
 				"titleNView": false,
 				"bounce": "none"
-			},
-			"style": {
-				"navigationBarTitleText": "",
-				"navigationStyle": "custom"
-			}
-		},
-		{
-			"path": "pages/doctor/my/number-of-services/index",
-			"app-plus": {
-				"titleNView": false
-			},
-			"style": {
-				"navigationBarTitleText": "",
-				"navigationStyle": "custom"
-			}
-		},
-		{
-			"path": "pages/doctor/my/number-of-signatories/index",
-			"app-plus": {
-				"titleNView": false
 			},
 			"style": {
 				"navigationBarTitleText": "",
@@ -207,6 +57,18 @@
 				"navigationBarTitleText": "",
 				"navigationStyle": "custom"
 			}
+		},
+		{
+			"path": "pages/signature/index",
+			"app-plus": {
+				"titleNView": false
+			},
+			"style": {
+				"enablePullDownRefresh": false, // 下拉刷新
+				"pageOrientation": "landscape", // 横屏
+				"navigationBarTitleText": "",
+				"navigationStyle": "custom"
+			}
 		}
 	],
 	"subPackages": [
@@ -218,6 +80,181 @@
 					"app-plus": {
 						"titleNView": false,
 						"bounce": "none"
+					},
+					"style": {
+						"navigationBarTitleText": "",
+						"navigationStyle": "custom"
+					}
+				},
+				{
+					"path": "my/number-of-services/index",
+					"app-plus": {
+						"titleNView": false
+					},
+					"style": {
+						"navigationBarTitleText": "",
+						"navigationStyle": "custom"
+					}
+				},
+				{
+					"path": "my/number-of-signatories/index",
+					"app-plus": {
+						"titleNView": false
+					},
+					"style": {
+						"navigationBarTitleText": "",
+						"navigationStyle": "custom"
+					}
+				},
+				{
+					"path": "my/online-signing-list/index",
+					"app-plus": {
+						"titleNView": false
+					},
+					"style": {
+						"navigationBarTitleText": "",
+						"navigationStyle": "custom"
+					}
+				},
+				{
+					"path": "my/put-on-record/index",
+					"app-plus": {
+						"titleNView": false
+					},
+					"style": {
+						"navigationBarTitleText": "",
+						"navigationStyle": "custom"
+					}
+				},
+				{
+					"path": "my/user-detail/index",
+					"app-plus": {
+						"titleNView": false
+					},
+					"style": {
+						"navigationBarTitleText": "",
+						"navigationStyle": "custom"
+					}
+				}
+			]
+		},
+		{
+			"root": "pages/sub-packages-user",
+			"pages": [
+				{
+					"path": "my/about/index",
+					"app-plus": {
+						"titleNView": false
+					},
+					"style": {
+						"navigationBarTitleText": "",
+						"navigationStyle": "custom"
+					}
+				},
+				{
+					"path": "my/add-file/index",
+					"app-plus": {
+						"titleNView": false
+					},
+					"style": {
+						"navigationBarTitleText": "",
+						"navigationStyle": "custom"
+					}
+				},
+				{
+					"path": "my/change-user/index",
+					"app-plus": {
+						"titleNView": false
+					},
+					"style": {
+						"navigationBarTitleText": "",
+						"navigationStyle": "custom"
+					}
+				},
+				{
+					"path": "my/contact-us/index",
+					"app-plus": {
+						"titleNView": false
+					},
+					"style": {
+						"navigationBarTitleText": "",
+						"navigationStyle": "custom"
+					}
+				},
+				{
+					"path": "my/doctor-details/index",
+					"app-plus": {
+						"titleNView": false
+					},
+					"style": {
+						"navigationBarTitleText": "",
+						"navigationStyle": "custom"
+					}
+				},
+				{
+					"path": "my/doctor-introduction/index",
+					"app-plus": {
+						"titleNView": false
+					},
+					"style": {
+						"navigationBarTitleText": "",
+						"navigationStyle": "custom"
+					}
+				},
+				{
+					"path": "my/review-file/index",
+					"app-plus": {
+						"titleNView": false
+					},
+					"style": {
+						"navigationBarTitleText": "",
+						"navigationStyle": "custom"
+					}
+				},
+				{
+					"path": "my/sign-tip/index",
+					"app-plus": {
+						"titleNView": false
+					},
+					"style": {
+						"navigationBarTitleText": "",
+						"navigationStyle": "custom"
+					}
+				},
+				{
+					"path": "my/unbound-user/index",
+					"app-plus": {
+						"titleNView": false
+					},
+					"style": {
+						"navigationBarTitleText": "",
+						"navigationStyle": "custom"
+					}
+				},
+				{
+					"path": "my/un-sign/index",
+					"app-plus": {
+						"titleNView": false
+					},
+					"style": {
+						"navigationBarTitleText": "",
+						"navigationStyle": "custom"
+					}
+				},
+				{
+					"path": "my/upload-info/index",
+					"app-plus": {
+						"titleNView": false
+					},
+					"style": {
+						"navigationBarTitleText": "",
+						"navigationStyle": "custom"
+					}
+				},
+				{
+					"path": "my/online-signing/index",
+					"app-plus": {
+						"titleNView": false
 					},
 					"style": {
 						"navigationBarTitleText": "",

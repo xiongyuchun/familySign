@@ -1,5 +1,5 @@
 <template>
-	<view @click="$U.backPage(1)" class="doc-list position-relative">
+	<view @click="$U.gotoPage('/pages/sub-packages-doctor/my/user-detail/index')" class="doc-list position-relative">
 		<view class="doc-list-photo flex align-center">
 			<view class="mr-2">
 				<img class="doc-list-photo_img" src="@/static/default.jpg" alt="" srcset="">
