@@ -35,8 +35,8 @@
 				</view>
 			</view>
 			<view class="sign-name">
-				<img  v-if="path" @click="$U.gotoPage('/pages/signature/index')" :src="path" alt="" srcset="" style="height: 180rpx; width: 450rpx;" />
-				<img v-else @click="$U.gotoPage('/pages/signature/index')" style="height: 180rpx; width: 450rpx;" src="@/static/my/sign-name.png" alt="" srcset="" />
+				<img  v-if="signPath" @click="$U.gotoPage('/pages/sub-packages-user/my/signature/index')" :src="signPath" alt="" srcset="" style="height: 180rpx; width: 450rpx;" />
+				<img v-else @click="$U.gotoPage('/pages/sub-packages-user/my/signature/index')" style="height: 180rpx; width: 450rpx;" src="@/static/my/sign-name.png" alt="" srcset="" />
 			</view>
 			<view @click="$U.gotoPageTab('/pages/index/index')" class="submit">
 				提交申请
@@ -50,12 +50,15 @@
 		data() {
 			return {
 				title: '在线签约',
-				path: ''
+			}
+		},
+		computed: {
+			signPath() {
+				return this.$store.state.signPath
 			}
 		},
 		onLoad(options) {
 			this.title = options.title;
-			this.path = options.path;
 		},
 	}
 </script>

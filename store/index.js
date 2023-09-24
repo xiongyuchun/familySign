@@ -55,34 +55,9 @@ export default new Vuex.Store({
 		token:false,
 		user:{
 			name: '',
-			// "id": 7,
-			// "username": "zcmcss",
-			// "userpic": "https://tangzhe123-com.oss-cn-shenzhen.aliyuncs.com/Appstatic/qsbk/demo/userpic/1.jpg",
-			// "password": true,
-			// "phone": "13450772004",
-			// "email": "123@qq.com",
-			// "status": 1,
-			// "create_time": null,
-			// "logintype": "username",
-			// "token": "a8bb3f6f50ff5049d70b6022b48e1f45c24a96f8",
-			// "userinfo": {
-			// 	"id": 1,
-			// 	"user_id": 7,
-			// 	"age": 23,
-			// 	"sex": 1,
-			// 	"qg": 1,
-			// 	"job": "IT",
-			// 	"path": "北京市-市辖区-朝阳区",
-			// 	"birthday": "1996-06-12"
-			// },
-			// user_bind:{
-			// 	"qq": {
-			// 		"id": 229,
-			// 		"nickname": "airson"
-			// 	}
-			// }
 		},
-		
+		// 签名path
+		signPath: '',
 		// Socket连接状态
 		IsOpen:false,
 		// SocketTask
@@ -109,6 +84,10 @@ export default new Vuex.Store({
 		}
 	},
 	mutations:{
+		// 更改signPath
+		updateSignPath(state, path) {
+			state.signPath = path
+		},
 		// 创建聊天对象
 		createToUser(state,ToUser){
 			state.ToUser = ToUser

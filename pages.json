@@ -7,7 +7,7 @@
 			},
 			"style": {
 				"navigationBarTitleText": "",
-				// "enablePullDownRefresh": false, // 下拉刷新
+				"enablePullDownRefresh": false, // 下拉刷新
 				// "pageOrientation": "landscape", // 横屏
 				"backgroundColor": "#fdfdfd",
 				"navigationStyle": "custom"
@@ -54,18 +54,6 @@
 				"titleNView": false
 			},
 			"style": {
-				"navigationBarTitleText": "",
-				"navigationStyle": "custom"
-			}
-		},
-		{
-			"path": "pages/signature/index",
-			"app-plus": {
-				"titleNView": false
-			},
-			"style": {
-				"enablePullDownRefresh": false, // 下拉刷新
-				"pageOrientation": "landscape", // 横屏
 				"navigationBarTitleText": "",
 				"navigationStyle": "custom"
 			}
@@ -260,6 +248,18 @@
 						"navigationBarTitleText": "",
 						"navigationStyle": "custom"
 					}
+				},
+				{
+					"path": "my/signature/index",
+					"app-plus": {
+						"titleNView": false
+					},
+					"style": {
+						"enablePullDownRefresh": false, // 下拉刷新
+						"pageOrientation": "landscape", // 横屏
+						"navigationBarTitleText": "",
+						"navigationStyle": "custom"
+					}
 				}
 			]
 		}
@@ -278,7 +278,7 @@
 	},
 	"tabBar": {
 		"color":"#333333",
-		"selectedColor":"#FC5C82",
+		"selectedColor":"#4EB4F8",
 		"backgroundColor":"#FFFFFF",
 		"borderStyle":"black",
 		"list":[{
@@ -289,8 +289,8 @@
 		},{
 			"pagePath":"pages/msg/index",
 			"text":"消息",
-			"iconPath":"static/tabbar/paper.png",
-			"selectedIconPath":"static/tabbar/papered.png"
+			"iconPath":"static/tabbar/news.png",
+			"selectedIconPath":"static/tabbar/newsed.png"
 		},{
 			"pagePath":"pages/my/index",
 			"text":"我的",

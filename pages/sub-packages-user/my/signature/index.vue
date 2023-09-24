@@ -25,7 +25,7 @@
 </template>
 
 <script>
-	import mySign from '@/components/my-sign/index.vue'
+	import mySign from '@/pages/sub-packages-user/components/my-sign/index.vue'
 	export default {
 		components: {
 			mySign
@@ -73,9 +73,9 @@
 						this.$U.pathToBase64(ret.tempFilePath)
 							.then(path => {
 								this.signBase64 = path;
-								uni.redirectTo({
-									url: `/pages/sub-packages-user/my/online-signing/index?path=${path}`
-								});
+								// 更新store值
+								this.$store.commit('updateSignPath', path)
+								this.$U.backPage(1)
 							})
 							.catch(error => {
 								console.error(error)
