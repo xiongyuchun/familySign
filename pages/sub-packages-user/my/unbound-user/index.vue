@@ -14,7 +14,7 @@
 </template>
 
 <script>
-	import signTip from '@/components/sign-tip/index.vue';
+	import signTip from '@/pages/sub-packages-user/components/sign-tip/index.vue';
 	export default {
 		components: {
 			signTip
@@ -23,7 +23,7 @@
 			return {
 				signObj: {
 					desc: ['未绑定用户'],
-					imgPath: '/static/my/unbound-user.png',
+					imgPath: '/pages/sub-packages-user/static/unbound-user.png',
 					top: 274,
 					btn: true
 				}

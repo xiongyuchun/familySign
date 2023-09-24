@@ -18,7 +18,6 @@
 		computed: {
 			userType() {
 				const {name} = this.$store.state.user
-				console.log('name:', name)
 				if(name === 'user') return true
 				return false
 			},

@@ -7,7 +7,7 @@
 			</template>
 			<template v-slot:sign-btn>
 				<view class="flex align-center justify-center">
-					<view @click="$U.gotoPage('/pages/user/my/online-signing/index')" class="unsign-btn">去签约</view>
+					<view @click="$U.gotoPage('/pages/sub-packages-user/my/online-signing/index')" class="unsign-btn">去签约</view>
 				</view>
 			</template>
 		</sign-tip>
@@ -15,7 +15,7 @@
 </template>
 
 <script>
-	import signTip from '@/components/sign-tip/index.vue';
+	import signTip from '@/pages/sub-packages-user/components/sign-tip/index.vue';
 	export default {
 		components: {
 			signTip
@@ -24,7 +24,7 @@
 			return {
 				signObj: {
 					desc: ['未签约'],
-					imgPath: '/static/my/unsigned.png',
+					imgPath: '/pages/sub-packages-user/static/unsigned.png',
 					top: 274,
 					btn: true
 				}

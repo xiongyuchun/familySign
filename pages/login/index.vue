@@ -81,7 +81,7 @@
 					name: this.baseFormData.name,
 					token: 'token'
 				})
-				this.$U.gotoPage('/pages/index/index');
+				this.$U.gotoPageTab('/pages/index/index');
 				// 显示tabbar
 				uni.showTabBar({ animation: true });
 			}

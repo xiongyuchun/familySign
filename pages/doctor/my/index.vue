@@ -56,6 +56,15 @@
 					<uni-icons class="my-list-item_icon" type="forward"></uni-icons>
 				</view>
 			</view>
+			<view @click="logout" class="my-list-item flex align-center justify-between">
+				<view class="flex align-center">
+					<img class="my-list-item_img" src="@/static/my/logout.png" alt="">
+					<text class="my-list-item_info">退出登录</text>
+				</view>
+				<view class="flex align-center">
+					<uni-icons class="my-list-item_icon" type="forward"></uni-icons>
+				</view>
+			</view>
 		</view>
 	</view>
 </template>
@@ -68,10 +77,9 @@
 			}
 		},
 		methods: {
-			goto(path) {
-				uni.navigateTo({
-					url: path,
-				});
+			async logout(path) {
+				await this.$store.commit('logout')
+				this.$U.gotoPage('/pages/login/index')
 			}
 		},
 	}
