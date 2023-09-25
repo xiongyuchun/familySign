@@ -16,7 +16,7 @@
 				signObj: {
 					title: '您已签约',
 					desc: ['签约协议于2023年12月23日到期', '请2023年10月23日之后开始续约'],
-					imgPath: '/static/my/signed.png',
+					imgPath: '/pages/sub-packages-user/static/signed.png',
 				}
 			}
 		},

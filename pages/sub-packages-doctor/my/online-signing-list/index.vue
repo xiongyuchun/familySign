@@ -57,7 +57,17 @@
 		data() {
 			return {
 				signList: {
-					btns: ['拒签', '去签约']
+					btns: [
+						{
+							name: '拒签',
+							type: 0
+						},
+						{
+							name: '去签约',
+							type: 1,
+							path: '/pages/sub-packages-user/my/online-signing'
+						}
+					]
 				},
 				// 列表高度
 				scrollH:600,
