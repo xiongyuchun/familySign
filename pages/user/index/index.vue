@@ -69,7 +69,7 @@
 				</view>
 				<view class="news-item">
 					<view class="">
-						<img class="news-item_img" src="@/static/my/about-logo.png" alt="" srcset="">
+						<img class="news-item_img" src="@/static/my/about.png" alt="" srcset="">
 					</view>
 					<view class="flex flex-column justify-between pt-1 pb-1">
 						<view class="news-item_title overflow-hidden-1">第三届皮肤病专家学术研讨会在江西南昌高新举行</view>

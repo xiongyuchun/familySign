@@ -12,7 +12,7 @@
 		</scroll-view>
 		<view class="px-3">
 			<view class="mb-2 flex align-center">
-				<img class="screen" src="@/static/my/screen.png" alt="" srcset="">
+				<img class="screen" src="@/pages/sub-packages-user/static/screen.png" alt="" srcset="">
 				<text class="screen-text">筛选</text>
 			</view>
 			<view class="addrs mb-3">
@@ -40,11 +40,16 @@
 				<scroll-view scroll-y="true" :style="'height:'+scrollH+'px;'"
 				@scrolltolower="loadmore(index)">
 					<view class="user-list w-100 px-3">
-						<sign-list :item="signList"></sign-list>
+						<sign-list :item="signList" @btnClick="popupHander"></sign-list>
 					</view>
 				</scroll-view>
 			</swiper-item>
 		</swiper>
+		<!-- 拒签理由弹窗 -->
+		<uni-popup ref="inputDialog" type="dialog">
+			<uni-popup-dialog ref="inputClose"  mode="input" title="请输入拒签理由"
+				placeholder="请输入拒签理由" @confirm="dialogInputConfirm"></uni-popup-dialog>
+		</uni-popup>
 	</view>
 </template>
 
@@ -65,7 +70,7 @@
 						{
 							name: '去签约',
 							type: 1,
-							path: '/pages/sub-packages-user/my/online-signing'
+							path: '/pages/sub-packages-user/my/online-signing/index'
 						}
 					]
 				},
@@ -99,6 +104,23 @@
 			}
 		},
 		methods: {
+			// 签约列表按钮事件
+			popupHander(item) {
+				// type 0:拒签  1: 待签约
+				if(item.type === 0) {
+					this.$refs.inputDialog.open()
+				}
+				if(item.type === 1) {
+					if(item.path) {
+						this.$U.gotoPage(item.path)
+					}
+				}
+			},
+			// 拒签-确定
+			dialogInputConfirm(val) {
+				console.log('拒签:', val)
+				this.$refs.inputDialog.close()
+			},
 			// 切换选项
 			changeTab(index){
 				if (this.tabIndex === index) {

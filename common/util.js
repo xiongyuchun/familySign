@@ -68,6 +68,13 @@ function gotoPage(path) {
 	})
 }
 
+// 跳转到指定页面 非tabbar 并关闭所有页面
+function gotoPageAndClosePage(path) {
+	uni.reLaunch({
+		url: path
+	})
+}
+
 // 跳转到指定页面tabbar
 function gotoPageTab(path) {
 	uni.switchTab({
@@ -125,5 +132,6 @@ export default {
 	pathToBase64,
 	gotoPage,
 	gotoPageTab,
-	backPage
+	backPage,
+	gotoPageAndClosePage
 }

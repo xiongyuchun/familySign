@@ -1,7 +1,7 @@
 <template>
 	<view class="upload-info">
 		<view class="top-bg">
-			<img class="w-100 bg-upload" src="@/static/my/bg-upload.png" alt="" srcset="">
+			<img class="w-100 bg-upload" src="@/pages/sub-packages-user/static/bg-upload.png" alt="" srcset="">
 			<view :style="{ height: statusBarHeight }" class="w-100"></view>
 			<view class="title text-white font flex justify-center align-center">
 				<view @click="$U.backPage(1)">
@@ -47,11 +47,11 @@
 						<view class="flex">
 							<img @click="chooseImage('idcard1')" v-if="baseFormData.idcard1" class="id-card" :src="baseFormData.idcard1" alt=""
 								srcset="" style="margin-right: 40rpx;">
-							<img @click="chooseImage('idcard1')" v-else class="id-card" src="@/static/my/idcard1.png" alt="" srcset=""
+							<img @click="chooseImage('idcard1')" v-else class="id-card" src="@/pages/sub-packages-user/static/idcard1.png" alt="" srcset=""
 								style="margin-right: 40rpx;">
 							<img @click="chooseImage('idcard2')" v-if="baseFormData.idcard2" class="id-card" :src="baseFormData.idcard2" alt=""
 								srcset="" style="margin-right: 40rpx;">
-							<img @click="chooseImage('idcard2')" v-else class="id-card" src="@/static/my/idcard2.png" alt="" srcset="">
+							<img @click="chooseImage('idcard2')" v-else class="id-card" src="@/pages/sub-packages-user/static/idcard2.png" alt="" srcset="">
 						</view>
 					</uni-forms-item>
 				</uni-forms>

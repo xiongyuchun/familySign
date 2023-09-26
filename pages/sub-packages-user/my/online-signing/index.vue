@@ -36,9 +36,9 @@
 			</view>
 			<view class="sign-name">
 				<img  v-if="signPath" @click="$U.gotoPage('/pages/sub-packages-user/my/signature/index')" :src="signPath" alt="" srcset="" style="height: 180rpx; width: 450rpx;" />
-				<img v-else @click="$U.gotoPage('/pages/sub-packages-user/my/signature/index')" style="height: 180rpx; width: 450rpx;" src="@/static/my/sign-name.png" alt="" srcset="" />
+				<img v-else @click="$U.gotoPage('/pages/sub-packages-user/my/signature/index')" style="height: 180rpx; width: 450rpx;" src="@/pages/sub-packages-user/static/sign-name.png" alt="" srcset="" />
 			</view>
-			<view @click="$U.gotoPageTab('/pages/index/index')" class="submit">
+			<view @click="submit" class="submit">
 				提交申请
 			</view>
 		</view>
@@ -59,6 +59,14 @@
 		},
 		onLoad(options) {
 			this.title = options.title;
+		},
+		methods: {
+			submit() {
+				// 清除signPath
+				this.$store.commit('updateSignPath', '')
+				// 跳转到首页
+				this.$U.gotoPageTab('/pages/index/index')
+			}
 		},
 	}
 </script>

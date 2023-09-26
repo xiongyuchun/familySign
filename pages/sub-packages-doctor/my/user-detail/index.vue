@@ -40,7 +40,7 @@
 				</uni-section>
 				<uni-section class="mb-3" title="照片文件" type="line">
 					<view class="px-4 skill">
-						<img style="width: 180rpx; height: 180rpx;" src="@/static/my/signed.png" alt="" srcset="">
+						<img style="width: 180rpx; height: 180rpx;" src="/pages/sub-packages-doctor/static/signed.png" alt="" srcset="">
 					</view>
 				</uni-section>
 			</view>

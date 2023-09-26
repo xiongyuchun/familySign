@@ -15,14 +15,14 @@
 			</view>
 			<view class="px-4 mt-3">
 				<view class="px-2 py-2 flex position-relative" style="height: 125rpx; border-top: 2rpx solid rgba(255, 255, 255, 0.4);">
-					<view class="flex flex-column flex-1 justify-center align-center">
+					<view @click="$U.gotoPage('/pages/sub-packages-doctor/my/number-of-signatories/index')" class="flex flex-column flex-1 justify-center align-center">
 						<text class="text-white mb-1" style="font-size: 58rpx; font-weight: 500;line-height: 1">23</text>
 						<text class="text-white" style="font-size: 25rpx;line-height: 1">签约人数</text>
 					</view>
 					<view class="position-absolute doctor-top-line">
 						
 					</view>
-					<view class="flex flex-column flex-1 justify-center align-center">
+					<view @click="$U.gotoPage('/pages/sub-packages-doctor/my/number-of-services/index')" class="flex flex-column flex-1 justify-center align-center">
 						<text class="text-white mb-1" style="font-size: 58rpx; font-weight: 500;line-height: 1;">32</text>
 						<text class="text-white" style="font-size: 25rpx;line-height: 1">服务次数</text>
 					</view>

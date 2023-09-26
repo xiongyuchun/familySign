@@ -4,7 +4,7 @@
 		<view class="px-3 mt-5">
 			<view class="leadge flex align-center justify-between">
 				<view class="flex align-center">
-					<img class="icon-line" src="@/static/my/sign-number.png" alt="" srcset="">
+					<img class="icon-line" src="@/pages/sub-packages-doctor/static/sign-number.png" alt="" srcset="">
 					<text class="color-333 font-30">本月签约人数</text>
 				</view>
 				<view class="">
@@ -18,7 +18,7 @@
 		<view class="px-3 mt-5">
 			<view class="leadge flex align-center justify-between">
 				<view class="flex align-center">
-					<img class="icon-line" src="@/static/my/seek-advice-from.png" alt="" srcset="">
+					<img class="icon-line" src="@/pages/sub-packages-doctor/static/seek-advice-from.png" alt="" srcset="">
 					<text class="color-333 font-30">本月咨询人数</text>
 				</view>
 				<view class="">

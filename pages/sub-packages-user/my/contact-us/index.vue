@@ -6,7 +6,7 @@
 				:longitude="longitude"></map>
 			<view class="map-info">
 				<view class="map-info-item flex align-center">
-					<img style="width: 36rpx; height: 36rpx;" src="@/static/my/tel.png" alt="" srcset="">
+					<img style="width: 36rpx; height: 36rpx;" src="@/pages/sub-packages-user/static/tel.png" alt="" srcset="">
 					<text class="color-333">联系电话:</text>
 					<text class="color-89">0798-8443182</text>
 				</view>

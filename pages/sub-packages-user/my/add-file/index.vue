@@ -1,7 +1,7 @@
 <template>
 	<view class="upload-info">
 		<view class="top-bg">
-			<img class="w-100 bg-upload" src="@/static/my/bg-upload.png" alt="" srcset="">
+			<img class="w-100 bg-upload" src="@/pages/sub-packages-user/static/bg-upload.png" alt="" srcset="">
 			<view :style="{ height: statusBarHeight }" class="w-100"></view>
 			<view class="title text-white font flex justify-center align-center">
 				<view @click="$U.backPage(1)">
@@ -24,7 +24,7 @@
 							<view class="position-relative" v-for="(item, index) in baseFormData.photo">
 								<img @click="previewImg(baseFormData.photo, index)" class="mr-2 add-img" style="width: 180rpx; height: 180rpx;"
 									:src="item" alt="" srcset="">
-								<img @click="delImage(index)" class="close-img" src="@/static/my/close.png" alt="" srcset="">
+								<img @click="delImage(index)" class="close-img" src="@/pages/sub-packages-user/static/close.png" alt="" srcset="">
 							</view>
 							<view @click="chooseImage('photo')" class="add-filed">
 								<uni-icons class="mb-1" type="plusempty" size="20" color="#ABABAB"></uni-icons>

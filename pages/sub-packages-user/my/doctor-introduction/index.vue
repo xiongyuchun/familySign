@@ -3,7 +3,7 @@
 		<my-navbar title="医生介绍"></my-navbar>
 		<view class="px-3 pt-5">
 			<view class="mb-2 flex align-center">
-				<img class="screen" src="@/static/my/screen.png" alt="" srcset="">
+				<img class="screen" src="@/pages/sub-packages-user/static/screen.png" alt="" srcset="">
 				<text class="screen-text">筛选</text>
 			</view>
 			<view class="addrs mb-3">
@@ -42,11 +42,11 @@
 						<view class="star-review">医师星评:</view>
 						<view class="">
 							<view class="flex align-center">
-								<img class="score" src="@/static/my/score.png" alt="" srcset="">
-								<img class="score" src="@/static/my/score.png" alt="" srcset="">
-								<img class="score" src="@/static/my/score.png" alt="" srcset="">
-								<img class="score" src="@/static/my/score.png" alt="" srcset="">
-								<img class="score" src="@/static/my/un-score.png" alt="" srcset="">
+								<img class="score" src="@/pages/sub-packages-user/static/score.png" alt="" srcset="">
+								<img class="score" src="@/pages/sub-packages-user/static/score.png" alt="" srcset="">
+								<img class="score" src="@/pages/sub-packages-user/static/score.png" alt="" srcset="">
+								<img class="score" src="@/pages/sub-packages-user/static/score.png" alt="" srcset="">
+								<img class="score" src="@/pages/sub-packages-user/static/un-score.png" alt="" srcset="">
 							</view>
 						</view>
 					</view>
@@ -54,11 +54,11 @@
 						<view class="star-review">医院星评:</view>
 						<view class="">
 							<view class="flex align-center">
-								<img class="score" src="@/static/my/score.png" alt="" srcset="">
-								<img class="score" src="@/static/my/score.png" alt="" srcset="">
-								<img class="score" src="@/static/my/score.png" alt="" srcset="">
-								<img class="score" src="@/static/my/score.png" alt="" srcset="">
-								<img class="score" src="@/static/my/un-score.png" alt="" srcset="">
+								<img class="score" src="@/pages/sub-packages-user/static/score.png" alt="" srcset="">
+								<img class="score" src="@/pages/sub-packages-user/static/score.png" alt="" srcset="">
+								<img class="score" src="@/pages/sub-packages-user/static/score.png" alt="" srcset="">
+								<img class="score" src="@/pages/sub-packages-user/static/score.png" alt="" srcset="">
+								<img class="score" src="@/pages/sub-packages-user/static/un-score.png" alt="" srcset="">
 							</view>
 						</view>
 					</view>

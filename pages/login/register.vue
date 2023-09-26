@@ -125,12 +125,12 @@
 
 <style scoped lang="scss">
 	.top-bg {
-		height: 240rpx;
+		height: 300rpx;
 	}
 	.register-main {
 		background-color: #fdfdfd;
 		border-radius: 35rpx;
-		padding: 50rpx 20rpx;
+		padding: 0rpx 20rpx;
 		position: relative;
 		
 		&-item {

@@ -3,7 +3,7 @@
 		<my-navbar title="关于我们"></my-navbar>
 		<view class="about">
 			<view class="flex w-100 justify-center">
-				<img class="logo" src="@/static/my/about-logo.png" alt="" srcset="">
+				<img class="logo" src="@/pages/sub-packages-user/static/about-logo.png" alt="" srcset="">
 			</view>
 			<view class="platform">
 			我们是一家专门为患者家庭签约平台，通过这个平台您能够轻松在线预约签约，让您的生活合理安排之下非常的便捷与实用，我们用最完善的服务带给您最好的体验，这是我们一直以来最大的追求！

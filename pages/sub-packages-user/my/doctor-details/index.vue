@@ -20,11 +20,11 @@
 						<view class="flex align-center">
 							<view class="star-review">医师星评:</view>
 							<view class="flex align-center">
-								<img class="score" src="@/static/my/score.png" alt="" srcset="">
-								<img class="score" src="@/static/my/score.png" alt="" srcset="">
-								<img class="score" src="@/static/my/score.png" alt="" srcset="">
-								<img class="score" src="@/static/my/score.png" alt="" srcset="">
-								<img class="score" src="@/static/my/un-score.png" alt="" srcset="">
+								<img class="score" src="@/pages/sub-packages-user/static/score.png" alt="" srcset="">
+								<img class="score" src="@/pages/sub-packages-user/static/score.png" alt="" srcset="">
+								<img class="score" src="@/pages/sub-packages-user/static/score.png" alt="" srcset="">
+								<img class="score" src="@/pages/sub-packages-user/static/score.png" alt="" srcset="">
+								<img class="score" src="@/pages/sub-packages-user/static/un-score.png" alt="" srcset="">
 							</view>
 						</view>
 					</view>

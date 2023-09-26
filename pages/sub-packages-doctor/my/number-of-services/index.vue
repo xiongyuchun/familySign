@@ -3,7 +3,7 @@
 		<my-navbar title="服务次数"></my-navbar>
 		<view class="uni-list-cell-db px-3 mt-5">
 			<picker mode="date" fields="month" :value="date" :start="startDate" :end="endDate" @change="bindDateChange">
-				<view class="uni-input">{{date}}</view>
+				<view class="uni-input">{{date.substring(0, 7)}}</view>
 			</picker>
 			<uni-icons type="bottom" size="30" color="#009CFF"></uni-icons>
 		</view>
@@ -32,7 +32,12 @@
 			})
 			return {
 				signList: {
-					btns: ['拒签', '去签约']
+					btns: [
+						{
+							name: '问答',
+							type: 3
+						}
+					]
 				},
 				showCalendar: false,
 				info: {
@@ -69,7 +74,7 @@
 				}
 				month = month > 9 ? month : '0' + month;
 				day = day > 9 ? day : '0' + day;
-				return `${year}/${month}`;
+				return `${year}-${month}/${day}`;
 			}
 		},
 	}

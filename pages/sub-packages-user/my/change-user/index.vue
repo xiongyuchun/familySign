@@ -12,7 +12,7 @@
 				</view>
 				<view v-if="sign_status === 1" class="flex justify-between align-center">
 					<text style="margin-right: 6rpx; color: #069CF8; font-size: 20rpx;">当前默认</text>
-					<img class="user-item_select" src="@/static/my/select-user.png" alt="" srcset="">
+					<img class="user-item_select" src="@/pages/sub-packages-user/static/select-user.png" alt="" srcset="">
 				</view>
 			</view>
 			<view @click="cahngeList(2)" class="user-item" :class="{'user-item-active' : sign_status === 2}">
@@ -25,12 +25,12 @@
 				</view>
 				<view v-if="sign_status === 2" class="flex justify-between align-center">
 					<text style="margin-right: 6rpx; color: #069CF8; font-size: 20rpx;">当前默认</text>
-					<img class="user-item_select" src="@/static/my/select-user.png" alt="" srcset="">
+					<img class="user-item_select" src="@/pages/sub-packages-user/static/select-user.png" alt="" srcset="">
 				</view>
 			</view>
 			<view class="user-item">
 				<view class="flex">
-					<img class="user-item_photo" src="@/static/my/add.png" alt="" srcset="">
+					<img class="user-item_photo" src="@/pages/sub-packages-user/static/add.png" alt="" srcset="">
 					<view class="flex flex-column" style="justify-content: space-around;">
 						<text class="font" style="color: #069CF8;">添加成员</text>
 					</view>

@@ -41,7 +41,7 @@
 				</view>
 				<view>
 					<view class="user-time-icon">
-						<img class="user-step-time" src="@/static/my/time.png" alt="" srcset="">
+						<img class="user-step-time" src="@/pages/sub-packages-user/static/time.png" alt="" srcset="">
 						<view class="user-time-icon-line"></view>
 					</view>
 					<my-steps :item="stepList"></my-steps>

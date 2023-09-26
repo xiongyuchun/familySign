@@ -102,7 +102,7 @@
 		methods: {
 			async logout(path) {
 				await this.$store.commit('logout')
-				this.$U.gotoPageAndClosePage('/pages/login/index')
+				this.$U.gotoPage('/pages/login/index')
 			}
 		},
 	}

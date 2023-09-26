@@ -19,7 +19,12 @@
 		data() {
 			return {
 				signList: {
-					btns: ['问答']
+					btns: [
+						{
+							name: '问答',
+							type: 3
+						}
+					]
 				},
 				searchVal: ''
 			}

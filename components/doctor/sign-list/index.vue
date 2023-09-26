@@ -15,23 +15,18 @@
 			</view>
 		</view>
 		<view class="flex justify-end">
-			<view class="" v-if="item.btns.length === 1">
+			<view @click.stop="btnClick(item.btns[0])" class="" v-if="item.btns.length === 1">
 				<view class="width-160 go-seek">{{item.btns[0]['name']}}</view>
 			</view>
 			<template v-else>
-				<view @click.stop="btn1(item.btns[0])" class="width-160 go-sign mr-3">
+				<view @click.stop="btnClick(item.btns[0])" class="width-160 go-sign mr-3">
 					{{item.btns[0]['name'] || ''}}
 				</view>
-				<view class="width-160 go-seek">{{item.btns[1]['name'] || ''}}</view>
+				<view @click.stop="btnClick(item.btns[1])" class="width-160 go-seek">{{item.btns[1]['name'] || ''}}</view>
 			</template>
 		</view>
 		<!-- 箭头 -->
 		<uni-icons class="forward" type="forward" size="20" color="#999"></uni-icons>
-		<!-- 拒签理由弹窗 -->
-		<uni-popup ref="inputDialog" type="dialog">
-			<uni-popup-dialog ref="inputClose"  mode="input" title="输入内容" value="对话框预置提示内容!"
-				placeholder="请输入内容" @confirm="dialogInputConfirm"></uni-popup-dialog>
-		</uni-popup>
 	</view>
 </template>
 
@@ -49,11 +44,8 @@
 			}
 		},
 		methods: {
-			btn1(item) {
-				console.log(item);
-				if(item.type === 0) {
-					this.$refs.inputDialog.open()
-				}
+			btnClick(item) {
+				this.$emit('btnClick', item)
 			}
 		},
 	}
