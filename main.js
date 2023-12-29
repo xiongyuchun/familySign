@@ -23,7 +23,7 @@ Vue.prototype.$C = $C
 import $U from './common/util.js';
 Vue.prototype.$U = $U
 // 引入请求库
-import $H from './common/request.js';
+import $H from './api/request.js';
 Vue.prototype.$H = $H
 // 权限验证操作
 Vue.prototype.checkAuth = (callback,checkPhone = true)=>{
