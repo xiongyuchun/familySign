@@ -14,51 +14,51 @@
 			<view class="upload-info_item">
 				<uni-forms ref="baseForm" :modelValue="alignmentFormData" label-position="top">
 					<uni-forms-item label="头像" required>
-						<view class="flex flex-column justify-center align-center" @click="chooseImage('photo')">
-							<img v-if="baseFormData.photo" style="width: 128rpx; height: 128rpx;"
-								:src="baseFormData.photo" alt="" srcset="">
+						<view class="flex flex-column justify-center align-center" @click="chooseImage('HeadImgUrl')">
+							<img v-if="baseFormData.HeadImgUrl" style="width: 128rpx; height: 128rpx;"
+								:src="baseFormData.HeadImgUrl" alt="" srcset="">
 							<img v-else style="width: 128rpx; height: 128rpx;" src="@/static/default.jpg" alt=""
 								srcset="">
 							<view style="color: #5581FF; font-size: 20rpx;">更换头像</view>
 						</view>
 					</uni-forms-item>
 					<uni-forms-item label="姓名" required>
-						<uni-easyinput v-model="baseFormData.name" placeholder="请输入姓名" />
+						<uni-easyinput v-model="baseFormData.Name" placeholder="请输入姓名" />
 					</uni-forms-item>
 					<uni-forms-item label="身份证号" required>
-						<uni-easyinput v-model="baseFormData.card" placeholder="请输入身份证号" />
+						<uni-easyinput v-model="baseFormData.IDCard" placeholder="请输入身份证号" />
 					</uni-forms-item>
 					<uni-forms-item label="性别" required>
-						<uni-data-checkbox v-model="baseFormData.sex" :localdata="sexs" />
+						<uni-data-checkbox v-model="baseFormData.Sex" :localdata="sexs" />
 					</uni-forms-item>
 					<uni-forms-item label="手机号" required>
-						<uni-easyinput v-model="baseFormData.tel" placeholder="请输入手机号码" />
+						<uni-easyinput v-model="baseFormData.PhoneNumber" placeholder="请输入手机号码" />
 					</uni-forms-item>
 					<uni-forms-item label-width="300" label="居住地所在省、市、区县、乡镇、村寨" required>
-						<uni-data-picker placeholder="请选择班级" popup-title="请选择所在地区" :localdata="dataTree" v-model="classes"
+						<uni-data-picker placeholder="请选择班级" popup-title="请选择所在地区" :localdata="dataTree" v-model="baseFormData.City"
 							@change="onchange" @nodeclick="onnodeclick" @popupopened="onpopupopened" @popupclosed="onpopupclosed">
 						</uni-data-picker>
 					</uni-forms-item>
 					<uni-forms-item label="婚否" required>
-						<uni-data-checkbox v-model="baseFormData.marry" :localdata="marrys" />
+						<uni-data-checkbox v-model="baseFormData.MaritalStatus" :localdata="marrys" />
 					</uni-forms-item>
 					<uni-forms-item label-width="300" label="上传身份证正反面" required>
 						<text class="tip">请拍摄并上传你的有效身份证</text>
 						<view class="flex">
-							<img @click="chooseImage('idcard1')" v-if="baseFormData.idcard1" class="id-card" :src="baseFormData.idcard1" alt=""
+							<img @click="chooseImage('IDCardFrontUrl')" v-if="baseFormData.IDCardFrontUrl" class="id-card" :src="baseFormData.idcard1" alt=""
 								srcset="" style="margin-right: 40rpx;">
-							<img @click="chooseImage('idcard1')" v-else class="id-card" src="@/pages/sub-packages-user/static/idcard1.png" alt="" srcset=""
+							<img @click="chooseImage('IDCardFrontUrl')" v-else class="id-card" src="@/pages/sub-packages-user/static/idcard1.png" alt="" srcset=""
 								style="margin-right: 40rpx;">
-							<img @click="chooseImage('idcard2')" v-if="baseFormData.idcard2" class="id-card" :src="baseFormData.idcard2" alt=""
+							<img @click="chooseImage('IDCardBackUrl')" v-if="baseFormData.IDCardBackUrl" class="id-card" :src="baseFormData.idcard2" alt=""
 								srcset="" style="margin-right: 40rpx;">
-							<img @click="chooseImage('idcard2')" v-else class="id-card" src="@/pages/sub-packages-user/static/idcard2.png" alt="" srcset="">
+							<img @click="chooseImage('IDCardBackUrl')" v-else class="id-card" src="@/pages/sub-packages-user/static/idcard2.png" alt="" srcset="">
 						</view>
 					</uni-forms-item>
 				</uni-forms>
 			</view>
 		</view>
 		<view class="flex justify-center w-100 pb-5 pt-5">
-			<view class="submit flex align-center justify-center">确定</view>
+			<view @click="submit()" class="submit flex align-center justify-center">确定</view>
 		</view>
 	</view>
 </template>
@@ -70,18 +70,19 @@
 				statusBarHeight: 25,
 				// 基础表单数据
 				baseFormData: {
-					photo: '',
-					name: '',
-					card: '',
+					HeadImgUrl: '',
+					Name: '',
+					IDCard: '',
 					introduction: '',
-					sex: 1,
-					tel: '',
-					idcard1: '',
-					idcard2: ''
+					Sex: 1,
+					PhoneNumber: '',
+					City: '',
+					IDCardFrontUrl: '',
+					IDCardBackUrl: ''
 				},
 				// 表单数据
 				alignmentFormData: {
-					name: '',
+					Name: '',
 					age: '',
 				},
 				// 单选数据源
@@ -102,7 +103,6 @@
 						value: 1
 					}
 				],
-				classes: '',
 				dataTree: [{
 						text: "江西",
 						value: "1-0",
@@ -136,6 +136,21 @@
 			this.statusBarHeight = uni.getSystemInfoSync().statusBarHeight + 'px'
 		},
 		methods: {
+			// 确定
+			submit() {
+				this.$H.post('/api/APP/WXUser/Create', this.baseFormData)
+					.then(res => {
+						if(res.Code === 200) {
+							uni.showToast({
+								title: res.Message,
+								icon: 'none'
+							});
+							this.$U.gotoPageTab('/pages/index/index');
+							// 显示tabbar
+							uni.showTabBar({ animation: true });
+						}
+					})
+			},
 			onnodeclick(e) {
 				console.log(e);
 			},
@@ -155,14 +170,14 @@
 					success: (res) => {
 						const tempFilePaths = res.tempFilePaths
 						switch (type) {
-							case 'photo':
-								this.baseFormData.photo = tempFilePaths
+							case 'HeadImgUrl':
+								this.baseFormData.HeadImgUrl = tempFilePaths
 								break;
-							case 'idcard1':
-								this.baseFormData.idcard1 = tempFilePaths
+							case 'IDCardFrontUrl':
+								this.baseFormData.IDCardFrontUrl = tempFilePaths
 								break;
-							case 'idcard2':
-								this.baseFormData.idcard2 = tempFilePaths
+							case 'IDCardBackUrl':
+								this.baseFormData.IDCardBackUrl = tempFilePaths
 								break;
 							default:
 								break;

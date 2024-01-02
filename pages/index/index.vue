@@ -27,12 +27,12 @@
 		},
 		computed: {
 			loginStatus() {
-				return this.$store.state.loginStatus
+				return true;
 			},
 			userType() {
-				const {name} = this.$store.state.user
-				if(name === 'user') return true
-				return false
+				// const {name} = this.$store.state.user
+				// if(name === 'user') return true
+				return true
 			}
 		},
 	}

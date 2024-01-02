@@ -17,9 +17,10 @@
 		},
 		computed: {
 			userType() {
-				const {name} = this.$store.state.user
-				if(name === 'user') return true
-				return false
+				// const {name} = this.$store.state.user
+				// if(name === 'user') return true
+				// return false
+				return true
 			},
 		},
 		data() {

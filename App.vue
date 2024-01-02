@@ -6,10 +6,14 @@
 			// this.$U.onNetWork()
 			// 初始化用户登录状态
 			this.$store.dispatch('initUser')
-			if(!this.$store.state.loginStatus) {
+			if(!true) {
 				// 没有登录。隐藏tabbar
 				uni.hideTabBar({ animation: true });
 			}
+			// if(!this.$store.state.loginStatus) {
+			// 	// 没有登录。隐藏tabbar
+			// 	uni.hideTabBar({ animation: true });
+			// }
 		},
 		onShow: function() {
 			console.log('App Show')

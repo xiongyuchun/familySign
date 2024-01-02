@@ -1,12 +1,10 @@
 const state = {
-    sidebar: {
-      opened: true,
-    }
+    token: 'bccd8c190ea149a294f41f39f4fbf74d'
   }
   
   const mutations = {
-    TOGGLE_SIDEBAR: (state) => {
-      state.sidebar.opened = !state.sidebar.opened
+    SET_TOKEN: (state, token) => {
+      state.token = state.token
     },
   }
   
@@ -14,8 +12,8 @@ const state = {
     /**
      * 收起/展开菜单
      */
-    toggleSideBar({ commit }) {
-      commit('TOGGLE_SIDEBAR')
+    setToken({ commit }, token) {
+      commit('SET_TOKEN', token)
     }
   }
   

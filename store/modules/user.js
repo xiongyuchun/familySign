@@ -1,7 +1,7 @@
-import { resetRouter } from '@/router'
-import { pluginContext } from '@/plugin-context';
-import router from '@/router';
-import { IdmAuthContext } from '@/plugins/idm-auth'
+// import { resetRouter } from '@/router'
+// import { pluginContext } from '@/plugin-context';
+// import router from '@/router';
+// import { IdmAuthContext } from '@/plugins/idm-auth'
 const state = {
   userName: '',
   realName: '',

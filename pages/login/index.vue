@@ -14,7 +14,7 @@
 								<text style="font-size: 34rpx; color: #333;">账户</text>
 							</view>
 						</template>
-						<uni-easyinput v-model="baseFormData.name" placeholder="请输入身份证号" />
+						<uni-easyinput v-model="baseFormData.Account" placeholder="请输入身份证号" />
 					</uni-forms-item>
 					<uni-forms-item label-width="280rpx" label="密码" label-align="left">
 						<template v-slot:label>
@@ -23,7 +23,7 @@
 								<text style="font-size: 34rpx; color: #333;">密码</text>
 							</view>
 						</template>
-						<uni-easyinput v-model="baseFormData.pass" placeholder="请输入密码" />
+						<uni-easyinput v-model="baseFormData.Password" placeholder="请输入密码" />
 					</uni-forms-item>
 					<uni-forms-item label-width="280rpx" label="居住地" label-align="left">
 						<template v-slot:label>
@@ -54,8 +54,8 @@
 			return {
 				// 基础表单数据
 				baseFormData: {
-					name: '',
-					pass: '',
+					Account: '',
+					Password: '',
 					introduction: '江西省景德镇市',
 
 				},
@@ -63,27 +63,38 @@
 		},
 		methods: {
 			login() {
-				if(this.baseFormData.name === '') {
+				if(this.baseFormData.Account === '') {
 					uni.showToast({
 						icon: 'none',
 						title: '账户不能为空！'
 					});
 					return;
 				}
-				if(this.baseFormData.pass === '') {
+				if(this.baseFormData.Password === '') {
 					uni.showToast({
 						icon: 'none',
 						title: '密码不能为空！'
 					});
 					return;
 				}
-				this.$store.commit('login',{
-					name: this.baseFormData.name,
-					token: 'token'
-				})
-				this.$U.gotoPageTab('/pages/index/index');
-				// 显示tabbar
-				uni.showTabBar({ animation: true });
+				this.$H.post('/api/APP/WXUserAccount/Login', this.baseFormData)
+					.then(res => {
+						console.log('res：', res)
+						if(res.Code === 200) {
+							// this.$store.commit('login',{
+							// 	Account: this.baseFormData.Account,
+							// 	token: 'token'
+							// })
+							uni.showToast({
+								title: res.Message,
+								icon: 'none'
+							});
+							// this.$store.dispatch('app/setToken', res.Data)
+							this.$U.gotoPageTab('/pages/index/index');
+							// 显示tabbar
+							uni.showTabBar({ animation: true });
+						}
+					})
 			}
 		},
 	}

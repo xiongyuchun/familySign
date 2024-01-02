@@ -4,7 +4,8 @@ export default {
 	common:{
 		method: 'GET',
 		header:{
-			"content-type":"application/json"
+			"content-type":"application/json",
+			"Token": "ace3fce9cdb84eae8f5cb6b4b75f1bb9"
 		},
 		data:{}
 	},
@@ -15,39 +16,37 @@ export default {
 		options.header = options.header || this.common.header
 		
 		// 验证权限token
-		if(options.token){
-			options.header.token = $store.state.token
-			if(!options.noCheck && !options.header.token && !options.notoast){
-				return uni.showToast({
-					title: '非法token,请重新登录',
-					icon: 'none'
-				});
-			}
-		}
+		// if(options.token){
+		// 	options.header.token = $store.state.token
+		// 	if(!options.noCheck && !options.header.token && !options.notoast){
+		// 		return uni.showToast({
+		// 			title: '非法token,请重新登录',
+		// 			icon: 'none'
+		// 		});
+		// 	}
+		// }
 		
 		return new Promise((res,rej)=>{
+			console.log('options:', options)
 			uni.request({
 				...options,
 				success: (result) => {
 					// 返回原始数据
-					// console.log(result);
-					if(options.native){
-						return res(result)
-					}
+					console.log('result:', result)
 					// 请求服务端失败
-					if (result.statusCode !== 200 && !options.notoast) {
+					if (result.data.Code !== 200) {
 						uni.showToast({
-							title:result.data.msg || '请求失败',
+							title:result.data.Message || '请求失败',
 							icon: 'none'
 						});
 						return rej(result.data)
 					}
 					// 成功
-					res(result.data.data)
+					res(result.data)
 				},
 				fail:(error)=>{
 					uni.showToast({
-						title: error.errMsg || '请求失败',
+						title: '请求失败',
 						icon: 'none'
 					});
 					return rej()
