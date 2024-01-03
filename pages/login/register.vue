@@ -155,17 +155,12 @@
 		methods: {
 			// 立即注册
 			register() {
-				this.$refs.form.validate().then(res=>{
-					// console.log('表单数据信息：', res);
-				}).catch(err =>{
-					// console.log('表单错误信息：', err);
-				})
-				// this.$H.post('/api/APP/WXUserAccount/Register', this.baseFormData)
-				// 	.then(res => {
-				// 		if(res.Code === 200) {
-				// 			this.$U.gotoPage('/pages/login/index')
-				// 		}
-				// 	})
+				this.$H.post('/api/APP/WXUserAccount/Register', this.baseFormData)
+					.then(res => {
+						if(res.Code === 200) {
+							this.$U.gotoPage('/pages/login/index')
+						}
+					})
 			},
 			onnodeclick(e) {
 				console.log(e);

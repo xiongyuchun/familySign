@@ -5,12 +5,11 @@ export default {
 		method: 'GET',
 		header:{
 			"content-type":"application/json",
-			"Token": "ace3fce9cdb84eae8f5cb6b4b75f1bb9"
+			"Token": $store.getters.token || ''
 		},
 		data:{}
 	},
 	request(options = {}){
-		
 		options.url = $C.webUrl + options.url
 		options.method = options.method || this.common.method
 		options.header = options.header || this.common.header
@@ -27,12 +26,10 @@ export default {
 		// }
 		
 		return new Promise((res,rej)=>{
-			console.log('options:', options)
 			uni.request({
 				...options,
 				success: (result) => {
 					// 返回原始数据
-					console.log('result:', result)
 					// 请求服务端失败
 					if (result.data.Code !== 200) {
 						uni.showToast({

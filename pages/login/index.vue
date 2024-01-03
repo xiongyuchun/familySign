@@ -79,17 +79,16 @@
 				}
 				this.$H.post('/api/APP/WXUserAccount/Login', this.baseFormData)
 					.then(res => {
-						console.log('res：', res)
 						if(res.Code === 200) {
-							// this.$store.commit('login',{
-							// 	Account: this.baseFormData.Account,
-							// 	token: 'token'
-							// })
 							uni.showToast({
 								title: res.Message,
 								icon: 'none'
 							});
-							// this.$store.dispatch('app/setToken', res.Data)
+							this.$store.dispatch('app/setToken', res.Data)
+							uni.setStorage({
+								key: 'token',
+								data: res.Data,
+							})
 							this.$U.gotoPageTab('/pages/index/index');
 							// 显示tabbar
 							uni.showTabBar({ animation: true });
