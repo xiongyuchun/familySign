@@ -7,7 +7,11 @@ export default {
 			"content-type":"application/json",
 			"Token": $store.getters.token || ''
 		},
-		data:{}
+		data:{},
+		loading: {
+			show: false,
+			text: '加载中'
+		}
 	},
 	request(options = {}){
 		options.url = $C.webUrl + options.url
@@ -26,6 +30,11 @@ export default {
 		// }
 		
 		return new Promise((res,rej)=>{
+			if(this.common.loading.show) {
+				uni.showLoading({
+					title: this.common.loading.text
+				});
+			}
 			uni.request({
 				...options,
 				success: (result) => {
@@ -40,27 +49,41 @@ export default {
 					}
 					// 成功
 					res(result.data)
+					uni.hideLoading();
 				},
 				fail:(error)=>{
 					uni.showToast({
 						title: '请求失败',
 						icon: 'none'
 					});
+					uni.hideLoading();
 					return rej()
 				}
 			});
 		})
 	},
-	get(url,data = {},options = {}){
+	get(url,data = {},options = {}, loading = {}){
 		options.url = url
 		options.data = data
 		options.method = 'GET'
+		if(loading.show) {
+			this.common.loading.show = loading.show
+		}
+		if(options.text) {
+			this.common.loading.text = loading.text
+		}
 		return this.request(options)
 	},
-	post(url,data = {},options = {}){
+	post(url,data = {},options = {}, loading = {}){
 		options.url = url
 		options.data = data
 		options.method = 'POST'
+		if(loading.show) {
+			this.common.loading.show = loading.show
+		}
+		if(options.text) {
+			this.common.loading.text = loading.text
+		}
 		return this.request(options)
 	},
 	upload(url,options = {}){

@@ -27,7 +27,7 @@
 		},
 		computed: {
 			loginStatus() {
-				return true;
+				return this.$store.getters.token ? true : false;
 			},
 			userType() {
 				// const {name} = this.$store.state.user
