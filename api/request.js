@@ -100,7 +100,7 @@ export default {
 		// 		});
 		// 	}
 		// }
-		
+		console.log('options：', options)
 		return new Promise((res,rej)=>{
 			uni.uploadFile({
 				...options,
@@ -113,8 +113,10 @@ export default {
 					}
 					let data = JSON.parse(uploadFileRes.data)
 					res(data)
+					console.log('uploadFileRes:', uploadFileRes)
 				},
 				fail:(err)=>{
+					console.log('err:', err)
 					rej(err)
 				}
 			});

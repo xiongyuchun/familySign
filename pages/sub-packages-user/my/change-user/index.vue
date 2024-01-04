@@ -16,7 +16,7 @@
 				</view>
 			</view>
 			<view class="user-item">
-				<view class="flex">
+				<view @click="addUser" class="flex">
 					<img class="user-item_photo" src="@/pages/sub-packages-user/static/add.png" alt="" srcset="">
 					<view class="flex flex-column" style="justify-content: space-around;">
 						<text class="font" style="color: #069CF8;">添加成员</text>
@@ -28,6 +28,8 @@
 			<uni-popup-dialog :type="msgType" cancelText="取消" confirmText="确定" title="提示" content="是否删除当前用户！" @confirm="dialogConfirm"
 				@close="dialogClose"></uni-popup-dialog>
 		</uni-popup>
+		<!-- 添加账号 -->
+		<uni-popup ref="popup" type="left">底部弹出 Popup</uni-popup>
 	</view>
 </template>
 
@@ -46,6 +48,9 @@
 			this.getUserBindList()
 		},
 		methods: {
+			addUser() {
+				 this.$refs.popup.open('top')
+			},
 			dialogConfirm() {
 				this.delUser(this.sign_list[this.handle_sign_current])
 			},

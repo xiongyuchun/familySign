@@ -25,7 +25,7 @@
 			</view>
 		</special-navbar>
 		<view class="my-list shadow">
-			<view class="my-list-item flex align-center justify-between">
+			<view @click="$U.gotoPage('/pages/sub-packages-user/my/upload-info/index?type=info')" class="my-list-item flex align-center justify-between">
 				<view class="flex align-center">
 					<img class="my-list-item_img" src="@/static/my/info.png" alt="">
 					<text class="my-list-item_info">个人资料</text>

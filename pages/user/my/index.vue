@@ -25,7 +25,7 @@
 			</view>
 		</special-navbar>
 		<view class="my-list shadow">
-			<view class="my-list-item flex align-center justify-between">
+			<view @click="$U.gotoPage('/pages/sub-packages-user/my/upload-info/index?type=info')" class="my-list-item flex align-center justify-between">
 				<view class="flex align-center">
 					<img class="my-list-item_img" src="@/static/my/info.png" alt="">
 					<text class="my-list-item_info">个人资料</text>
@@ -34,7 +34,7 @@
 					<uni-icons class="my-list-item_icon" type="forward"></uni-icons>
 				</view>
 			</view>
-			<view @click="$U.gotoPage('/pages/sub-packages-user/my/upload-info/index')" class="my-list-item flex align-center justify-between">
+			<view @click="$U.gotoPage('/pages/sub-packages-user/my/upload-info/index?type=bind')" class="my-list-item flex align-center justify-between">
 				<view class="flex align-center">
 					<img class="my-list-item_img" src="@/static/my/bind-user.png" alt="">
 					<text class="my-list-item_info">绑定成员</text>
@@ -166,6 +166,8 @@
 		border-radius: 30rpx;
 		margin-top: -110rpx;
 		background-color: #fff;
+		position: relative;
+		z-index: 2;
 		
 		&-item {
 			height: 100rpx;

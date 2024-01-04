@@ -6,7 +6,7 @@
 		<view class="register-main">
 			<view class="bg-white px-3 register-main-item">
 				<uni-forms ref="form" :modelValue="baseFormData" :rules="rules">
-					<uni-forms-item label-width="280rpx" label="姓名" name="Name" label-align="left" required>
+					<uni-forms-item label-width="280rpx" label="姓名" label-align="left" required>
 						<uni-easyinput v-model="baseFormData.Name" placeholder="请输入姓名" />
 					</uni-forms-item>
 					<uni-forms-item label-width="280rpx" label="性别" name="Sex" label-align="left" required>

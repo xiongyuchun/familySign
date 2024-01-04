@@ -12,7 +12,7 @@
 		</view>
 		<view style="padding: 0 30rpx; position: relative; margin-top: -300rpx;">
 			<view class="upload-info_item">
-				<uni-forms ref="baseForm" :modelValue="alignmentFormData" label-position="top">
+				<uni-forms ref="form" :modelValue="alignmentFormData" label-position="top">
 					<uni-forms-item label="头像" required>
 						<view class="flex flex-column justify-center align-center" @click="chooseImage('HeadImgUrl')">
 							<img v-if="baseFormData.HeadImgUrl" style="width: 128rpx; height: 128rpx;"
@@ -45,11 +45,11 @@
 					<uni-forms-item label-width="300" label="上传身份证正反面" required>
 						<text class="tip">请拍摄并上传你的有效身份证</text>
 						<view class="flex">
-							<img @click="chooseImage('IDCardFrontUrl')" v-if="baseFormData.IDCardFrontUrl" class="id-card" :src="baseFormData.idcard1" alt=""
+							<img @click="chooseImage('IDCardFrontUrl')" v-if="baseFormData.IDCardFrontUrl" class="id-card" :src="baseFormData.IDCardFrontUrl" alt=""
 								srcset="" style="margin-right: 40rpx;">
 							<img @click="chooseImage('IDCardFrontUrl')" v-else class="id-card" src="@/pages/sub-packages-user/static/idcard1.png" alt="" srcset=""
 								style="margin-right: 40rpx;">
-							<img @click="chooseImage('IDCardBackUrl')" v-if="baseFormData.IDCardBackUrl" class="id-card" :src="baseFormData.idcard2" alt=""
+							<img @click="chooseImage('IDCardBackUrl')" v-if="baseFormData.IDCardBackUrl" class="id-card" :src="baseFormData.IDCardBackUrl" alt=""
 								srcset="" style="margin-right: 40rpx;">
 							<img @click="chooseImage('IDCardBackUrl')" v-else class="id-card" src="@/pages/sub-packages-user/static/idcard2.png" alt="" srcset="">
 						</view>
@@ -80,6 +80,9 @@
 					IDCardFrontUrl: '',
 					IDCardBackUrl: ''
 				},
+				HeadImgUrlRemote: '', // 头像远程数据
+				IDCardFrontUrl: '', // 身份证远程数据正面
+				IDCardBackUrl: '', // 身份证远程数据反面
 				// 表单数据
 				alignmentFormData: {
 					Name: '',
@@ -135,19 +138,36 @@
 		created() {
 			this.statusBarHeight = uni.getSystemInfoSync().statusBarHeight + 'px'
 		},
+		onLoad(options) {
+			// 个人资料-需要获取用户信息
+			if(options.type === 'info') {
+				this.getUserInfo();
+			}
+		},
 		methods: {
-			// 确定
-			submit() {
-				this.$H.post('/api/APP/WXUser/Create', this.baseFormData)
+			// 获取用户信息
+			getUserInfo() {
+				this.$H.get('/api/APP/WXUser/GetUserInfo')
 					.then(res => {
-						if(res.Code === 200) {
-							uni.showToast({
-								title: res.Message,
-								icon: 'none'
-							});
-							this.$U.gotoPageTab('/pages/index/index');
-						}
+						
+					}).catch(err => {
+						console.log('err:', err)
 					})
+			},
+			// 确定
+			async submit() {
+				// 先上传图片
+				const imgList = await this.uploadImg();
+				// this.$H.post('/api/APP/WXUser/Create', this.baseFormData)
+				// 	.then(res => {
+				// 		if(res.Code === 200) {
+				// 			uni.showToast({
+				// 				title: res.Message,
+				// 				icon: 'none'
+				// 			});
+				// 			this.$U.gotoPageTab('/pages/index/index');
+				// 		}
+				// 	})
 			},
 			onnodeclick(e) {
 				console.log(e);
@@ -161,24 +181,25 @@
 			onchange(e) {
 				console.log('onchange:', e);
 			},
+			// 上次图片
+			async uploadImg() {
+				const imgList = `${this.baseFormData.HeadImgUrl}|${this.baseFormData.IDCardBackUrl}|${this.baseFormData.IDCardFrontUrl}`
+				console.log('imgList:', imgList);
+				const res = await this.$H.upload('/api/APP/WXUser/UploadFile',{
+					filePath: imgList,
+					name: 'upload',
+					header: {
+						'content-type': 'multipart/form-data'
+					}
+				});
+				return res;
+			},
 			chooseImage(type) {
 				uni.chooseImage({
 					count: 1, //默认9
 					sizeType: ['compressed'], //可以指定是原图还是压缩图，默认二者都有
 					success: (res) => {
-						const tempFilePaths = res.tempFilePaths
-						console.log('tempFilePaths:', tempFilePaths[0])
-						this.$H.upload('/api/APP/WXUser/UploadFile',{
-							filePath: tempFilePaths[0],
-							name: 'upload',
-							header: {
-								'content-type': 'multipart/form-data'
-							}
-						}).then(result=>{
-							console.log('upload:', result);
-						}).catch(err=>{
-							console.log(err);
-						})
+						const tempFilePaths = res.tempFilePaths[0]
 						switch (type) {
 							case 'HeadImgUrl':
 								this.baseFormData.HeadImgUrl = tempFilePaths
