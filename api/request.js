@@ -88,17 +88,18 @@ export default {
 	},
 	upload(url,options = {}){
 		options.url = $C.webUrl + url
-		options.header = options.header || {}
-		// 验证权限token
-		if(options.token){
-			options.header.token = $store.state.token
-			if(!options.header.token){
-				return uni.showToast({
-					title: '非法token,请重新登录',
-					icon: 'none'
-				});
-			}
-		}
+		options.header = options.header || this.common.header
+		options.header.Token = $store.getters.token || ''
+		// // 验证权限token
+		// if(options.token){
+		// 	options.header.token = $store.state.token
+		// 	if(!options.header.token){
+		// 		return uni.showToast({
+		// 			title: '非法token,请重新登录',
+		// 			icon: 'none'
+		// 		});
+		// 	}
+		// }
 		
 		return new Promise((res,rej)=>{
 			uni.uploadFile({

@@ -167,6 +167,18 @@
 					sizeType: ['compressed'], //可以指定是原图还是压缩图，默认二者都有
 					success: (res) => {
 						const tempFilePaths = res.tempFilePaths
+						console.log('tempFilePaths:', tempFilePaths[0])
+						this.$H.upload('/api/APP/WXUser/UploadFile',{
+							filePath: tempFilePaths[0],
+							name: 'upload',
+							header: {
+								'content-type': 'multipart/form-data'
+							}
+						}).then(result=>{
+							console.log('upload:', result);
+						}).catch(err=>{
+							console.log(err);
+						})
 						switch (type) {
 							case 'HeadImgUrl':
 								this.baseFormData.HeadImgUrl = tempFilePaths
