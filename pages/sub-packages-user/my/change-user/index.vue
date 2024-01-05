@@ -40,9 +40,9 @@
 				</view>
 				<view class="popup-main-info">
 					<text>没有账号？</text>
-					<text>直接新建用户</text>
+					<text @click="$U.gotoPage('/pages/sub-packages-user/my/upload-info/index')">直接新建用户</text>
 				</view>
-				<view class="popup-main-submit">
+				<view @click="directBind" class="popup-main-submit">
 					<view class="">确定</view>
 				</view>
 			</view>
@@ -66,6 +66,13 @@
 			this.getUserBindList()
 		},
 		methods: {
+			// 直接绑定
+			directBind() {
+				this.$H.post('/api/APP/WXUser/CreateUserRelation', { IdCard: this.addUserSearch })
+					.then(res => {
+						
+					})
+			},
 			addUser() {
 				 this.$refs.popup.open('bottom')
 			},
@@ -193,6 +200,7 @@
 		border-top-left-radius: 24rpx;
 		border-top-right-radius: 24rpx;
 		padding: 30rpx 50rpx;
+		height: 60vh;
 		
 		&-title {
 			display: flex;

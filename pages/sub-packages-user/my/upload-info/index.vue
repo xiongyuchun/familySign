@@ -149,7 +149,9 @@
 			getUserInfo() {
 				this.$H.get('/api/APP/WXUser/GetUserInfo')
 					.then(res => {
-						
+						if(res.Data) {
+							this.baseFormData = res.Data;
+						}
 					}).catch(err => {
 						console.log('err:', err)
 					})
