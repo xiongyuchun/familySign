@@ -29,7 +29,24 @@
 				@close="dialogClose"></uni-popup-dialog>
 		</uni-popup>
 		<!-- 添加账号 -->
-		<uni-popup ref="popup" type="left">底部弹出 Popup</uni-popup>
+		<uni-popup ref="popup" type="bottom">
+			<view class="popup-main">
+				<view class="popup-main-title">
+					<text>添加账号</text>
+					<text>(仅支持身份证号搜索)</text>
+				</view>
+				<view class="popup-main-search">
+					<input type="text" v-model="addUserSearch" placeholder="请输入身份证号" />
+				</view>
+				<view class="popup-main-info">
+					<text>没有账号？</text>
+					<text>直接新建用户</text>
+				</view>
+				<view class="popup-main-submit">
+					<view class="">确定</view>
+				</view>
+			</view>
+		</uni-popup>
 	</view>
 </template>
 
@@ -42,6 +59,7 @@
 				sign_current: 0,
 				handle_sign_current: 0, // 长按的index
 				msgType: 'info',
+				addUserSearch: '', // 添加账号-身份证号搜索
 			}
 		},
 		onLoad() {
@@ -49,7 +67,7 @@
 		},
 		methods: {
 			addUser() {
-				 this.$refs.popup.open('top')
+				 this.$refs.popup.open('bottom')
 			},
 			dialogConfirm() {
 				this.delUser(this.sign_list[this.handle_sign_current])
@@ -168,5 +186,60 @@
 	}
 	.sign-active {
 		background: #069CF8;
+	}
+	
+	.popup-main {
+		background-color: #fff;
+		border-top-left-radius: 24rpx;
+		border-top-right-radius: 24rpx;
+		padding: 30rpx 50rpx;
+		
+		&-title {
+			display: flex;
+			align-items: center;
+			text:first-child {
+				font-weight: bold;
+				font-size: 30rpx;
+				margin-right: 10rpx;
+			}
+			
+			text:last-child {
+				font-size: 26rpx;
+				color: #999;
+			}
+		}
+		
+		&-search {
+			background-color: #f6f6f6;
+			line-height: 120rpx;
+			border: 1px solid #1A85EB;
+			border-radius: 20rpx;
+			margin: 30rpx 0;
+			padding: 20rpx;
+		}
+		
+		&-info {
+			font-size: 27rpx; 
+			color: #999;
+			margin-bottom: 10rpx;
+			
+			text:last-child {
+				color: #1A85EB;
+			}
+		}
+		
+		&-submit {
+			
+			view {
+				font-size: 32rpx;
+				font-weight: bold;
+				color: #fff;
+				background-color: #1A85EB;
+				width: 100%;
+				line-height: 88rpx;
+				text-align: center;
+				border-radius: 44rpx;
+			}
+		}
 	}
 </style>
