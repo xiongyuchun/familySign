@@ -155,6 +155,47 @@
 		methods: {
 			// 立即注册
 			register() {
+				const { Name, Age, Sex, PhoneNumber, IDCard, verify, Password, confirmPassword, City } = this.baseFormData;
+				if(this.$U.dateUtils.isEmpty(Name)) {
+					this.$U.checkTip('姓名不能为空！')
+					return;
+				}
+				if(this.$U.dateUtils.isEmpty(Age)) {
+					this.$U.checkTip('年龄不能为空！')
+					return;
+				}
+				if(this.$U.dateUtils.isEmpty(IDCard)) {
+					this.$U.checkTip('身份证号不能为空！')
+					return;
+				}
+				if(!this.$U.dateUtils.isIDcard(IDCard)) {
+					this.$U.checkTip('身份证号格式错误！')
+					return;
+				}
+				if(this.$U.dateUtils.isEmpty(PhoneNumber)) {
+					this.$U.checkTip('手机号不能为空！')
+					return;
+				}
+				if(!this.$U.dateUtils.isTel(PhoneNumber)) {
+					this.$U.checkTip('手机号格式错误！')
+					return;
+				}
+				if(this.$U.dateUtils.isEmpty(City)) {
+					this.$U.checkTip('居住地不能为空！')
+					return;
+				}
+				if(this.$U.dateUtils.isEmpty(Password)) {
+					this.$U.checkTip('登录密码不能为空！')
+					return;
+				}
+				if(this.$U.dateUtils.isEmpty(confirmPassword)) {
+					this.$U.checkTip('确认密码不能为空！')
+					return;
+				}
+				if(Password !== confirmPassword) {
+					this.$U.checkTip('登录密码与确认密码不一致！')
+					return;
+				}
 				this.$H.post('/api/APP/WXUserAccount/Register', this.baseFormData)
 					.then(res => {
 						if(res.Code === 200) {

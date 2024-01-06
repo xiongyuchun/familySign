@@ -101,7 +101,7 @@
 		},
 		methods: {
 			async logout(path) {
-				await this.$store.commit('logout')
+				this.$store.dispatch('app/clearToken')
 				this.$U.gotoPageAndClosePage('/pages/login/index')
 			}
 		},

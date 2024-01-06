@@ -68,6 +68,10 @@
 		methods: {
 			// 直接绑定
 			directBind() {
+				if(this.$U.dateUtils.isEmpty(this.addUserSearch)) {
+					this.$U.checkTip('请输入搜索的身份证号！')
+					return;
+				}
 				this.$H.post('/api/APP/WXUser/CreateUserRelation', { IdCard: this.addUserSearch })
 					.then(res => {
 						

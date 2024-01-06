@@ -61,37 +61,33 @@
 				},
 			}
 		},
+		onLoad() {
+			
+		},
 		methods: {
 			login() {
-				if(this.baseFormData.Account === '') {
-					uni.showToast({
-						icon: 'none',
-						title: '账户不能为空！'
-					});
+				const { Account, Password} = this.baseFormData
+				if(this.$U.dateUtils.isEmpty(Account)) {
+					this.$U.checkTip('账户不能为空！')
 					return;
 				}
-				if(this.baseFormData.Password === '') {
-					uni.showToast({
-						icon: 'none',
-						title: '密码不能为空！'
-					});
+				if(this.$U.dateUtils.isEmpty(Password)) {
+					this.$U.checkTip('密码不能为空！')
 					return;
 				}
-				this.$H.post('/api/APP/WXUserAccount/Login', this.baseFormData)
+				this.$H.post('/api/APP/WXUserAccount/Login', this.baseFormData, {}, {show: true, text: '登录中'})
 					.then(res => {
 						if(res.Code === 200) {
-							uni.showToast({
-								title: res.Message,
-								icon: 'none'
-							});
 							this.$store.dispatch('app/setToken', res.Data)
 							uni.setStorage({
 								key: 'token',
 								data: res.Data,
+								success: () => {
+									this.$U.gotoPageTab('/pages/index/index');
+									// 显示tabbar
+									uni.showTabBar({ animation: true });
+								}
 							})
-							this.$U.gotoPageTab('/pages/index/index');
-							// 显示tabbar
-							uni.showTabBar({ animation: true });
 						}
 					})
 			}

@@ -104,6 +104,10 @@
     /* 小程序特有相关 */
     "mp-weixin" : {
         "appid" : "wx19a24cec4d162509",
+		/* 开启分包配置 */
+		"optimization" : {
+			"subPackages" : true
+		},
         "setting" : {
             "urlCheck" : false
         },

@@ -87,6 +87,14 @@ function backPage(num) {
 	uni.navigateBack(num)
 }
 
+// 校验-提示
+function checkTip(text) {
+	uni.showToast({
+		icon: 'none',
+		title: text
+	})
+}
+
 var dateUtils = {
 	UNITS: {
 		'年': 31557600000,
@@ -121,6 +129,24 @@ var dateUtils = {
 	parse: function(str) { //将"yyyy-mm-dd HH:MM:ss"格式的字符串，转化为一个Date对象
 		var a = str.split(/[^0-9]/);
 		return new Date(a[0], a[1] - 1, a[2], a[3], a[4], a[5]);
+	},
+	isEmpty: function(val) { // 判断传入值是否为空
+		if(val === '' || val === undefined || val === null) return true;
+		return false;
+	},
+	isTel: function(tel) { // 判断是否是手机号
+		// 使用正则表达式匹配手机号格式
+		const phoneRegex = /^1[3456789]\d{9}$/;
+	
+		// 使用test方法检查是否匹配
+		return phoneRegex.test(tel);
+	},
+	isIDcard: function(id) { // 判断是否为身份证号
+		// 使用正则表达式匹配身份证号码格式
+		const idCardRegex = /(^\d{15}$)|(^\d{17}(\d|X|x)$)/;
+		
+		// 使用test方法检查是否匹配
+		return idCardRegex.test(id);
 	}
 };
 
@@ -133,5 +159,6 @@ export default {
 	gotoPage,
 	gotoPageTab,
 	backPage,
+	checkTip,
 	gotoPageAndClosePage
 }

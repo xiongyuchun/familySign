@@ -1,12 +1,18 @@
+import $store from '@/store/index.js';
 function getToken() {
 	let token = '';
 	try {
-		const value = uni.getStorageSync('token');
-		if (value) {
-			token = value;
+		if($store && $store.getters.token) {
+			token = $store.getters.token;
+		} else {
+			const value = uni.getStorageSync('token');
+			if (value) {
+				token = value;
+			}
 		}
 	} catch (e) {
 		// error
+		console.log(e)
 	}
 	return token;
 }
@@ -17,8 +23,14 @@ const state = {
   
   const mutations = {
     SET_TOKEN: (state, token) => {
-      state.token = state.token
+      state.token = token
     },
+	CLEAR_TOKEN: (state) => {
+		uni.removeStorage({
+			key: 'token'
+		})
+		state.token = '';
+	}
   }
   
   const actions = {
@@ -27,7 +39,10 @@ const state = {
      */
     setToken({ commit }, token) {
 		commit('SET_TOKEN', token)
-    }
+    },
+	clearToken({ commit }) {
+		commit('CLEAR_TOKEN')
+	}
   }
   
   export default {

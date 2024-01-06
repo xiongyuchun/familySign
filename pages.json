@@ -1,6 +1,5 @@
 {
-	"pages": [
-		{
+	"pages": [{
 			"path": "pages/index/index",
 			"app-plus": {
 				"titleNView": false
@@ -59,11 +58,9 @@
 			}
 		}
 	],
-	"subPackages": [
-		{
+	"subPackages": [{
 			"root": "pages/sub-packages-doctor",
-			"pages": [
-				{
+			"pages": [{
 					"path": "my/statistics-manage/index",
 					"app-plus": {
 						"titleNView": false,
@@ -128,8 +125,7 @@
 		},
 		{
 			"root": "pages/sub-packages-user",
-			"pages": [
-				{
+			"pages": [{
 					"path": "my/about/index",
 					"app-plus": {
 						"titleNView": false
@@ -262,12 +258,58 @@
 					}
 				}
 			]
+		},
+		{
+			"root": "TUIKit",
+			"pages": [{
+					"path": "components/TUIConversation/index",
+					"style": {
+						"navigationBarTitleText": "腾讯云 IM"
+					}
+				},
+				{
+					"path": "components/TUIChat/index",
+					"style": {
+						"navigationBarTitleText": "腾讯云 IM"
+					}
+				},
+				// 集成 chat 组件，必须配置该路径: 视频播放
+				{
+					"path": "components/TUIChat/video-play",
+					"style": {
+						"navigationBarTitleText": "腾讯云 IM"
+					}
+				},
+				{
+					"path": "components/TUIChat/web-view",
+					"style": {
+						"navigationBarTitleText": "腾讯云 IM"
+					}
+				},
+				{
+					"path": "components/TUIContact/index",
+					"style": {
+						"navigationBarTitleText": "腾讯云 IM"
+					}
+				},
+
+				{
+					"path": "components/TUIGroup/index",
+					"style": {
+						"navigationBarTitleText": "腾讯云 IM"
+					}
+				}
+			]
 		}
 	],
 	"preloadRule": {
 		"pages/index/index": {
 			"network": "all",
 			"packages": ["pages/sub-packages-doctor"]
+		},
+		"TUIKit/components/TUIConversation/index": {
+		   "network": "all",
+		   "packages": ["TUIKit"]
 		}
 	},
 	"globalStyle": {
@@ -277,25 +319,25 @@
 		"backgroundColor": "#FFFFFF"
 	},
 	"tabBar": {
-		"color":"#333333",
-		"selectedColor":"#4EB4F8",
-		"backgroundColor":"#FFFFFF",
-		"borderStyle":"black",
-		"list":[{
-			"pagePath":"pages/index/index",
-			"text":"首页",
-			"iconPath":"static/tabbar/index.png",
-			"selectedIconPath":"static/tabbar/indexed.png"
-		},{
-			"pagePath":"pages/msg/index",
-			"text":"消息",
-			"iconPath":"static/tabbar/news.png",
-			"selectedIconPath":"static/tabbar/newsed.png"
-		},{
-			"pagePath":"pages/my/index",
-			"text":"我的",
-			"iconPath":"static/tabbar/home.png",
-			"selectedIconPath":"static/tabbar/homeed.png"
+		"color": "#333333",
+		"selectedColor": "#4EB4F8",
+		"backgroundColor": "#FFFFFF",
+		"borderStyle": "black",
+		"list": [{
+			"pagePath": "pages/index/index",
+			"text": "首页",
+			"iconPath": "static/tabbar/index.png",
+			"selectedIconPath": "static/tabbar/indexed.png"
+		}, {
+			"pagePath": "pages/msg/index",
+			"text": "消息",
+			"iconPath": "static/tabbar/news.png",
+			"selectedIconPath": "static/tabbar/newsed.png"
+		}, {
+			"pagePath": "pages/my/index",
+			"text": "我的",
+			"iconPath": "static/tabbar/home.png",
+			"selectedIconPath": "static/tabbar/homeed.png"
 		}]
 	}
 }

@@ -80,7 +80,7 @@
 					IDCardFrontUrl: '',
 					IDCardBackUrl: ''
 				},
-				HeadImgUrlRemote: '', // 头像远程数据
+				HeadImgUrl: '', // 头像远程数据
 				IDCardFrontUrl: '', // 身份证远程数据正面
 				IDCardBackUrl: '', // 身份证远程数据反面
 				// 表单数据
@@ -158,18 +158,61 @@
 			},
 			// 确定
 			async submit() {
+				const { HeadImgUrl, Name, IDCard, introduction, Sex, PhoneNumber, City, IDCardFrontUrl, IDCardBackUrl } = this.baseFormData
+				if(this.$U.dateUtils.isEmpty(HeadImgUrl)) {
+					this.$U.checkTip('请上传头像！')
+					return
+				}
+				if(this.$U.dateUtils.isEmpty(Name)) {
+					this.$U.checkTip('姓名不能为空！')
+					return
+				}
+				if(this.$U.dateUtils.isEmpty(IDCard)) {
+					this.$U.checkTip('身份证号不能为空！')
+					return
+				}
+				if(this.$U.dateUtils.isIDcard(IDCard)) {
+					this.$U.checkTip('身份证号格式错误！')
+					return
+				}
+				if(this.$U.dateUtils.isEmpty(PhoneNumber)) {
+					this.$U.checkTip('手机号不能为空！')
+					return;
+				}
+				if(!this.$U.dateUtils.isTel(PhoneNumber)) {
+					this.$U.checkTip('手机号格式错误！')
+					return;
+				}
+				if(this.$U.dateUtils.isEmpty(City)) {
+					this.$U.checkTip('居住地不能为空！')
+					return;
+				}
+				if(this.$U.dateUtils.isEmpty(IDCardFrontUrl)) {
+					this.$U.checkTip('身份证正面不能为空！')
+					return;
+				}
+				if(this.$U.dateUtils.isEmpty(IDCardBackUrl)) {
+					this.$U.checkTip('身份证反面不能为空！')
+					return;
+				}
 				// 先上传图片
-				const imgList = await this.uploadImg();
-				// this.$H.post('/api/APP/WXUser/Create', this.baseFormData)
-				// 	.then(res => {
-				// 		if(res.Code === 200) {
-				// 			uni.showToast({
-				// 				title: res.Message,
-				// 				icon: 'none'
-				// 			});
-				// 			this.$U.gotoPageTab('/pages/index/index');
-				// 		}
-				// 	})
+				await this.uploadImg();
+				const params = {
+					...this.baseFormData,
+					HeadImgUrl: this.HeadImgUrl, // 头像远程数据
+					IDCardFrontUrl: this.IDCardFrontUrl, // 身份证远程数据正面
+					IDCardBackUrl: this.IDCardBackUrl // 身份证远程数据反面
+				}
+				this.$H.post('/api/APP/WXUser/Create', params)
+					.then(res => {
+						if(res.Code === 200) {
+							uni.showToast({
+								title: res.Message,
+								icon: 'none'
+							});
+							this.$U.gotoPageTab('/pages/index/index');
+						}
+					})
 			},
 			onnodeclick(e) {
 				console.log(e);
@@ -183,18 +226,32 @@
 			onchange(e) {
 				console.log('onchange:', e);
 			},
-			// 上次图片
+			// 上传图片
 			async uploadImg() {
-				const imgList = `${this.baseFormData.HeadImgUrl}|${this.baseFormData.IDCardBackUrl}|${this.baseFormData.IDCardFrontUrl}`
-				console.log('imgList:', imgList);
-				const res = await this.$H.upload('/api/APP/WXUser/UploadFile',{
-					filePath: imgList,
-					name: 'upload',
-					header: {
-						'content-type': 'multipart/form-data'
+				const imgList = [
+					{
+						key: 'HeadImgUrl',
+						val: this.baseFormData.HeadImgUrl
+					}, 
+					{
+						key: 'IDCardBackUrl',
+						val: this.baseFormData.IDCardBackUrl
+					},
+					{
+						key: 'IDCardFrontUrl',
+						val: this.baseFormData.IDCardFrontUrl
 					}
-				});
-				return res;
+				]
+				for (var i = 0; i < imgList.length; i++) {
+					const res = await this.$H.upload('/api/APP/WXUser/UploadFile',{
+						filePath: imgList[i].val,
+						name: 'upload',
+						header: {
+							'content-type': 'multipart/form-data'
+						}
+					});
+					this[imgList[i].key] = res.Data;
+				}
 			},
 			chooseImage(type) {
 				uni.chooseImage({
