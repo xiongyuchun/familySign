@@ -174,7 +174,18 @@
         },
         "uniStatistics" : {
             "enable" : true
-        }
+        },
+		"devServer": {
+			"port": 8081,
+			"disableHostCheck": true,
+			"proxy":{
+				"/":{
+					"target": "http://182.61.31.42:1001",
+					"changeOrigin":true,
+					"secure": false
+				}
+			}
+		}
     },
     "vueVersion" : "2",
     "mp-kuaishou" : {
