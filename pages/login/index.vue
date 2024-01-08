@@ -83,6 +83,8 @@
 								key: 'token',
 								data: res.Data,
 								success: () => {
+									// 获取用户信息
+									this.getUserInfo();
 									this.$U.gotoPageTab('/pages/index/index');
 									// 显示tabbar
 									uni.showTabBar({ animation: true });
@@ -90,7 +92,21 @@
 							})
 						}
 					})
-			}
+			},
+			// 获取用户信息
+			getUserInfo() {
+				this.$H.get('/api/APP/WXUser/GetUserInfo')
+					.then(res => {
+						if(res.Data) {
+							uni.setStorage({
+								key: 'user',
+								data: res.Data
+							})
+						}
+					}).catch(err => {
+						console.log('err:', err)
+					})
+			},
 		},
 	}
 </script>

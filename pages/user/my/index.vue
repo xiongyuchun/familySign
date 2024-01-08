@@ -8,7 +8,7 @@
 					<view class="navbar-info_introduce flex flex-column w-100">
 						<view class="navbar-info_introduce_name mb-3 font flex justify-between align-center w-100">
 							<view class="flex align-center">
-								<text>催磊</text>
+								<text>{{userInfo.Name}}</text>
 								<text class="un-sign">未签约</text>
 							</view>
 							<view @click="$U.gotoPage('/pages/sub-packages-user/my/change-user/index')" class="flex align-center">
@@ -96,7 +96,14 @@
 	export default {
 		data() {
 			return {
-				
+				userInfo: {}
+			}
+		},
+		created() {
+			// 获取用户信息
+			const value = uni.getStorageSync('user');
+			if(value) {
+				this.userInfo = value;
 			}
 		},
 		methods: {

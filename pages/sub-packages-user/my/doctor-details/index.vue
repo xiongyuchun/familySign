@@ -5,25 +5,25 @@
 			<view class="doc-list">
 				<view class="doc-list-photo flex align-center">
 					<view class="mr-2">
-						<img class="doc-list-photo_img" src="@/static/default.jpg" alt="" srcset="">
+						<img class="doc-list-photo_img" :src="doctorInfo.HeadImgUrl" alt="" srcset="">
 					</view>
 					<view class="flex flex-column justify-between">
 						<view class="flex align-center mb-2">
-							<view class="doc-list-username">和天真</view>
-							<view class="flex">
-								<view class="doc-list-dep">皮肤科</view>
+							<view class="doc-list-username">{{doctorInfo.Name}}</view>
+							<view v-for="(tTag, tIndex) in doctorInfo.TagArray" :key="tIndex" class="flex">
+								<view class="doc-list-dep">{{tTag}}</view>
 							</view>
 						</view>
 						<view class="doc-list-name mb-2">
-							景德镇市第三人民医院
+							{{doctorInfo.MajorInfo}}
 						</view>
 						<view class="flex align-center">
 							<view class="star-review">医师星评:</view>
 							<view class="flex align-center">
 								<img class="score" src="@/pages/sub-packages-user/static/score.png" alt="" srcset="">
-								<img class="score" src="@/pages/sub-packages-user/static/score.png" alt="" srcset="">
-								<img class="score" src="@/pages/sub-packages-user/static/score.png" alt="" srcset="">
-								<img class="score" src="@/pages/sub-packages-user/static/score.png" alt="" srcset="">
+								<img class="score" src="@/pages/sub-packages-user/static/un-score.png" alt="" srcset="">
+								<img class="score" src="@/pages/sub-packages-user/static/un-score.png" alt="" srcset="">
+								<img class="score" src="@/pages/sub-packages-user/static/un-score.png" alt="" srcset="">
 								<img class="score" src="@/pages/sub-packages-user/static/un-score.png" alt="" srcset="">
 							</view>
 						</view>
@@ -33,25 +33,52 @@
 		</view>
 		<view class="px-3">
 			<uni-section class="mb-3" title="主治" type="line">
-				<view class="px-4 skill">小儿湿疹皮炎、荨麻疹以及胎记，成人过敏性，痤疮，瘢痕，脱发，银屑病，性病，带状疱疹，单纯疱疹，脓疱疮，疖肿，各种癣！</view>
+				<view class="px-4 skill">{{doctorInfo.MajorInfo}}</view>
 			</uni-section>
 			<uni-section class="mb-3" title="学术任职" type="line">
-				<view class="px-4 skill">全军心血管内科专业委员会主任委员、中华医学会心血管病分会常务委员、女性学组组长、北京医师协会心血管内科专科医师分会副会长、美国心脏病学会委员、欧洲心脏病学会委员。科技部及国家自然基金评审专家。《Journal of Geriatric Cardiology》主编、《中华老年多器官疾病杂志》副主编、《中国心脏介入杂志》副主编。
-            </view>
+				<view class="px-4 skill">{{doctorInfo.AcademicInfo}}</view>
 			</uni-section>
 			<uni-section class="mb-3" title="科学研究" type="line">
-				<view class="px-4 skill">总后勤部“科技银星”，国家“十三五”重点研发计划首席科学家，承担国家及省部级以上课题12项，获国家专利13项，获军队医疗成果一等奖1项。发表SCI 74篇，总IF 168.392，主编专著6部。
-            </view>
+				<view class="px-4 skill">{{doctorInfo.ResearchInfo}}</view>
 			</uni-section>
 			<uni-section class="mb-3" title="教育培训" type="line">
-				<view class="px-4 skill">毕业于首都医科大学，医学博士。意大利米兰圣多纳托心脏中心访问学者。培养研究生60余名。
-				</view>
+				<view class="px-4 skill">{{doctorInfo.EducationInfo}}</view>
 			</uni-section>
 		</view>
 	</view>
 </template>
 
 <script>
+	export default {
+		name: 'doctor-details',
+		data() {
+			return {
+				doctorInfo: [],
+			}
+		},
+		onLoad(options) {
+			// 获取医生列表
+			this.getDoctorInfo(options.id)
+		},
+		methods: {
+			getDoctorInfo(id) {
+				if(!id) return;
+				this.$H.get('/api/APP/WXUser/GetDoctorInfo', {doctorId: id})
+					.then(res => {
+						if(res.Code === 200) {
+							const formatData = res.Data;
+							if(formatData.TagArray) {
+								formatData.TagArray = formatData.TagArray.split('|')
+							}
+							if(formatData.HeadImgUrl) {
+								formatData.HeadImgUrl = this.$C.webUrl + '/' + formatData.HeadImgUrl
+							}
+							this.doctorInfo = formatData;
+						}
+					})
+			}
+		},
+	}
 </script>
 
 <style scoped lang="scss">

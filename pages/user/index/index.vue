@@ -160,7 +160,6 @@
 <style scoped lang="scss">
 	.news-item {
 		display: flex;
-		justify-content: space-between;
 		align-items: center;
 		padding: 30rpx 0;
 		border-bottom: 2rpx solid #dcdcdc;
@@ -251,7 +250,10 @@
 		align-items: center;
 		height: 260rpx;
 		color: #fff;
-		border-radius: 20rpx;
+		
+		img {
+			border-radius: 20rpx;
+		}
 	}
 	
 </style>

@@ -1,6 +1,9 @@
 <template>
-	<view class="">
-		{{ newsInfo.Content }}
+	<view class="news">
+		<my-navbar :title="newsInfo.Title"></my-navbar>
+		<view class="news-info">
+			{{ newsInfo.Content }}
+		</view>
 	</view>
 </template>
 
@@ -33,4 +36,9 @@
 </script>
 
 <style scoped lang="scss">
+	.news {
+		&-info {
+			padding: 30rpx;
+		}
+	}
 </style>
