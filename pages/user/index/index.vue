@@ -11,9 +11,9 @@
 			<uni-swiper-dot class="uni-swiper-dot-box" :current="current" mode="round" :dots-styles="dotsStyles"
 				field="content">
 				<swiper class="swiper-box" @change="change" :current="swiperDotIndex">
-					<swiper-item v-for="(item, index) in 1" :key="index">
+					<swiper-item v-for="(item, index) in bannerList" :key="index">
 						<view class="swiper-item">
-							<img src="@/static/index/horse.png" class="w-100 bg-transparent" alt="" srcset="">
+							<img :src="item.LinkUrl" class="w-100 bg-transparent" alt="" srcset="">
 						</view>
 					</swiper-item>
 				</swiper>
@@ -67,15 +67,17 @@
 					<img class="news-icon" src="@/static/index/news.png" alt="">
 					<text class="news-tip">新闻公告</text>
 				</view>
-				<view class="news-item">
-					<view class="">
-						<img class="news-item_img" src="@/static/my/about.png" alt="" srcset="">
+				<block v-for="(item,index) in newsList" :key="index">
+					<view @click="$U.gotoPage(`/pages/sub-packages-user/index/news-info/index?id=${item.NewsId}`)" class="news-item">
+						<view class="">
+							<img class="news-item_img" :src="item.Thumbnai1" alt="" srcset="">
+						</view>
+						<view class="flex flex-column justify-between pt-1 pb-1">
+							<view class="news-item_title overflow-hidden-1">{{ item.Title }}</view>
+							<view class="news-item_desc overflow-hidden-2">{{ item.Subheading }}</view>
+						</view>
 					</view>
-					<view class="flex flex-column justify-between pt-1 pb-1">
-						<view class="news-item_title overflow-hidden-1">第三届皮肤病专家学术研讨会在江西南昌高新举行</view>
-						<view class="news-item_desc overflow-hidden-2">2018年6月20日，由深圳中西结合学会主办的深圳华医中西结合皮肤病医院承办单的，传承美德</view>
-					</view>
-				</view>
+				</block>
 			</view>
 		</view>
 	</view>
@@ -91,6 +93,8 @@
 				modeIndex: -1,
 				styleIndex: -1,
 				current: 0,
+				bannerList: [],
+				newsList: [],
 				dotsStyles: {
 					backgroundColor: 'rgba(127, 180, 249, .3)',
 					border: '1px rgba(255, 255, 255, .3) solid',
@@ -101,7 +105,29 @@
 				swiperDotIndex: 0
 			}
 		},
+		created() {
+			this.getNewsList();
+			this.getBannerList();
+		},
 		methods: {
+			// 获取新闻列表
+			getNewsList() {
+				this.$H.get('/api/APP/WXUser/GetNewsList')
+					.then(res => {
+						if(res.Code === 200) {
+							this.newsList = res.Data;
+						}
+					})
+			},
+			// 获取Banner
+			getBannerList() {
+				this.$H.get('/api/APP/WXUser/GetBannerList')
+					.then(res => {
+						if(res.Code === 200) {
+							this.bannerList = res.Data;
+						}
+					})
+			},
 			change(e) {
 				this.current = e.detail.current
 			},
@@ -225,6 +251,7 @@
 		align-items: center;
 		height: 260rpx;
 		color: #fff;
+		border-radius: 20rpx;
 	}
 	
 </style>

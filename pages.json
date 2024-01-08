@@ -246,6 +246,16 @@
 					}
 				},
 				{
+					"path": "index/news-info/index",
+					"app-plus": {
+						"titleNView": false
+					},
+					"style": {
+						"navigationBarTitleText": "",
+						"navigationStyle": "custom"
+					}
+				},
+				{
 					"path": "my/signature/index",
 					"app-plus": {
 						"titleNView": false
