@@ -38,6 +38,7 @@
 						<uni-data-picker placeholder="请选择班级" popup-title="请选择所在地区" :localdata="dataTree" v-model="baseFormData.City"
 							@change="onchange" @nodeclick="onnodeclick" @popupopened="onpopupopened" @popupclosed="onpopupclosed">
 						</uni-data-picker>
+						<Region :width="680" />
 					</uni-forms-item>
 					<uni-forms-item label="婚否" required>
 						<uni-data-checkbox v-model="baseFormData.MaritalStatus" :localdata="marrys" />
@@ -64,7 +65,11 @@
 </template>
 
 <script>
+	import Region from '../../components/city-select/index.vue';
 	export default {
+		components: {
+			Region
+		},
 		data() {
 			return {
 				statusBarHeight: 25,
