@@ -75,19 +75,24 @@
 					this.$U.checkTip('密码不能为空！')
 					return;
 				}
-				this.$H.post('/api/APP/WXUserAccount/Login', this.baseFormData, {}, {show: true, text: '登录中'})
+				this.$H.post('/api/APP/WXUser/Login', this.baseFormData, {}, {show: true, text: '登录中'})
 					.then(res => {
 						if(res.Code === 200) {
-							this.$store.dispatch('app/setToken', res.Data)
+							this.$store.dispatch('app/setToken', res.Data.Token)
+							// 获取用户信息
+							this.getUserInfo();
 							uni.setStorage({
 								key: 'token',
 								data: res.Data,
 								success: () => {
-									// 获取用户信息
-									this.getUserInfo();
-									this.$U.gotoPageTab('/pages/index/index');
-									// 显示tabbar
-									uni.showTabBar({ animation: true });
+									if(!res.Data.IsBind) {
+										// 没有绑定，跳转到绑定页面
+										this.$U.gotoPageAndClosePage('/pages/sub-packages-user/my/unbound-user/index');
+									} else {
+										this.$U.gotoPageTab('/pages/index/index');
+										// 显示tabbar
+										uni.showTabBar({ animation: true });
+									}
 								}
 							})
 						}

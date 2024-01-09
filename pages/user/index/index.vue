@@ -106,6 +106,9 @@
 			}
 		},
 		created() {
+			if(this.$store.getters.token) {
+				uni.showTabBar({ animation: true });
+			}
 			this.getNewsList();
 			this.getBannerList();
 		},

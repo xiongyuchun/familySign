@@ -59,7 +59,7 @@
 				baseFormData: {
 					Name: '',
 					Age: '',
-					Sex: 2,
+					Sex: 1,
 					PhoneNumber: '',
 					IDCard: '',
 					verify: '',
@@ -196,7 +196,7 @@
 					this.$U.checkTip('登录密码与确认密码不一致！')
 					return;
 				}
-				this.$H.post('/api/APP/WXUserAccount/Register', this.baseFormData)
+				this.$H.post('/api/APP/WXUser/Register', this.baseFormData)
 					.then(res => {
 						if(res.Code === 200) {
 							this.$U.gotoPage('/pages/login/index')

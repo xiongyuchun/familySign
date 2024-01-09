@@ -32,6 +32,7 @@
 							placeholder="科室"
 							emptyTips="无数据"
 							:localdata="areaInfo.areaUniDep"
+							@change="handelAreaUniDepList"
 						></uni-data-select>
 					</view>
 				</view>
@@ -127,11 +128,30 @@
 		methods: {
 			// 地区列表-change
 			handelAreaList(e) {
+				console.log('e:', e)
 				this.getAreaUniList(e);
+				this.cuttentArea = e;
+				this.doctorList = []; // 清空之前列表
+				this.currentPage = 1;
+				// 更新医生列表
+				this.getDoctorList();
 			},
 			// 单位列表-change
 			handelAreaUniList(e) {
+				this.cuttentAreaUni = e;
+				this.doctorList = []; // 清空之前列表
+				this.currentPage = 1;
 				this.getAreaUniDepList(e);
+				// 更新医生列表
+				this.getDoctorList();
+			},
+			// 当前选中的科室
+			handelAreaUniDepList(e) {
+				this.cuttentAreaUniDep = e;
+				this.doctorList = []; // 清空之前列表
+				this.currentPage = 1;
+				// 更新医生列表
+				this.getDoctorList();
 			},
 			// 查询地区列表
 			getAreaList() {
@@ -185,7 +205,20 @@
 			},
 			// 获取医生列表
 			getDoctorList() {
-				this.$H.get('/api/APP/WXUser/GetDoctorList', { currentPage: this.currentPage, pageSize: 10 })
+				const params = {
+					currentPage: this.currentPage, 
+					pageSize: 10
+				}
+				if(this.cuttentArea) {
+					params.area = this.cuttentArea
+				}
+				if(this.cuttentAreaUni) {
+					params.unitId = this.cuttentAreaUni
+				}
+				if(this.cuttentAreaUniDep) {
+					params.dept = this.cuttentAreaUniDep
+				}
+				this.$H.get('/api/APP/WXUser/GetDoctorList', params, {} ,{ show: true })
 					.then(res => {
 						if(res.Code === 200) {
 							// 处理格式

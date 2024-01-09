@@ -6,8 +6,8 @@ function getToken() {
 			token = $store.getters.token;
 		} else {
 			const value = uni.getStorageSync('token');
-			if (value) {
-				token = value;
+			if (value.Token) {
+				token = value.Token;
 			}
 		}
 	} catch (e) {

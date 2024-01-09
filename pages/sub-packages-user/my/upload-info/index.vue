@@ -38,7 +38,7 @@
 						<uni-data-picker placeholder="请选择班级" popup-title="请选择所在地区" :localdata="dataTree" v-model="baseFormData.City"
 							@change="onchange" @nodeclick="onnodeclick" @popupopened="onpopupopened" @popupclosed="onpopupclosed">
 						</uni-data-picker>
-						<Region :width="680" />
+						<!-- <Region :width="680" /> -->
 					</uni-forms-item>
 					<uni-forms-item label="婚否" required>
 						<uni-data-checkbox v-model="baseFormData.MaritalStatus" :localdata="marrys" />
@@ -72,6 +72,7 @@
 		},
 		data() {
 			return {
+				type: '',
 				statusBarHeight: 25,
 				// 基础表单数据
 				baseFormData: {
@@ -96,10 +97,10 @@
 				// 单选数据源
 				sexs: [{
 					text: '男',
-					value: 0
+					value: 1
 				}, {
 					text: '女',
-					value: 1
+					value: 2
 				}],
 				// 婚否
 				marrys: [{
@@ -144,6 +145,7 @@
 			this.statusBarHeight = uni.getSystemInfoSync().statusBarHeight + 'px'
 		},
 		onLoad(options) {
+			this.type = options.type;
 			// 个人资料-需要获取用户信息
 			if(options.type === 'info') {
 				this.getUserInfo();
@@ -155,7 +157,22 @@
 				this.$H.get('/api/APP/WXUser/GetUserInfo')
 					.then(res => {
 						if(res.Data) {
+							// 处理头像，身份证
+							const url = this.$C.webUrl + '/';
 							this.baseFormData = res.Data;
+							if(res.Data.HeadImgUrl) {
+								this.baseFormData.HeadImgUrl = url + res.Data.HeadImgUrl;
+								this.HeadImgUrl = url + res.Data.HeadImgUrl; // 头像远程数据
+							}
+							if(res.Data.IDCardBackUrl) {
+								this.baseFormData.IDCardBackUrl = url + res.Data.IDCardBackUrl;
+								this.IDCardBackUrl =  url + res.Data.IDCardBackUrl; // 身份证远程数据反面
+							}
+							if(res.Data.IDCardFrontUrl) {
+								this.baseFormData.IDCardFrontUrl = url + res.Data.IDCardFrontUrl;
+								this.IDCardFrontUrl = url + res.Data.IDCardFrontUrl; // 身份证远程数据正面
+							}
+							console.log('this.baseFormData：', this.baseFormData)
 						}
 					}).catch(err => {
 						console.log('err:', err)
@@ -176,7 +193,7 @@
 					this.$U.checkTip('身份证号不能为空！')
 					return
 				}
-				if(this.$U.dateUtils.isIDcard(IDCard)) {
+				if(!this.$U.dateUtils.isIDcard(IDCard)) {
 					this.$U.checkTip('身份证号格式错误！')
 					return
 				}
@@ -203,12 +220,20 @@
 				// 先上传图片
 				await this.uploadImg();
 				const params = {
-					...this.baseFormData,
-					HeadImgUrl: this.HeadImgUrl, // 头像远程数据
-					IDCardFrontUrl: this.IDCardFrontUrl, // 身份证远程数据正面
-					IDCardBackUrl: this.IDCardBackUrl // 身份证远程数据反面
+					...this.baseFormData
 				}
-				this.$H.post('/api/APP/WXUser/Create', params)
+				if(this.HeadImgUrl && !this.HeadImgUrl.startsWith('http')) {
+					params.HeadImgUrl = this.HeadImgUrl // 头像远程数据
+				}
+				if(this.IDCardFrontUrl && !this.IDCardFrontUrl.startsWith('http')) {
+					params.IDCardFrontUrl = this.IDCardFrontUrl // 身份证远程数据正面
+				}
+				if(this.IDCardBackUrl && !this.IDCardBackUrl.startsWith('http')) {
+					params.IDCardBackUrl = this.IDCardBackUrl // 身份证远程数据反面
+				}
+				// 根据type来判断是修改，还是信息
+				const url = this.type === 'info' ? '/api/APP/WXUser/Edit' : '/api/APP/WXUser/Create';
+				this.$H.post(url, params)
 					.then(res => {
 						if(res.Code === 200) {
 							uni.showToast({
@@ -248,6 +273,11 @@
 					}
 				]
 				for (var i = 0; i < imgList.length; i++) {
+					if(this.type === 'info') {
+						if(this.baseFormData[imgList[i].key].startsWith('http')) {
+							continue
+						}
+					}
 					const res = await this.$H.upload('/api/APP/WXUser/UploadFile',{
 						filePath: imgList[i].val,
 						name: 'upload',

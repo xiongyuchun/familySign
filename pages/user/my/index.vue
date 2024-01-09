@@ -4,7 +4,7 @@
 			<view class="flex flex-column" style="position: relative;">
 				<view class="top-title">我的</view>
 				<view class="navbar-info flex">
-					<view class="navbar-info_photo"><img src="@/static/default.jpg" class="navbar-info_photo_img" alt="" srcset=""></view>
+					<view class="navbar-info_photo"><img :src="userInfo.HeadImgUrl" class="navbar-info_photo_img" alt="" srcset=""></view>
 					<view class="navbar-info_introduce flex flex-column w-100">
 						<view class="navbar-info_introduce_name mb-3 font flex justify-between align-center w-100">
 							<view class="flex align-center">
@@ -17,8 +17,8 @@
 							</view>
 						</view>
 						<view class="navbar-info_introduce_main flex align-center">
-							<text class="font-small flex justify-center align-center text">男</text>
-							<text class="font-small flex justify-center align-center text">45</text>
+							<text class="font-small flex justify-center align-center text">{{userInfo.Sex === '1' ? '男' : '女'}}</text>
+							<text v-if="userInfo.Age" class="font-small flex justify-center align-center text">{{userInfo.Age}}</text>
 						</view>
 					</view>
 				</view>
@@ -104,12 +104,41 @@
 			const value = uni.getStorageSync('user');
 			if(value) {
 				this.userInfo = value;
+				this.userInfo.HeadImgUrl = this.$C.webUrl + '/' + value.HeadImgUrl;
+			} else {
+				this.getUserInfo()
 			}
 		},
 		methods: {
+			// 获取用户信息
+			getUserInfo() {
+				this.$H.get('/api/APP/WXUser/GetUserInfo')
+					.then(res => {
+						if(res.Data) {
+							uni.removeStorage({
+								key: 'user',
+								success() {
+									uni.setStorage({
+										key: 'user',
+										data: res.Data
+									})
+								}
+							})
+							this.userInfo = res.Data;
+							this.userInfo.HeadImgUrl = this.$C.webUrl + '/' + res.Data.HeadImgUrl;
+						}
+					}).catch(err => {
+						console.log('err:', err)
+					})
+			},
 			async logout(path) {
-				this.$store.dispatch('app/clearToken')
-				this.$U.gotoPageAndClosePage('/pages/login/index')
+				uni.showLoading({
+					title: '退出成功',
+				});
+				setTimeout(() => {
+					this.$store.dispatch('app/clearToken')
+					this.$U.gotoPageAndClosePage('/pages/login/index')
+				}, 100)
 			}
 		},
 	}

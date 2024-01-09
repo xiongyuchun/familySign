@@ -1,6 +1,6 @@
 <template>
 	<view class="">
-		<my-navbar title="在线签约"></my-navbar>
+		<!-- <my-navbar title="在线签约"></my-navbar> -->
 		<sign-tip :title="signObj.title" :desc="signObj.desc" :imgPath="signObj.imgPath" :imgStyle="signObj.imgStyle" :top="signObj.top" :btn="signObj.btn">
 			<template v-slot:img>
 				<img :src="signObj.imgPath" class="imgPath" alt="" srcset="" mode="aspectFill">

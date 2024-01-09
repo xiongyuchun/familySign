@@ -5,7 +5,7 @@
 				<img :src="signObj.imgPath" class="imgPath" alt="" srcset="" mode="aspectFill">
 			</template>
 			<template v-slot:sign-btn>
-				<view class="flex align-center justify-center">
+				<view @click="gotoBind()" class="flex align-center justify-center">
 					<view class="unsign-btn">去绑定</view>
 				</view>
 			</template>
@@ -29,6 +29,11 @@
 				}
 			}
 		},
+		methods: {
+			gotoBind() {
+				this.$U.gotoPage('/pages/sub-packages-user/my/upload-info/index')
+			}
+		}
 	}
 </script>
 

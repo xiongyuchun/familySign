@@ -17,17 +17,10 @@ export default {
 		options.url = $C.webUrl + options.url
 		options.method = options.method || this.common.method
 		options.header = options.header || this.common.header
-		
 		// 验证权限token
-		// if(options.token){
-		// 	options.header.token = $store.state.token
-		// 	if(!options.noCheck && !options.header.token && !options.notoast){
-		// 		return uni.showToast({
-		// 			title: '非法token,请重新登录',
-		// 			icon: 'none'
-		// 		});
-		// 	}
-		// }
+		if(!options.header.Token){
+			options.header.Token = $store.getters.token
+		}
 		
 		return new Promise((res,rej)=>{
 			if(this.common.loading.show) {
@@ -40,6 +33,12 @@ export default {
 				success: (result) => {
 					// 返回原始数据
 					// 请求服务端失败
+					// 401  跳转到登录页
+					if(result.data.Code === 401) {
+						console.log('401')
+						this.$U.gotoPageAndClosePage('/pages/login/index')
+						return rej(result.data)
+					}
 					if (result.data.Code !== 200) {
 						uni.showToast({
 							title:result.data.Message || '请求失败',

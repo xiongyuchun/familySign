@@ -15,6 +15,9 @@
 					<text style="margin-right: 6rpx; color: #069CF8; font-size: 20rpx;">当前默认</text>
 					<img class="user-item_select" src="@/pages/sub-packages-user/static/select-user.png" alt="" srcset="">
 				</view>
+				<view @click="btnDel(index)" v-else class="flex justify-between align-center">
+					<img class="user-item_select" style="width: 40rpx; height: 40rpx;" src="@/pages/sub-packages-user/static/remove.png" alt="" srcset="">
+				</view>
 			</view>
 			<view class="user-item">
 				<view @click="addUser" class="flex">
@@ -69,6 +72,25 @@
 			this.getUserBindList()
 		},
 		methods: {
+			// 获取用户信息
+			getUserInfo() {
+				this.$H.get('/api/APP/WXUser/GetUserInfo')
+					.then(res => {
+						if(res.Data) {
+							uni.removeStorage({
+								key: 'user',
+								success() {
+									uni.setStorage({
+										key: 'user',
+										data: res.Data
+									})
+								}
+							})
+						}
+					}).catch(err => {
+						console.log('err:', err)
+					})
+			},
 			// 直接绑定
 			directBind() {
 				if(this.$U.dateUtils.isEmpty(this.addUserSearch)) {
@@ -92,6 +114,11 @@
 			},
 			dialogClose() {
 				
+			},
+			// 点击按钮删除
+			btnDel(index) {
+				this.handle_sign_current = index;
+				this.delUser(this.sign_list[this.handle_sign_current])
 			},
 			// 长按事件处理函数
 			handleLongPress(index) {
@@ -129,7 +156,8 @@
 				this.$H.post('/api/APP/WXUser/ChangeBindUser', {UserId: item.UserId}, {},{show: true})
 					.then(res => {
 						if(res.Code === 200) {
-							
+							// 获取用户信息
+							this.getUserInfo();
 						}
 					})
 			},
@@ -256,5 +284,8 @@
 				border-radius: 44rpx;
 			}
 		}
+	}
+	::v-deep .uni-popup .vue-ref {
+		padding-bottom: 0 !important;
 	}
 </style>

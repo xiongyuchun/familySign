@@ -1,12 +1,16 @@
 <template>
 	<div class="index">
-		<p class="index-button" @click="openConversation">打开 TUIKit 会话</p>
-		<p class="index-button" @click="openContact">打开 TUIKit 联系人</p>
+		<p class="index-button" @click="gotoSign">去签约</p>
+		<!-- <p class="index-button" @click="openConversation">打开 TUIKit 会话</p> -->
+		<!-- <p class="index-button" @click="openContact">打开 TUIKit 联系人</p> -->
 	</div>
 </template>
 <script>
 	export default {
 		methods: {
+			gotoSign() {
+				this.$U.gotoPage('/pages/sub-packages-user/my/doctor-introduction/index')
+			},
 			// 打开 TUIKit 会话列表
 			openConversation() {
 				uni.navigateTo({

@@ -63,7 +63,7 @@
 		methods: {
 			submit() {
 				// 清除signPath
-				this.$store.commit('updateSignPath', '')
+				// this.$store.commit('updateSignPath', '')
 				// 跳转到首页
 				this.$U.gotoPageTab('/pages/index/index')
 			}
