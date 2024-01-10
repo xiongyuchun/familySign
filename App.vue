@@ -6,7 +6,7 @@
 	// #endif
 	// 必填信息
 	const config = {
-		userID: "simon", //User ID
+		userID: "罗文明", //User ID
 		SDKAppID: 1600019728, // Your SDKAppID
 		secretKey: "62bdffc5d604eb1894f27f10721bda57dcfb760c3e9efc5c691af8faf7aed292", // Your secretKey
 	};

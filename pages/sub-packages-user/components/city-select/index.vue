@@ -1,10 +1,10 @@
 <template>
 	<view>
-		<view class="list" :style="{width:width+'rpx',height:height+'rpx'}">
+		<view class="list" :style="{height:height+'rpx'}">
 			<picker class="picker" mode="multiSelector" :range="region" range-key="name" :value="regionIndex"
 				@change="pickerChange" @columnchange="pickerColumnchange">
 				<view class="pbox" :class="{'pbox_hover':regionStr != '请选择所在地区'}">
-					<view>{{regionStr}}</view>
+					<uni-easyinput class="upload-info_item" :value="regionStr" readonly placeholder="请选择所在地区" :clearable="false" />
 					<text class="iconfont icon-you"></text>
 				</view>
 			</picker>
@@ -34,7 +34,7 @@
 				// countyId: 110101001
 
 				// 省市区字符串
-				regionStr: '请选择所在地区'
+				regionStr: ''
 			};
 		},
 		props: {
@@ -240,7 +240,7 @@
 					.name + ' ' +
 					this.region[2][this.regionIndex[2]].name;
 			} else {
-				this.regionStr = '请选择省市区县';
+				this.regionStr = '';
 			}
 		}
 	}
@@ -249,7 +249,7 @@
 <style lang="scss">
 	.list {
 		// border-bottom: 1rpx solid #eee;
-		padding: 0 0 0 18rpx;
+		// padding: 0 0 0 18rpx;
 		box-sizing: border-box;
 		display: flex;
 		flex-direction: row;
@@ -259,6 +259,7 @@
 
 		.picker {
 			height: 92rpx;
+			width: 100%;
 			// width: 500rpx;
 
 			.pbox {
@@ -272,7 +273,6 @@
 
 				view {
 					width: 100%;
-					text-align: right;
 				}
 
 				.icon-you {
@@ -309,5 +309,12 @@
 			height: 100%;
 			color: #A9A9A9;
 		}
+	}
+	.upload-info_item {
+		border: none;
+		background-color: #F7F8FA !important;
+		border-radius: 4px;
+		line-height: 35px;
+		padding-left: 10px;
 	}
 </style>

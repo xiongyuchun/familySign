@@ -1,8 +1,8 @@
 <template>
 	<div class="index">
-		<p class="index-button" @click="gotoSign">去签约</p>
-		<!-- <p class="index-button" @click="openConversation">打开 TUIKit 会话</p> -->
-		<!-- <p class="index-button" @click="openContact">打开 TUIKit 联系人</p> -->
+		<!-- <p class="index-button" @click="gotoSign">去签约</p> -->
+		<p class="index-button" @click="openConversation">打开 TUIKit 会话</p>
+		<p class="index-button" @click="openContact">打开 TUIKit 联系人</p>
 	</div>
 </template>
 <script>

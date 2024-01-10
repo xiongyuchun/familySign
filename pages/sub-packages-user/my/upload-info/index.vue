@@ -38,7 +38,7 @@
 						<uni-data-picker placeholder="请选择班级" popup-title="请选择所在地区" :localdata="dataTree" v-model="baseFormData.City"
 							@change="onchange" @nodeclick="onnodeclick" @popupopened="onpopupopened" @popupclosed="onpopupclosed">
 						</uni-data-picker>
-						<!-- <Region :width="680" /> -->
+						<!-- <Region @region="regionClick" /> -->
 					</uni-forms-item>
 					<uni-forms-item label="婚否" required>
 						<uni-data-checkbox v-model="baseFormData.MaritalStatus" :localdata="marrys" />
@@ -82,7 +82,10 @@
 					introduction: '',
 					Sex: 1,
 					PhoneNumber: '',
-					City: '',
+					Province: '', // 省
+				    City: '', // 市
+				    Area: '', // 区
+				    Address: '', // 街道
 					IDCardFrontUrl: '',
 					IDCardBackUrl: ''
 				},
@@ -152,6 +155,13 @@
 			}
 		},
 		methods: {
+			// 当前选中的地区
+			regionClick(e) {
+				this.baseFormData.Province = e[0];
+				this.baseFormData.City = e[1];
+				this.baseFormData.Area = e[2];
+				this.baseFormData.Address = e[3];
+			},
 			// 获取用户信息
 			getUserInfo() {
 				this.$H.get('/api/APP/WXUser/GetUserInfo')

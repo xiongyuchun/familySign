@@ -2,7 +2,7 @@
 	<view class="news">
 		<my-navbar :title="newsInfo.Title"></my-navbar>
 		<view class="news-info">
-			{{ newsInfo.Content }}
+			<rich-text :nodes="newsInfo.Content"></rich-text>
 		</view>
 	</view>
 </template>

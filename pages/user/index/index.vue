@@ -21,7 +21,7 @@
 		</view>
 		<view class="grid px-3 mt-5">
 			<view class="flex mb-3">
-				<view @click="$U.gotoPage('/pages/sub-packages-user/my/upload-info/index')" class="grid-shadow flex align-center bg-white flex-1 mr-3 bg-white px-1">
+				<view @click="$U.gotoPage('/pages/sub-packages-user/my/add-file/index')" class="grid-shadow flex align-center bg-white flex-1 mr-3 bg-white px-1">
 					<img src="@/static/index/uploadInfo.png" alt="" srcset=""
 						style="width: 108rpx; height: 103rpx;margin-right: 4rpx;">
 					<text class="font-30 text-333">上传健康档案</text>

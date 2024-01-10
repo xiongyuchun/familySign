@@ -12,12 +12,16 @@
 		</view>
 		<view style="padding: 0 30rpx; position: relative; margin-top: -300rpx;">
 			<view class="upload-info_item">
-				<uni-forms ref="baseForm" :modelValue="alignmentFormData" label-position="top">
+				<uni-forms ref="baseForm" label-position="top">
 					<uni-forms-item label="就诊日期" required>
-						<uni-easyinput v-model="baseFormData.visitDate" placeholder="请输入就诊日期" />
+						<uni-datetime-picker
+							type="date"
+							:border="false"
+							v-model="baseFormData.TreatmentDate"
+						/>
 					</uni-forms-item>
 					<uni-forms-item label="信息备注" required>
-						<uni-easyinput v-model="baseFormData.remake" placeholder="请输入信息备注" />
+						<uni-easyinput v-model="baseFormData.Remark" placeholder="请输入信息备注" />
 					</uni-forms-item>
 					<uni-forms-item label="上传图片或文件" label-width="300" required>
 						<view class="flex flex-wrap">
@@ -26,20 +30,20 @@
 									:src="item" alt="" srcset="">
 								<img @click="delImage(index)" class="close-img" src="@/pages/sub-packages-user/static/close.png" alt="" srcset="">
 							</view>
-							<view @click="chooseImage('photo')" class="add-filed">
+							<view @click="chooseImage()" class="add-filed">
 								<uni-icons class="mb-1" type="plusempty" size="20" color="#ABABAB"></uni-icons>
 								<text>添加</text>
 							</view>
 						</view>
 					</uni-forms-item>
-					<uni-forms-item label="其他" required>
-						<uni-easyinput v-model="baseFormData.other" placeholder="请输入其他情况" />
+					<uni-forms-item label="其他">
+						<uni-easyinput v-model="baseFormData.Other" placeholder="请输入其他情况" />
 					</uni-forms-item>
 				</uni-forms>
 			</view>
 		</view>
 		<view class="flex justify-center w-100 pb-5 pt-5">
-			<view class="submit flex align-center justify-center">提交</view>
+			<view @click="createHealthRecord" class="submit flex align-center justify-center">提交</view>
 		</view>
 	</view>
 </template>
@@ -51,24 +55,62 @@
 				statusBarHeight: 25,
 				// 基础表单数据
 				baseFormData: {
-					photo: [],
-					visitDate: '',
-					remake: '',
-					introduction: '',
-					other: '',
+					TreatmentDate: '',
+					Remark: '',
+					FilesUrl: '',
+					Other: '',
+					photo: [], // 本地资源图片数组
 				},
-				// 表单数据
-				alignmentFormData: {
-					name: '',
-					age: '',
-				},
-				classes: ''
+				remotePhoto: [], // 本地文件路径换远程路径
 			}
 		},
 		created() {
 			this.statusBarHeight = uni.getSystemInfoSync().statusBarHeight + 'px'
 		},
 		methods: {
+			async createHealthRecord() {
+				const { TreatmentDate, Remark, FilesUrl, Other, photo } = this.baseFormData
+				if(this.$U.dateUtils.isEmpty(TreatmentDate)) {
+					this.$U.checkTip('就诊日期不能为空！')
+					return;
+				}
+				if(this.$U.dateUtils.isEmpty(Remark)) {
+					this.$U.checkTip('信息备注不能为空！')
+					return;
+				}
+				if(photo.length === 0) {
+					this.$U.checkTip('图片或文件不能为空！')
+					return;
+				}
+				await this.uploadImg();
+				if(this.remotePhoto.length > 0) {
+					this.baseFormData.FilesUrl = (this.remotePhoto).join('|');
+				}
+				delete this.baseFormData.photo;
+				this.$H.post('/api/APP/WXUser/CreateHealthRecord', this.baseFormData, {}, { show: true })
+					.then(res => {
+						if(res.Code === 200) {
+							this.$U.backPage(1)
+						}
+					})
+			},
+			// 上传图片-服务器
+			async uploadImg() {
+				uni.showLoading({
+					title: '加载中'
+				})
+				for (var i = 0; i < this.baseFormData.photo.length; i++) {
+					const res = await this.$H.upload('/api/APP/WXUser/UploadFile',{
+						filePath: this.baseFormData.photo[i],
+						name: 'upload',
+						header: {
+							'content-type': 'multipart/form-data'
+						}
+					});
+					this.remotePhoto.push(res.Data);
+				}
+				uni.hideLoading()
+			},
 			onnodeclick(e) {
 				console.log(e);
 			},
@@ -201,6 +243,9 @@
 	}
 	::v-deep .input-value {
 		border: none !important;
+		background-color: #F7F8FA !important;
+	}
+	::v-deep .uni-date-x {
 		background-color: #F7F8FA !important;
 	}
 </style>
