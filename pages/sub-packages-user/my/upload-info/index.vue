@@ -35,10 +35,10 @@
 						<uni-easyinput v-model="baseFormData.PhoneNumber" placeholder="请输入手机号码" />
 					</uni-forms-item>
 					<uni-forms-item label-width="300" label="居住地所在省、市、区县、乡镇、村寨" required>
-						<uni-data-picker placeholder="请选择班级" popup-title="请选择所在地区" :localdata="dataTree" v-model="baseFormData.City"
+						<!-- <uni-data-picker placeholder="请选择班级" popup-title="请选择所在地区" :localdata="dataTree" v-model="baseFormData.City"
 							@change="onchange" @nodeclick="onnodeclick" @popupopened="onpopupopened" @popupclosed="onpopupclosed">
-						</uni-data-picker>
-						<!-- <Region @region="regionClick" /> -->
+						</uni-data-picker> -->
+						<Region @region="regionClick" :regionStr="regionStr" />
 					</uni-forms-item>
 					<uni-forms-item label="婚否" required>
 						<uni-data-checkbox v-model="baseFormData.MaritalStatus" :localdata="marrys" />
@@ -81,6 +81,7 @@
 					IDCard: '',
 					introduction: '',
 					Sex: 1,
+					MaritalStatus: 0,
 					PhoneNumber: '',
 					Province: '', // 省
 				    City: '', // 市
@@ -92,6 +93,7 @@
 				HeadImgUrl: '', // 头像远程数据
 				IDCardFrontUrl: '', // 身份证远程数据正面
 				IDCardBackUrl: '', // 身份证远程数据反面
+				regionStr: '', // 回显示数据
 				// 表单数据
 				alignmentFormData: {
 					Name: '',
@@ -161,6 +163,7 @@
 				this.baseFormData.City = e[1];
 				this.baseFormData.Area = e[2];
 				this.baseFormData.Address = e[3];
+				this.regionStr = e[0] + e[1] + e[2] + e[3];
 			},
 			// 获取用户信息
 			getUserInfo() {
@@ -169,6 +172,7 @@
 						if(res.Data) {
 							// 处理头像，身份证
 							const url = this.$C.webUrl + '/';
+							const { Province, City, Area, Address } = res.Data;
 							this.baseFormData = res.Data;
 							if(res.Data.HeadImgUrl) {
 								this.baseFormData.HeadImgUrl = url + res.Data.HeadImgUrl;
@@ -182,7 +186,10 @@
 								this.baseFormData.IDCardFrontUrl = url + res.Data.IDCardFrontUrl;
 								this.IDCardFrontUrl = url + res.Data.IDCardFrontUrl; // 身份证远程数据正面
 							}
-							console.log('this.baseFormData：', this.baseFormData)
+							if(Province) {
+								this.regionStr = Province + City + Area + Address;
+							}
+							// console.log('this.baseFormData：', this.baseFormData)
 						}
 					}).catch(err => {
 						console.log('err:', err)

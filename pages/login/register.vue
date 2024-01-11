@@ -29,10 +29,11 @@
 						</uni-easyinput>
 					</uni-forms-item>
 					<uni-forms-item label-width="280rpx" label="选择居住地" name="City" label-align="left" required>
-						<uni-data-picker placeholder="请选择居住地" popup-title="请选择所在地区" :localdata="dataTree"
+						<!-- <uni-data-picker placeholder="请选择居住地" popup-title="请选择所在地区" :localdata="dataTree"
 							v-model="baseFormData.City" @change="onchange" @nodeclick="onnodeclick"
 							@popupopened="onpopupopened" @popupclosed="onpopupclosed">
-						</uni-data-picker>
+						</uni-data-picker> -->
+						<Region @region="regionClick" :regionStr="regionStr" />
 					</uni-forms-item>
 					<uni-forms-item label-width="280rpx" label="登录密码" name="Password" label-align="left" required>
 						<uni-easyinput v-model="baseFormData.Password" placeholder="请输入8到16位密码" />
@@ -52,7 +53,11 @@
 </template>
 
 <script>
+	import Region from './components/city-select/index.vue';
 	export default {
+		components: {
+			Region
+		},
 		data() {
 			return {
 				// 基础表单数据
@@ -65,56 +70,12 @@
 					verify: '',
 					Password: '',
 					confirmPassword: '',
-					City: '',
-
+					Province: '', // 省
+					City: '', // 市
+					Area: '', // 区
+					Address: '', // 街道
 				},
-				rules: {
-					Name: {
-						rules: [
-							{
-								required: true,
-								errorMessage: '请输入姓名',
-							}
-						]
-					},
-					Age: {
-						rules: [
-							{
-								required: true,
-								errorMessage: '请输入年龄',
-							}
-						]
-					},
-					Sex: {
-						rules: [
-							{
-								required: true,
-								errorMessage: '请选择性别',
-							}
-						]
-					},
-					IDCard: {
-						rules: [
-							{
-								required: true,
-								errorMessage: '请输入身份证号',
-							}
-						]
-					},
-					PhoneNumber: {
-						rules: [
-							{
-								required: true,
-								errorMessage: '请输入手机号',
-							},
-							{
-								minLength: 0,
-								maxLength: 11,
-								errorMessage: '{label}长度在 {minLength} 到 {maxLength} 个字符',
-							}
-						]
-					}
-				},
+				regionStr: '',
 				// 单选数据源
 				sexs: [{
 					text: '男',
@@ -153,6 +114,14 @@
 			}
 		},
 		methods: {
+			// 当前选中的地区
+			regionClick(e) {
+				this.baseFormData.Province = e[0];
+				this.baseFormData.City = e[1];
+				this.baseFormData.Area = e[2];
+				this.baseFormData.Address = e[3];
+				this.regionStr = e[0] + e[1] + e[2] + e[3];
+			},
 			// 立即注册
 			register() {
 				const { Name, Age, Sex, PhoneNumber, IDCard, verify, Password, confirmPassword, City } = this.baseFormData;
