@@ -88,7 +88,7 @@
 						<view @click.stop="$U.gotoPage('/pages/sub-packages-user/my/online-signing/index')" class="go-sign mr-3">
 							去签约
 						</view>
-						<view class="go-seek">医生咨询</view>
+						<view @click.stop="talk()" class="go-seek">医生咨询</view>
 					</view>
 				</view>
 			</view>
@@ -97,6 +97,15 @@
 </template>
 
 <script>
+	import {
+	  TUIFriendService,
+	  TUIStore,
+	  StoreName,
+	  TUITranslateService,
+	} from "@tencentcloud/chat-uikit-engine";
+	import Server from '@/TUIKit/components/TUIContact/server.ts';
+	const TUIContactServer = Server.getInstance();
+	const TUIConstants = TUIContactServer.constants;
 	export default {
 		name: 'docuor-introduction',
 		data() {
@@ -126,6 +135,17 @@
 			this.statusBarHeight = uni.getSystemInfoSync().statusBarHeight + 44 + 'px'
 		},
 		methods: {
+			// 医生咨询
+			talk() {
+				// onsole.log('memberList:',  )
+				const memberList = [{nick: '熊宇春', userID: 'xyc', avatar: "https://avatars.githubusercontent.com/u/28173?v=4"}]
+				TUIStore.update(StoreName.CUSTOM, "isShowSelectFriendComponent", false);
+				const callback = TUIContactServer.getOnCallCallback(TUIConstants.TUIContact.SERVICE.METHOD.SELECT_FRIEND);
+				callback && callback(memberList);
+				// uni.navigateTo({
+				// 	url: "/TUIKit/components/TUIConversation/index",
+				// });
+			},
 			// 地区列表-change
 			handelAreaList(e) {
 				console.log('e:', e)

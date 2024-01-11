@@ -93,44 +93,28 @@
 </template>
 
 <script>
+	import { mapState } from 'vuex'
 	export default {
 		data() {
 			return {
 				userInfo: {}
 			}
 		},
-		created() {
-			// 获取用户信息
-			const value = uni.getStorageSync('user');
-			if(value) {
-				this.userInfo = value;
-				this.userInfo.HeadImgUrl = this.$C.webUrl + '/' + value.HeadImgUrl;
-			} else {
-				this.getUserInfo()
+		computed: {
+			...mapState(['user']),
+		},
+		watch: {
+			user: {
+				handler(newValue, oldValue) {
+					for (let key in newValue.userInfo) {
+						this.$set(this.userInfo, key, newValue.userInfo[key])
+					}
+				},
+				deep: true,
+				immediate: true,
 			}
 		},
 		methods: {
-			// 获取用户信息
-			getUserInfo() {
-				this.$H.get('/api/APP/WXUser/GetUserInfo')
-					.then(res => {
-						if(res.Data) {
-							uni.removeStorage({
-								key: 'user',
-								success() {
-									uni.setStorage({
-										key: 'user',
-										data: res.Data
-									})
-								}
-							})
-							this.userInfo = res.Data;
-							this.userInfo.HeadImgUrl = this.$C.webUrl + '/' + res.Data.HeadImgUrl;
-						}
-					}).catch(err => {
-						console.log('err:', err)
-					})
-			},
 			async logout(path) {
 				uni.showLoading({
 					title: '退出成功',

@@ -58,6 +58,7 @@ watchEffect(() => {
 })
 
 const handleSelectedResult = (memberList: Array<any>) => {
+  console.log('memberList:', memberList)
   TUIStore.update(StoreName.CUSTOM, "isShowSelectFriendComponent", false);
   const callback = TUIContactServer.getOnCallCallback(TUIConstants.TUIContact.SERVICE.METHOD.SELECT_FRIEND);
   callback && callback(memberList);

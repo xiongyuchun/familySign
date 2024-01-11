@@ -77,15 +77,7 @@
 				this.$H.get('/api/APP/WXUser/GetUserInfo')
 					.then(res => {
 						if(res.Data) {
-							uni.removeStorage({
-								key: 'user',
-								success() {
-									uni.setStorage({
-										key: 'user',
-										data: res.Data
-									})
-								}
-							})
+							this.$store.dispatch('user/setUserInfo', res.Data);
 						}
 					}).catch(err => {
 						console.log('err:', err)
