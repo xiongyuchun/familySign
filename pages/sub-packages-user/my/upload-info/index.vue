@@ -250,6 +250,14 @@
 				}
 				// 根据type来判断是修改，还是信息
 				const url = this.type === 'info' ? '/api/APP/WXUser/Edit' : '/api/APP/WXUser/Create';
+				if(this.type === 'info') {
+					uni.showToast({
+						title: '加载中',
+						icon: 'none'
+					});
+					this.$U.gotoPageTab('/pages/index/index');
+					return;
+				}
 				this.$H.post(url, params)
 					.then(res => {
 						if(res.Code === 200) {
@@ -258,6 +266,7 @@
 								icon: 'none'
 							});
 							this.$U.gotoPageTab('/pages/index/index');
+							this.$store.dispatch('user/setUserInfo', { ...this.baseFormData, HeadImgUrl: this.HeadImgUrl  });
 						}
 					})
 			},
