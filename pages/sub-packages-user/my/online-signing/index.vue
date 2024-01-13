@@ -51,7 +51,8 @@
 			return {
 				title: '在线签约',
 				type: '', // user | doctor
-				signId: '' // 签约id
+				signId: '' ,// 签约id
+				doctorId: '', // 用户列表-医生id
 			}
 		},
 		computed: {
@@ -63,13 +64,13 @@
 			this.title = options.title;
 			this.type = options.type;
 			this.signId = options.signId;
+			this.doctorId = options.doctorId;
 		},
 		methods: {
 			submit() {
-				// 医生-同意签约
+				const signPath = this.$store.getters.signPath;
 				if(this.type === 'doctor') {
-					// 同意签约
-					const signPath = this.$store.getters.signPath;
+					// 医生-同意签约
 					this.$H.post('/api/APP/WXUser/ConsentSign', { DoctorSignImg: signPath, SignId: this.signId })
 						.then(res => {
 							// 清除signPath
@@ -79,8 +80,15 @@
 					this.$U.gotoPageTab('/pages/sub-packages-doctor/my/online-signing-list/index')
 				} else {
 					// 用户-发起签约
-					// 跳转到首页
-					this.$U.gotoPageTab('/pages/index/index')
+					const UserId = this.$store.getters.userInfo.UserId;
+					console.log('this.$store.getters.userInfo:', this.$store.getters.userInfo)
+					this.$H.post('/api/APP/WXUser/CreateSignInfo', { DoctorId: this.doctorId, UserId, UserSignImg: signPath })
+						.then(res => {
+							// 清除signPath
+							this.$store.dispatch('sign/setSignPath', '')
+							// 跳转到首页
+							this.$U.gotoPageTab('/pages/index/index')
+						})
 				}
 			}
 		},

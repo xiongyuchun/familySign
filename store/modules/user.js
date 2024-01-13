@@ -24,8 +24,6 @@ const state = {
 const mutations = {
 	SET_USER_INFO: (state, userInfo) => {
 		state.userInfo = userInfo;
-		console.log('$C.webUrl：', $C.webUrl);
-		console.log('userInfo：', userInfo);
 		state.userInfo.HeadImgUrl = $C.webUrl + '/' + userInfo.HeadImgUrl;
 	}
 }

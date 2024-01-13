@@ -85,7 +85,7 @@
 						{{item.WorkUnitName ? item.WorkUnitName : ''}}
 					</view>
 					<view class="flex justify-end">
-						<view @click.stop="$U.gotoPage('/pages/sub-packages-user/my/online-signing/index')" class="go-sign mr-3">
+						<view @click.stop="$U.gotoPage('/pages/sub-packages-user/my/online-signing/index?type=user&doctorId=' + item.DoctorId)" class="go-sign mr-3">
 							去签约
 						</view>
 						<view @click.stop="talk()" class="go-seek">医生咨询</view>
