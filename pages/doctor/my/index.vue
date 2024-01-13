@@ -4,23 +4,23 @@
 			<view class="flex flex-column" style="position: relative;">
 				<view class="top-title">我的</view>
 				<view class="navbar-info flex">
-					<view class="navbar-info_photo"><img src="@/static/default.jpg" class="navbar-info_photo_img" alt="" srcset=""></view>
+					<view class="navbar-info_photo"><img :src="userInfo.HeadImgUrl" class="navbar-info_photo_img" alt="" srcset=""></view>
 					<view class="navbar-info_introduce flex flex-column w-100">
 						<view class="navbar-info_introduce_name mb-3 font flex justify-between align-center w-100">
 							<view class="flex align-center">
-								<text>催磊</text>
+								<text>{{userInfo.Name}}</text>
 							</view>
 						</view>
 						<view class="navbar-info_introduce_main flex align-center">
-							<text class="font-small flex justify-center align-center text">男</text>
-							<text class="font-small flex justify-center align-center text">45</text>
+							<text class="font-small flex justify-center align-center text">{{userInfo.Sex === '1' ? '男' : '女'}}</text>
+							<text v-if="userInfo.Age" class="font-small flex justify-center align-center text">{{userInfo.Age}}</text>
 						</view>
 					</view>
 				</view>
 			</view>
 		</special-navbar>
 		<view class="my-list shadow">
-			<view class="my-list-item flex align-center justify-between">
+			<view @click="$U.gotoPage('/pages/sub-packages-doctor/my/put-on-record/index?type=info')" class="my-list-item flex align-center justify-between">
 				<view class="flex align-center">
 					<img class="my-list-item_img" src="@/static/my/info.png" alt="">
 					<text class="my-list-item_info">个人资料</text>
@@ -70,16 +70,36 @@
 </template>
 
 <script>
+	import { mapState } from 'vuex'
 	export default {
+		computed: {
+			...mapState(['userDoctor']),
+		},
+		watch: {
+			userDoctor: {
+				handler(newValue, oldValue) {
+					for (let key in newValue.userInfo) {
+						this.$set(this.userInfo, key, newValue.userInfo[key])
+					}
+				},
+				deep: true,
+				immediate: true,
+			}
+		},
 		data() {
 			return {
-				
+				userInfo: {}
 			}
 		},
 		methods: {
 			async logout(path) {
-				await this.$store.commit('logout')
-				this.$U.gotoPageAndClosePage('/pages/login/index')
+				uni.showLoading({
+					title: '退出成功',
+				});
+				setTimeout(() => {
+					this.$store.dispatch('app/clearToken')
+					this.$U.gotoPageAndClosePage('/pages/login/index')
+				}, 100)
 			}
 		},
 	}
@@ -143,6 +163,8 @@
 		border-radius: 30rpx;
 		margin-top: -70rpx;
 		background-color: #fff;
+		position: relative;
+		z-index: 9;
 		
 		&-item {
 			height: 100rpx;

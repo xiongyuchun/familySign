@@ -25,11 +25,11 @@
 						</template>
 						<uni-easyinput v-model="baseFormData.Password" placeholder="请输入密码" />
 					</uni-forms-item>
-					<uni-forms-item label-width="280rpx" label="居住地" label-align="left">
+					<uni-forms-item label-width="280rpx" label="单位" label-align="left">
 						<template v-slot:label>
 							<view class="flex align-center height-50rpx">
 								<img style="width: 44rpx; height: 46rpx;" class="mr-2" src="@/static/my/address.png" alt="">
-								<text style="font-size: 34rpx; color: #333;">居住地</text>
+								<text style="font-size: 34rpx; color: #333;">单位</text>
 							</view>
 						</template>
 						<view class="" style="font-size: 27rpx; color: #999;">{{baseFormData.introduction}}</view>
@@ -42,7 +42,7 @@
 				立即登录
 			</view>
 			<view class="" style="font-size: 27rpx; color: #999; margin-top: 40rpx;">
-				<text>还没有账号？</text><text @click="$U.gotoPage('/pages/login/register')" style="color: #1A85EB;">注册</text>
+				<text>还没有账号？</text><text @click="$U.gotoPage('/pages/login/register-doctor')" style="color: #1A85EB;">注册</text>
 			</view>
 		</view>
 	</view>
@@ -56,7 +56,7 @@
 				baseFormData: {
 					Account: '',
 					Password: '',
-					introduction: '江西省景德镇市',
+					introduction: '景德镇市第三人民医生',
 
 				},
 			}
@@ -75,25 +75,20 @@
 					this.$U.checkTip('密码不能为空！')
 					return;
 				}
-				this.$H.post('/api/APP/WXUser/Login', this.baseFormData, {}, {show: true, text: '登录中'})
+				this.$H.post('/api/APP/WXUser/DoctorLogin', this.baseFormData, {}, {show: true, text: '登录中'})
 					.then(res => {
 						if(res.Code === 200) {
-							this.$store.dispatch('app/setUserType', 'user')
-							this.$store.dispatch('app/setToken', res.Data.Token)
+							this.$store.dispatch('app/setUserType', 'doctor')
+							this.$store.dispatch('app/setToken', res.Data)
 							// 获取用户信息
 							this.getUserInfo();
 							uni.setStorage({
 								key: 'token',
-								data: res.Data,
+								data: { Token: res.Data },
 								success: () => {
-									if(!res.Data.IsBind) {
-										// 没有绑定，跳转到绑定页面
-										this.$U.gotoPageAndClosePage('/pages/sub-packages-user/my/unbound-user/index');
-									} else {
-										this.$U.gotoPageTab('/pages/index/index');
-										// 显示tabbar
-										uni.showTabBar({ animation: true });
-									}
+									this.$U.gotoPageTab('/pages/index/index');
+									// 显示tabbar
+									uni.showTabBar({ animation: true });
 								}
 							})
 						}
@@ -101,10 +96,14 @@
 			},
 			// 获取用户信息
 			getUserInfo() {
-				this.$H.get('/api/APP/WXUser/GetUserInfo')
+				this.$H.get('/api/APP/WXUser/GetDoctorInfo')
 					.then(res => {
 						if(res.Data) {
-							this.$store.dispatch('user/setUserInfo', res.Data);
+							this.$store.dispatch('userDoctor/setUserInfo', res.Data);
+							uni.setStorage({
+								key: 'doctor-userinfo',
+								data: res.Data
+							})
 						}
 					}).catch(err => {
 						console.log('err:', err)

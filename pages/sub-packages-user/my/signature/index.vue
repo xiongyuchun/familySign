@@ -74,7 +74,7 @@
 							.then(path => {
 								this.signBase64 = path;
 								// 更新store值
-								// this.$store.commit('updateSignPath', path)
+								this.$store.dispatch('sign/setSignPath', path)
 								this.$U.backPage(1)
 							})
 							.catch(error => {

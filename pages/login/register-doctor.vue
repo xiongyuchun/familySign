@@ -16,7 +16,7 @@
 					<uni-forms-item label="头像" required>
 						<view class="flex flex-column justify-center align-center" @click="chooseImage('HeadImgUrl')">
 							<img v-if="baseFormData.HeadImgUrl" style="width: 128rpx; height: 128rpx;"
-								:src="webUrl+'/'+baseFormData.HeadImgUrl" alt="" srcset="">
+								:src="baseFormData.HeadImgUrl" alt="" srcset="">
 							<img v-else style="width: 128rpx; height: 128rpx;" src="@/static/default.jpg" alt=""
 								srcset="">
 							<view style="color: #5581FF; font-size: 20rpx;">更换头像</view>
@@ -42,11 +42,11 @@
 					<uni-forms-item label-width="300" label="上传身份证正反面" required>
 						<text class="tip flex">请拍摄并上传你的有效身份证</text>
 						<view class="flex">
-							<img @click="chooseImage('IDCardFrontUrl')" v-if="baseFormData.IDCardFrontUrl" class="id-card" :src="webUrl+'/'+baseFormData.IDCardFrontUrl" alt=""
+							<img @click="chooseImage('IDCardFrontUrl')" v-if="baseFormData.IDCardFrontUrl" class="id-card" :src="baseFormData.IDCardFrontUrl" alt=""
 								srcset="" style="margin-right: 40rpx;">
 							<img @click="chooseImage('IDCardFrontUrl')" v-else class="id-card" src="@/pages/sub-packages-doctor/static/idcard1.png" alt="" srcset=""
 								style="margin-right: 40rpx;">
-							<img @click="chooseImage('IDCardBackUrl')" v-if="baseFormData.IDCardBackUrl" class="id-card" :src="webUrl+'/'+baseFormData.IDCardBackUrl" alt=""
+							<img @click="chooseImage('IDCardBackUrl')" v-if="baseFormData.IDCardBackUrl" class="id-card" :src="baseFormData.IDCardBackUrl" alt=""
 								srcset="" style="margin-right: 40rpx;">
 							<img @click="chooseImage('IDCardBackUrl')" v-else class="id-card" src="@/pages/sub-packages-doctor/static/idcard2.png" alt="" srcset="">
 						</view>
@@ -54,16 +54,22 @@
 					<uni-forms-item label-width="300" label="职业资格证书" required>
 						<text class="tip flex">请拍摄并上传你的职业资格证书</text>
 						<view class="flex justify-center">
-							<img @click="chooseImage('CertificationUrl')" v-if="baseFormData.CertificationUrl" class="id-card" :src="webUrl+'/'+baseFormData.CertificationUrl" alt=""
+							<img @click="chooseImage('CertificationUrl')" v-if="baseFormData.CertificationUrl" class="id-card" :src="baseFormData.CertificationUrl" alt=""
 								srcset="" style="margin-right: 40rpx;">
 							<img @click="chooseImage('CertificationUrl')" v-else class="id-card" src="@/pages/sub-packages-doctor/static/professionalCertificate.png" alt="" srcset=""
 								style="margin-right: 40rpx;">
 						</view>
 					</uni-forms-item>
+					<uni-forms-item label-width="280rpx" label="登录密码" name="Password" label-align="left" required>
+						<uni-easyinput v-model="baseFormData.Password" placeholder="请输入8到16位密码" />
+					</uni-forms-item>
+					<uni-forms-item label-width="280rpx" label="确认密码" name="confirmPassword" label-align="left" required>
+						<uni-easyinput v-model="baseFormData.confirmPassword" placeholder="请再次确认密码" />
+					</uni-forms-item>
 				</uni-forms>
 			</view>
 		</view>
-		<view @click="submit" class="flex justify-center w-100 pb-5 pt-5">
+		<view @click="register" class="flex justify-center w-100 pb-5 pt-5">
 			<view class="submit flex align-center justify-center">确定</view>
 		</view>
 	</view>
@@ -74,13 +80,13 @@
 		data() {
 			return {
 				statusBarHeight: 25,
-				type: '',
-				webUrl: '',
 				// 基础表单数据
 				baseFormData: {
 					HeadImgUrl: "",
 					Name: "",
 					IDCard: "",
+					Password: "",
+					confirmPassword: "",
 					Sex: 1,
 					PhoneNumber: "",
 					UnitId: "be370a98-3c97-4a49-95f8-359a8ab88e63",
@@ -135,42 +141,103 @@
 				]
 			}
 		},
-		onLoad(options) {
-			this.type = options.type;
-			if(options.type === 'info') {
-				this.getUserInfo()
-			}
-		},
 		created() {
 			this.statusBarHeight = uni.getSystemInfoSync().statusBarHeight + 'px'
-			this.webUrl = this.$C.webUrl
 		},
 		methods: {
-			// submit
-			submit() {
-				this.$H.post('/api/APP/WXUser/EditDoctor', this.baseFormData, {}, {show: true})
+			// 立即注册
+			async register() {
+				const { Name, Sex, PhoneNumber, IDCard, verify, Password, confirmPassword, UnitId } = this.baseFormData;
+				if(this.$U.dateUtils.isEmpty(Name)) {
+					this.$U.checkTip('姓名不能为空！')
+					return;
+				}
+				if(this.$U.dateUtils.isEmpty(IDCard)) {
+					this.$U.checkTip('身份证号不能为空！')
+					return;
+				}
+				if(!this.$U.dateUtils.isIDcard(IDCard)) {
+					this.$U.checkTip('身份证号格式错误！')
+					return;
+				}
+				if(this.$U.dateUtils.isEmpty(PhoneNumber)) {
+					this.$U.checkTip('手机号不能为空！')
+					return;
+				}
+				if(!this.$U.dateUtils.isTel(PhoneNumber)) {
+					this.$U.checkTip('手机号格式错误！')
+					return;
+				}
+				if(this.$U.dateUtils.isEmpty(UnitId)) {
+					this.$U.checkTip('工作单位不能为空！')
+					return;
+				}
+				if(this.$U.dateUtils.isEmpty(Password)) {
+					this.$U.checkTip('登录密码不能为空！')
+					return;
+				}
+				if(this.$U.dateUtils.isEmpty(confirmPassword)) {
+					this.$U.checkTip('确认密码不能为空！')
+					return;
+				}
+				if(Password !== confirmPassword) {
+					this.$U.checkTip('登录密码与确认密码不一致！')
+					return;
+				}
+				// 先上传图片
+				await this.uploadImg();
+				const params = {
+					...this.baseFormData
+				}
+				if(this.HeadImgUrl && !this.HeadImgUrl.startsWith('http')) {
+					params.HeadImgUrl = this.HeadImgUrl // 头像远程数据
+				}
+				if(this.IDCardFrontUrl && !this.IDCardFrontUrl.startsWith('http')) {
+					params.IDCardFrontUrl = this.IDCardFrontUrl // 身份证远程数据正面
+				}
+				if(this.IDCardBackUrl && !this.IDCardBackUrl.startsWith('http')) {
+					params.IDCardBackUrl = this.IDCardBackUrl // 身份证远程数据反面
+				}
+				if(this.CertificationUrl && !this.CertificationUrl.startsWith('http')) {
+					params.CertificationUrl = this.CertificationUrl // 资格证
+				}
+				this.$H.post('/api/APP/WXUser/RegisterDoctor', params)
 					.then(res => {
-						if(res.Data) {
-							this.$store.dispatch('userDoctor/setUserInfo', this.baseFormData);
-							uni.setStorage({
-								key: 'doctor-userinfo',
-								data: this.baseFormData
-							})
+						if(res.Code === 200) {
+							this.$U.gotoPage('/pages/login/login-doctor')
 						}
-					}).catch(err => {
-						console.log('err:', err)
 					})
 			},
-			// 获取用户信息
-			getUserInfo() {
-				this.$H.get('/api/APP/WXUser/GetDoctorInfo')
-					.then(res => {
-						if(res.Data) {
-							this.baseFormData = res.Data;
+			// 上传图片-服务器
+			async uploadImg() {
+				const imgList = [
+					{
+						key: 'HeadImgUrl',
+						val: this.baseFormData.HeadImgUrl
+					}, 
+					{
+						key: 'IDCardBackUrl',
+						val: this.baseFormData.IDCardBackUrl
+					},
+					{
+						key: 'IDCardFrontUrl',
+						val: this.baseFormData.IDCardFrontUrl
+					},
+					{
+						key: 'CertificationUrl',
+						val: this.baseFormData.CertificationUrl
+					}
+				]
+				for (var i = 0; i < imgList.length; i++) {
+					const res = await this.$H.upload('/api/APP/WXUser/UploadFile',{
+						filePath: imgList[i].val,
+						name: 'upload',
+						header: {
+							'content-type': 'multipart/form-data'
 						}
-					}).catch(err => {
-						console.log('err:', err)
-					})
+					});
+					this[imgList[i].key] = res.Data;
+				}
 			},
 			onnodeclick(e) {
 				console.log(e);
@@ -184,17 +251,6 @@
 			onchange(e) {
 				console.log('onchange:', e);
 			},
-			// 上次图片 到服务器
-			async uploadFile(obj) {
-				const res = await this.$H.upload('/api/APP/WXUser/UploadFile',{
-					filePath: obj.val,
-					name: 'upload',
-					header: {
-						'content-type': 'multipart/form-data'
-					}
-				});
-				this.baseFormData[obj.key] = res.Data;
-			},
 			chooseImage(type) {
 				uni.chooseImage({
 					count: 1, //默认9
@@ -203,28 +259,16 @@
 						const tempFilePaths = res.tempFilePaths[0]
 						switch (type) {
 							case 'HeadImgUrl':
-								this.uploadFile({
-									key: 'HeadImgUrl',
-									val: tempFilePaths
-								})
+								this.baseFormData.HeadImgUrl = tempFilePaths
 								break;
 							case 'IDCardFrontUrl':
-								this.uploadFile({
-									key: 'IDCardFrontUrl',
-									val: tempFilePaths
-								})
+								this.baseFormData.IDCardFrontUrl = tempFilePaths
 								break;
 							case 'IDCardBackUrl':
-								this.uploadFile({
-									key: 'IDCardBackUrl',
-									val: tempFilePaths
-								})
+								this.baseFormData.IDCardBackUrl = tempFilePaths
 								break;
 							case 'CertificationUrl':
-								this.uploadFile({
-									key: 'CertificationUrl',
-									val: tempFilePaths
-								})
+								this.baseFormData.CertificationUrl = tempFilePaths
 								break;
 							default:
 								break;

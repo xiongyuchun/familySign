@@ -1,11 +1,12 @@
 <template>
 	<view>
 		<template v-if="loginStatus">
-			<user-Index v-if="userType"></user-Index>
+			<user-Index v-if="userType === 'user'"></user-Index>
 			<doctor-index v-else></doctor-index>
 		</template>
 		<template v-else>
 			<login></login>
+			<!-- <loginDoctor></loginDoctor> -->
 		</template>
 	</view>
 </template>
@@ -14,11 +15,13 @@
 	import userIndex from '@/pages/user/index/index.vue';
 	import doctorIndex from '@/pages/doctor/index/index.vue'
 	import login from '@/pages/login/index.vue';
+	import loginDoctor from '@/pages/login/login-doctor.vue';
 	export default {
 		components: {
 			userIndex,
 			doctorIndex,
-			login
+			login,
+			loginDoctor
 		},
 		data() {
 			return {
@@ -30,9 +33,7 @@
 				return this.$store.getters.token ? true : false;
 			},
 			userType() {
-				// const {name} = this.$store.state.user
-				// if(name === 'user') return true
-				return true
+				return this.$store.getters.userType
 			}
 		},
 	}

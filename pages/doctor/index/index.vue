@@ -10,8 +10,8 @@
 				<text class="text-white font-small">景德镇第三人民医院</text>
 			</view>
 			<view class="doctor-top-photo flex">
-				<img class="mr-2" style="width: 137rpx;height: 137rpx;border-radius: 50%;" src="@/static/default.jpg" alt="" srcset="">
-				<text class="mt-2 text-white" style="font-size: 28rpx;">蓝医生</text>
+				<img class="mr-2" style="width: 137rpx;height: 137rpx;border-radius: 50%;" :src="userInfo.HeadImgUrl" alt="" srcset="">
+				<text class="mt-2 text-white" style="font-size: 28rpx;">{{userInfo.Name}}</text>
 			</view>
 			<view class="px-4 mt-3">
 				<view class="px-2 py-2 flex position-relative" style="height: 125rpx; border-top: 2rpx solid rgba(255, 255, 255, 0.4);">
@@ -63,15 +63,31 @@
 </template>
 
 <script>
+	import { mapState } from 'vuex'
 	export default {
-		name: 'userIndex',
+		name: 'doctorIndex',
+		computed: {
+			...mapState(['userDoctor']),
+		},
+		watch: {
+			userDoctor: {
+				handler(newValue, oldValue) {
+					for (let key in newValue.userInfo) {
+						this.$set(this.userInfo, key, newValue.userInfo[key])
+					}
+				},
+				deep: true,
+				immediate: true,
+			}
+		},
 		data() {
 			return {
-				statusBarHeight: 25
+				statusBarHeight: 25,
+				userInfo: {}
 			}
 		},
 		created() {
-			this.statusBarHeight = uni.getSystemInfoSync().statusBarHeight + 'px'
+			this.statusBarHeight = uni.getSystemInfoSync().statusBarHeight + 'px';
 		},
 		methods: {
 			

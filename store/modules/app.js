@@ -19,7 +19,8 @@ function getToken() {
 }
 
 const state = {
-	token: getToken()
+	token: getToken(),
+	userType: 'user', // user: 用户  doctor：医生
 }
 
 const mutations = {
@@ -31,6 +32,9 @@ const mutations = {
 			key: 'token'
 		})
 		state.token = '';
+	},
+	SET_USER_TYPE: (state, userType) => {
+		state.userType = userType
 	}
 }
 
@@ -47,6 +51,12 @@ const actions = {
 		commit
 	}) {
 		commit('CLEAR_TOKEN')
+	},
+	/**
+	 * 设置用户类型
+	 */
+	setUserType({ commit }, userType) {
+		commit('SET_USER_TYPE', userType)
 	}
 }
 

@@ -1,7 +1,7 @@
 <template>
 	<view>
 		<template>
-			<my-index v-if="userType"></my-index>
+			<my-index v-if="userType === 'user'"></my-index>
 			<doctor-index v-else></doctor-index>
 		</template>
 	</view>
@@ -17,10 +17,7 @@
 		},
 		computed: {
 			userType() {
-				// const {name} = this.$store.state.user
-				// if(name === 'user') return true
-				// return false
-				return true
+				return this.$store.getters.userType
 			},
 		},
 		data() {

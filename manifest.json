@@ -104,12 +104,14 @@
     /* 小程序特有相关 */
     "mp-weixin" : {
         "appid" : "wx19a24cec4d162509",
-		/* 开启分包配置 */
-		"optimization" : {
-			"subPackages" : true
-		},
+        /* 开启分包配置 */
+        "optimization" : {
+            "subPackages" : true
+        },
         "setting" : {
-            "urlCheck" : false
+            "urlCheck" : false,
+            "postcss" : true,
+            "minified" : true
         },
         "usingComponents" : true,
         "permission" : {
@@ -175,17 +177,17 @@
         "uniStatistics" : {
             "enable" : true
         },
-		"devServer": {
-			"port": 8081,
-			"disableHostCheck": true,
-			"proxy":{
-				"/":{
-					"target": "http://182.61.31.42:1001",
-					"changeOrigin":true,
-					"secure": false
-				}
-			}
-		}
+        "devServer" : {
+            "port" : 8081,
+            "disableHostCheck" : true,
+            "proxy" : {
+                "/" : {
+                    "target" : "http://182.61.31.42:1001",
+                    "changeOrigin" : true,
+                    "secure" : false
+                }
+            }
+        }
     },
     "vueVersion" : "2",
     "mp-kuaishou" : {

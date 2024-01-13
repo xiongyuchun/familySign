@@ -48,7 +48,27 @@
 			}
 		},
 		{
+			"path": "pages/login/register-doctor",
+			"app-plus": {
+				"titleNView": false
+			},
+			"style": {
+				"navigationBarTitleText": "",
+				"navigationStyle": "custom"
+			}
+		},
+		{
 			"path": "pages/login/index",
+			"app-plus": {
+				"titleNView": false
+			},
+			"style": {
+				"navigationBarTitleText": "",
+				"navigationStyle": "custom"
+			}
+		},
+		{
+			"path": "pages/login/login-doctor",
 			"app-plus": {
 				"titleNView": false
 			},

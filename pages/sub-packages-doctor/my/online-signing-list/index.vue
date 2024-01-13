@@ -55,12 +55,28 @@
 
 <script>
 	import signList from '@/components/doctor/sign-list/index'
+	import { mapState } from 'vuex'
 	export default {
 		components: {
 			signList
 		},
+		computed: {
+			...mapState(['userDoctor']),
+		},
+		watch: {
+			userDoctor: {
+				handler(newValue, oldValue) {
+					for (let key in newValue.userInfo) {
+						this.$set(this.userInfo, key, newValue.userInfo[key])
+					}
+				},
+				deep: true,
+				immediate: true,
+			}
+		},
 		data() {
 			return {
+				userInfo: {},
 				signList: {
 					btns: [
 						{
@@ -103,7 +119,17 @@
 				]
 			}
 		},
+		mounted() {
+			this.getSignList()
+		},
 		methods: {
+			// 获取签约列表
+			getSignList() {
+				this.$H.post('/api/APP/WXUser/GetSignList', { doctorId: this.userInfo.DoctorId })
+					.then(res => {
+						
+					})
+			},
 			// 签约列表按钮事件
 			popupHander(item) {
 				// type 0:拒签  1: 待签约
@@ -112,13 +138,17 @@
 				}
 				if(item.type === 1) {
 					if(item.path) {
-						this.$U.gotoPage(item.path)
+						this.$U.gotoPage(item.path + '?type=doctor&signId=123')
 					}
 				}
 			},
 			// 拒签-确定
 			dialogInputConfirm(val) {
 				console.log('拒签:', val)
+				this.$H.post('/api/APP/WXUser/RefuseSign', { RefuseReason: val, SignId: '' })
+					.then(res => {
+						
+					})
 				this.$refs.inputDialog.close()
 			},
 			// 切换选项

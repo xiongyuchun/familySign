@@ -16,7 +16,7 @@
 					<uni-forms-item label="头像" required>
 						<view class="flex flex-column justify-center align-center" @click="chooseImage('HeadImgUrl')">
 							<img v-if="baseFormData.HeadImgUrl" style="width: 128rpx; height: 128rpx;"
-								:src="baseFormData.HeadImgUrl" alt="" srcset="">
+								:src="webUrl + '/' + baseFormData.HeadImgUrl" alt="" srcset="">
 							<img v-else style="width: 128rpx; height: 128rpx;" src="@/static/default.jpg" alt=""
 								srcset="">
 							<view style="color: #5581FF; font-size: 20rpx;">更换头像</view>
@@ -46,11 +46,11 @@
 					<uni-forms-item label-width="300" label="上传身份证正反面" required>
 						<text class="tip">请拍摄并上传你的有效身份证</text>
 						<view class="flex">
-							<img @click="chooseImage('IDCardFrontUrl')" v-if="baseFormData.IDCardFrontUrl" class="id-card" :src="baseFormData.IDCardFrontUrl" alt=""
+							<img @click="chooseImage('IDCardFrontUrl')" v-if="baseFormData.IDCardFrontUrl" class="id-card" :src="webUrl + '/' + baseFormData.IDCardFrontUrl" alt=""
 								srcset="" style="margin-right: 40rpx;">
 							<img @click="chooseImage('IDCardFrontUrl')" v-else class="id-card" src="@/pages/sub-packages-user/static/idcard1.png" alt="" srcset=""
 								style="margin-right: 40rpx;">
-							<img @click="chooseImage('IDCardBackUrl')" v-if="baseFormData.IDCardBackUrl" class="id-card" :src="baseFormData.IDCardBackUrl" alt=""
+							<img @click="chooseImage('IDCardBackUrl')" v-if="baseFormData.IDCardBackUrl" class="id-card" :src="webUrl + '/' + baseFormData.IDCardBackUrl" alt=""
 								srcset="" style="margin-right: 40rpx;">
 							<img @click="chooseImage('IDCardBackUrl')" v-else class="id-card" src="@/pages/sub-packages-user/static/idcard2.png" alt="" srcset="">
 						</view>
@@ -73,6 +73,7 @@
 		data() {
 			return {
 				type: '',
+				webUrl: '',
 				statusBarHeight: 25,
 				// 基础表单数据
 				baseFormData: {
@@ -148,6 +149,7 @@
 		},
 		created() {
 			this.statusBarHeight = uni.getSystemInfoSync().statusBarHeight + 'px'
+			this.webUrl = this.$C.webUrl;
 		},
 		onLoad(options) {
 			this.type = options.type;
@@ -171,25 +173,11 @@
 					.then(res => {
 						if(res.Data) {
 							// 处理头像，身份证
-							const url = this.$C.webUrl + '/';
 							const { Province, City, Area, Address } = res.Data;
 							this.baseFormData = res.Data;
-							if(res.Data.HeadImgUrl) {
-								this.baseFormData.HeadImgUrl = url + res.Data.HeadImgUrl;
-								this.HeadImgUrl = url + res.Data.HeadImgUrl; // 头像远程数据
-							}
-							if(res.Data.IDCardBackUrl) {
-								this.baseFormData.IDCardBackUrl = url + res.Data.IDCardBackUrl;
-								this.IDCardBackUrl =  url + res.Data.IDCardBackUrl; // 身份证远程数据反面
-							}
-							if(res.Data.IDCardFrontUrl) {
-								this.baseFormData.IDCardFrontUrl = url + res.Data.IDCardFrontUrl;
-								this.IDCardFrontUrl = url + res.Data.IDCardFrontUrl; // 身份证远程数据正面
-							}
 							if(Province) {
 								this.regionStr = Province + City + Area + Address;
 							}
-							// console.log('this.baseFormData：', this.baseFormData)
 						}
 					}).catch(err => {
 						console.log('err:', err)
@@ -234,31 +222,9 @@
 					this.$U.checkTip('身份证反面不能为空！')
 					return;
 				}
-				// 先上传图片
-				await this.uploadImg();
-				const params = {
-					...this.baseFormData
-				}
-				if(this.HeadImgUrl && !this.HeadImgUrl.startsWith('http')) {
-					params.HeadImgUrl = this.HeadImgUrl // 头像远程数据
-				}
-				if(this.IDCardFrontUrl && !this.IDCardFrontUrl.startsWith('http')) {
-					params.IDCardFrontUrl = this.IDCardFrontUrl // 身份证远程数据正面
-				}
-				if(this.IDCardBackUrl && !this.IDCardBackUrl.startsWith('http')) {
-					params.IDCardBackUrl = this.IDCardBackUrl // 身份证远程数据反面
-				}
 				// 根据type来判断是修改，还是信息
 				const url = this.type === 'info' ? '/api/APP/WXUser/Edit' : '/api/APP/WXUser/Create';
-				if(this.type === 'info') {
-					uni.showToast({
-						title: '加载中',
-						icon: 'none'
-					});
-					this.$U.gotoPageTab('/pages/index/index');
-					return;
-				}
-				this.$H.post(url, params)
+				this.$H.post(url, this.baseFormData)
 					.then(res => {
 						if(res.Code === 200) {
 							uni.showToast({
@@ -266,7 +232,7 @@
 								icon: 'none'
 							});
 							this.$U.gotoPageTab('/pages/index/index');
-							this.$store.dispatch('user/setUserInfo', { ...this.baseFormData, HeadImgUrl: this.HeadImgUrl  });
+							this.$store.dispatch('user/setUserInfo', this.baseFormData);
 						}
 					})
 			},
@@ -283,52 +249,40 @@
 				console.log('onchange:', e);
 			},
 			// 上传图片
-			async uploadImg() {
-				const imgList = [
-					{
-						key: 'HeadImgUrl',
-						val: this.baseFormData.HeadImgUrl
-					}, 
-					{
-						key: 'IDCardBackUrl',
-						val: this.baseFormData.IDCardBackUrl
-					},
-					{
-						key: 'IDCardFrontUrl',
-						val: this.baseFormData.IDCardFrontUrl
+			async uploadImg(obj) {
+				const res = await this.$H.upload('/api/APP/WXUser/UploadFile',{
+					filePath: obj.val,
+					name: 'upload',
+					header: {
+						'content-type': 'multipart/form-data'
 					}
-				]
-				for (var i = 0; i < imgList.length; i++) {
-					if(this.type === 'info') {
-						if(this.baseFormData[imgList[i].key].startsWith('http')) {
-							continue
-						}
-					}
-					const res = await this.$H.upload('/api/APP/WXUser/UploadFile',{
-						filePath: imgList[i].val,
-						name: 'upload',
-						header: {
-							'content-type': 'multipart/form-data'
-						}
-					});
-					this[imgList[i].key] = res.Data;
-				}
+				});
+				this.baseFormData[obj.key] = res.Data;
 			},
 			chooseImage(type) {
 				uni.chooseImage({
 					count: 1, //默认9
 					sizeType: ['compressed'], //可以指定是原图还是压缩图，默认二者都有
 					success: (res) => {
-						const tempFilePaths = res.tempFilePaths[0]
+						const tempFilePaths = res.tempFilePaths[0];
 						switch (type) {
 							case 'HeadImgUrl':
-								this.baseFormData.HeadImgUrl = tempFilePaths
+								this.uploadImg({
+									key: 'HeadImgUrl',
+									val: tempFilePaths
+								});
 								break;
 							case 'IDCardFrontUrl':
-								this.baseFormData.IDCardFrontUrl = tempFilePaths
+								this.uploadImg({
+									key: 'IDCardFrontUrl',
+									val: tempFilePaths
+								});
 								break;
 							case 'IDCardBackUrl':
-								this.baseFormData.IDCardBackUrl = tempFilePaths
+								this.uploadImg({
+									key: 'IDCardBackUrl',
+									val: tempFilePaths
+								});
 								break;
 							default:
 								break;

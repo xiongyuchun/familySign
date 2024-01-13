@@ -50,22 +50,38 @@
 		data() {
 			return {
 				title: '在线签约',
+				type: '', // user | doctor
+				signId: '' // 签约id
 			}
 		},
 		computed: {
 			signPath() {
-				return this.$store.state.signPath
+				return this.$store.getters.signPath
 			}
 		},
 		onLoad(options) {
 			this.title = options.title;
+			this.type = options.type;
+			this.signId = options.signId;
 		},
 		methods: {
 			submit() {
-				// 清除signPath
-				// this.$store.commit('updateSignPath', '')
-				// 跳转到首页
-				this.$U.gotoPageTab('/pages/index/index')
+				// 医生-同意签约
+				if(this.type === 'doctor') {
+					// 同意签约
+					const signPath = this.$store.getters.signPath;
+					this.$H.post('/api/APP/WXUser/ConsentSign', { DoctorSignImg: signPath, SignId: this.signId })
+						.then(res => {
+							// 清除signPath
+							this.$store.dispatch('sign/setSignPath', '')
+						})
+					// 跳转到首页
+					this.$U.gotoPageTab('/pages/sub-packages-doctor/my/online-signing-list/index')
+				} else {
+					// 用户-发起签约
+					// 跳转到首页
+					this.$U.gotoPageTab('/pages/index/index')
+				}
 			}
 		},
 	}
@@ -74,7 +90,7 @@
 <style scoped lang="scss">
 	.introduce {
 		color: #6D6A6A;
-		font-size: 19rpx;
+		font-size: 24rpx;
 	}
 	.sign-name {
 		margin-top: 40rpx;
