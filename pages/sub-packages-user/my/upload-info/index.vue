@@ -17,7 +17,7 @@
 						<view class="flex flex-column justify-center align-center" @click="chooseImage('HeadImgUrl')">
 							<img v-if="baseFormData.HeadImgUrl" style="width: 128rpx; height: 128rpx;"
 								:src="webUrl + '/' + baseFormData.HeadImgUrl" alt="" srcset="">
-							<img v-else style="width: 128rpx; height: 128rpx;" src="@/static/default.jpg" alt=""
+							<img v-else style="width: 128rpx; height: 128rpx;" src="http://182.61.31.42:1001/static/default.jpg" alt=""
 								srcset="">
 							<view style="color: #5581FF; font-size: 20rpx;">更换头像</view>
 						</view>
@@ -38,7 +38,7 @@
 						<!-- <uni-data-picker placeholder="请选择班级" popup-title="请选择所在地区" :localdata="dataTree" v-model="baseFormData.City"
 							@change="onchange" @nodeclick="onnodeclick" @popupopened="onpopupopened" @popupclosed="onpopupclosed">
 						</uni-data-picker> -->
-						<Region @region="regionClick" :regionStr="regionStr" />
+						<Region @region="regionClick" :regionStr="regionStr" lg="35px" />
 					</uni-forms-item>
 					<uni-forms-item label="婚否" required>
 						<uni-data-checkbox v-model="baseFormData.MaritalStatus" :localdata="marrys" />
@@ -65,7 +65,7 @@
 </template>
 
 <script>
-	import Region from '../../components/city-select/index.vue';
+	import Region from '@/pages/login/components/city-select/index.vue';
 	export default {
 		components: {
 			Region

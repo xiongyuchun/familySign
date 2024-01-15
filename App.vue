@@ -43,20 +43,6 @@
 				// 没有登录则隐藏tabbar
 				uni.hideTabBar({ animation: true });
 			}
-			// 获取省市区街道
-			const region = uni.getStorageSync('region');
-			if(!region) {
-				uni.request({
-					url: this.$C.webUrl + '/chinaRegion.json',
-					method: 'GET',
-					success(res) {
-						uni.setStorage({
-							key: 'region',
-							data: res.data
-						})
-					}
-				})
-			}
 		},
 		onShow: function () {
 			console.log('App Show')

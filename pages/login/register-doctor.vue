@@ -7,7 +7,7 @@
 				<view @click="$U.backPage(1)">
 					<uni-icons class="back" type="back" size="20" color="#fff"></uni-icons>
 				</view>
-				<view class="">建档/完善信息</view>
+				<view class="">注册</view>
 			</view>
 		</view>
 		<view style="padding: 0 30rpx; position: relative; margin-top: -300rpx;">
@@ -17,7 +17,7 @@
 						<view class="flex flex-column justify-center align-center" @click="chooseImage('HeadImgUrl')">
 							<img v-if="baseFormData.HeadImgUrl" style="width: 128rpx; height: 128rpx;"
 								:src="baseFormData.HeadImgUrl" alt="" srcset="">
-							<img v-else style="width: 128rpx; height: 128rpx;" src="@/static/default.jpg" alt=""
+							<img v-else style="width: 128rpx; height: 128rpx;" src="http://182.61.31.42:1001/static/default.jpg" alt=""
 								srcset="">
 							<view style="color: #5581FF; font-size: 20rpx;">更换头像</view>
 						</view>

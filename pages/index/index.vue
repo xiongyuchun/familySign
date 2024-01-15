@@ -5,8 +5,8 @@
 			<doctor-index v-else></doctor-index>
 		</template>
 		<template v-else>
-			<login></login>
-			<!-- <loginDoctor></loginDoctor> -->
+			<login v-if="userType === 'user'"></login>
+			<loginDoctor v-else></loginDoctor>
 		</template>
 	</view>
 </template>

@@ -26,7 +26,6 @@ const state = {
 const mutations = {
 	SET_USER_INFO: (state, userInfo) => {
 		state.userInfo = userInfo;
-		state.userInfo.HeadImgUrl = userInfo.HeadImgUrl.startsWith('http') ? userInfo.HeadImgUrl : ($C.webUrl) + '/' + value.HeadImgUrl;
 	}
 }
 

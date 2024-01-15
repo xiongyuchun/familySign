@@ -17,6 +17,7 @@
 						<uni-datetime-picker
 							type="date"
 							:border="false"
+							:end="nowDataStr"
 							v-model="baseFormData.TreatmentDate"
 						/>
 					</uni-forms-item>
@@ -62,6 +63,7 @@
 					photo: [], // 本地资源图片数组
 				},
 				remotePhoto: [], // 本地文件路径换远程路径
+				nowDataStr: Date.now(), // 当前时间戳
 			}
 		},
 		created() {

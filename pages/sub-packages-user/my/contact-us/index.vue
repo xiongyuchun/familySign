@@ -11,7 +11,7 @@
 					<text class="color-89">0798-8443182</text>
 				</view>
 				<view class="map-info-item flex align-center">
-					<img src="@/static/my/map.png" alt="" srcset="" style="width: 33rpx; height: 43rpx;">
+					<img src="http://182.61.31.42:1001/static/my/map.png" alt="" srcset="" style="width: 33rpx; height: 43rpx;">
 					<text class="color-333">详细地址:</text>
 					<text class="color-89">景德镇市珠山区陶阳中路76号</text>
 				</view>
@@ -33,9 +33,9 @@
 			}
 		},
 		mounted() {
-			// this.getLocation()
 			this.latitude = 22.71991
 			this.longitude = 114.24779
+			this.getLocation()
 		},
 		methods: {
 			// 获取当前位置
@@ -43,12 +43,11 @@
 				uni.authorize({
 					scope: 'scope.userLocation',
 					success() {
-						console.log('abc')
 						uni.getLocation({
 							type: 'wgs84',
 							success(res) {
-								console.log('当前位置的经度：' + res.longitude);
-								console.log('当前位置的纬度：' + res.latitude);
+								// console.log('当前位置的经度：' + res.longitude);
+								// console.log('当前位置的纬度：' + res.latitude);
 								// console.log('当前位置：', res);
 								this.latitude = 114.24779
 								this.longitude = 22.71991

@@ -4,7 +4,9 @@
 			<picker class="picker" mode="multiSelector" :range="region" range-key="name" :value="regionIndex"
 				@change="pickerChange" @columnchange="pickerColumnchange">
 				<view class="pbox" :class="{'pbox_hover':regionStr != '请选择所在地区'}">
-					<uni-easyinput class="upload-info_item" :value="regionStr" readonly placeholder="请选择所在地区" :clearable="false" />
+					<view class="upload-info_item" :style="{backgroundColor: bg, lineHeight: lg}">
+						{{regionStr ? regionStr : '请选择所在地区'}}
+					</view>
 					<text class="iconfont icon-you"></text>
 				</view>
 			</picker>
@@ -74,6 +76,16 @@
 			isRevise: {
 				type: [Boolean],
 				default: false
+			},
+			// 背景颜色
+			bg: {
+				type: String | undefined,
+				default: '#F7F8FA'
+			},
+			// 行高
+			lg: {
+				type: String | undefined,
+				default: 'normal'
 			}
 		},
 		mounted() {
@@ -189,12 +201,17 @@
 				}
 			}
 		},
-		created() {
+		async created() {
 			let provinceArr = [];
 			let cityArr = [];
 			let districtArr = [];
 			//获取regin[]
-			const region = uni.getStorageSync('region');
+			// 获取省市区街道
+			const res = await uni.request({
+				url: this.$C.webUrl + '/chinaRegion.json',
+				method: 'GET',
+			})
+			const region = res.data;
 			if(region) {
 				this.oldRegion = region;
 			}
@@ -314,9 +331,9 @@
 	}
 	.upload-info_item {
 		border: none;
-		background-color: #F7F8FA !important;
+		background-color: #F7F8FA;
 		border-radius: 4px;
-		line-height: 35px;
+		// line-height: 35px;
 		padding-left: 10px;
 	}
 </style>

@@ -1,13 +1,13 @@
 <template>
 	<view class="">
-		<!-- <my-navbar title="在线签约"></my-navbar> -->
+		<my-navbar v-if="title" title="在线签约"></my-navbar>
 		<sign-tip :title="signObj.title" :desc="signObj.desc" :imgPath="signObj.imgPath" :imgStyle="signObj.imgStyle" :top="signObj.top" :btn="signObj.btn">
 			<template v-slot:img>
 				<img :src="signObj.imgPath" class="imgPath" alt="" srcset="" mode="aspectFill">
 			</template>
 			<template v-slot:sign-btn>
 				<view class="flex align-center justify-center">
-					<view @click="$U.gotoPage('/pages/sub-packages-user/my/online-signing/index')" class="unsign-btn">去签约</view>
+					<view @click="$U.gotoPage('/pages/sub-packages-user/my/doctor-introduction/index')" class="unsign-btn">去签约</view>
 				</view>
 			</template>
 		</sign-tip>
@@ -27,8 +27,12 @@
 					imgPath: '/pages/sub-packages-user/static/unsigned.png',
 					top: 274,
 					btn: true
-				}
+				},
+				title: ''
 			}
+		},
+		onLoad(options) {
+			this.title = options.title;
 		},
 		methods: {
 		},

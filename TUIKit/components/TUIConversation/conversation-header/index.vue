@@ -37,6 +37,8 @@ onMounted(() => {
 
 const handleMenu = (item: IMenuItem) => {
   const { data: { children }, listener = { onClicked: () => {} } } = item;
+  console.log('children:', listener)
+  console.log('item:', item)
   if (children) {
     showChildren.value = showChildren.value.length > 0 ? [] : children;
   } else {

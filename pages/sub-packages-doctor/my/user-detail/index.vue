@@ -5,7 +5,7 @@
 			<view class="doc-list">
 				<view class="doc-list-photo flex align-center">
 					<view class="mr-2">
-						<img class="doc-list-photo_img" src="@/static/default.jpg" alt="" srcset="">
+						<img class="doc-list-photo_img" src="http://182.61.31.42:1001/static/default.jpg" alt="" srcset="">
 					</view>
 					<view class="flex flex-column justify-between">
 						<view class="flex align-center mb-2">

@@ -217,6 +217,7 @@ const getActionsMenuPosition = (event: Event, index: number, conversation?: any)
 };
 
 const enterConversationChat = (conversationID: string) => {
+  console.log('conversationID:', conversationID)
   emits("handleSwitchConversation", conversationID);
   TUIConversationService.switchConversation(conversationID);
 };

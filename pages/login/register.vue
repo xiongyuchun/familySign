@@ -1,7 +1,7 @@
 <template>
 	<view class="">
 		<view class="top-bg">
-			<img style="width: 100%;" src="@/static/my/user-register.png" alt="" srcset="">
+			<img style="width: 100%;" src="http://182.61.31.42:1001/static/my/user-register.png" alt="" srcset="">
 		</view>
 		<view class="register-main">
 			<view class="bg-white px-3 register-main-item">
@@ -33,7 +33,7 @@
 							v-model="baseFormData.City" @change="onchange" @nodeclick="onnodeclick"
 							@popupopened="onpopupopened" @popupclosed="onpopupclosed">
 						</uni-data-picker> -->
-						<Region @region="regionClick" :regionStr="regionStr" />
+						<Region @region="regionClick" :regionStr="regionStr" bg="#fff" />
 					</uni-forms-item>
 					<uni-forms-item label-width="280rpx" label="登录密码" name="Password" label-align="left" required>
 						<uni-easyinput v-model="baseFormData.Password" placeholder="请输入8到16位密码" />

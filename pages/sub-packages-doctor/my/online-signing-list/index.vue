@@ -125,7 +125,7 @@
 		methods: {
 			// 获取签约列表
 			getSignList() {
-				this.$H.post('/api/APP/WXUser/GetSignList', { doctorId: this.userInfo.DoctorId })
+				this.$H.post('/api/APP/WXUser/GetSignList')
 					.then(res => {
 						
 					})

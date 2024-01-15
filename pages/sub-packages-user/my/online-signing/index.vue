@@ -81,13 +81,12 @@
 				} else {
 					// 用户-发起签约
 					const UserId = this.$store.getters.userInfo.UserId;
-					console.log('this.$store.getters.userInfo:', this.$store.getters.userInfo)
-					this.$H.post('/api/APP/WXUser/CreateSignInfo', { DoctorId: this.doctorId, UserId, UserSignImg: signPath })
+					this.$H.post('/api/APP/WXUser/CreateSignInfo', { DoctorId: this.doctorId, UserId, UserSignImg: signPath }, {}, {show: true, text: '申请成功，请等待医生审核！'})
 						.then(res => {
 							// 清除signPath
 							this.$store.dispatch('sign/setSignPath', '')
-							// 跳转到首页
-							this.$U.gotoPageTab('/pages/index/index')
+							// 返回上一页
+							this.$U.backPage(-1)
 						})
 				}
 			}

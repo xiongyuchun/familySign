@@ -1,7 +1,7 @@
 <template>
 	<view class="">
 		<my-navbar title="医生介绍"></my-navbar>
-		<view class="px-3 pt-5">
+		<view class="px-3">
 			<view class="doctor-wz" :style="{top: statusBarHeight}">
 				<view class="mb-2 flex align-center">
 					<img class="screen" src="@/pages/sub-packages-user/static/screen.png" alt="" srcset="">
@@ -37,7 +37,7 @@
 					</view>
 				</view>
 			</view>
-			<view style="margin-top: 180rpx;">
+			<view>
 				<view @click="$U.gotoPage(`/pages/sub-packages-user/my/doctor-details/index?id=${item.DoctorId}`)" v-for="(item, index) in doctorList" :key="index" class="doc-list">
 					<view class="doc-list-photo flex align-center">
 						<view class="mr-2">
@@ -276,7 +276,7 @@
 </style>
 <style scoped lang="scss">
 	.doctor-wz {
-		position: fixed;
+		position: sticky;
 		background-color: #fdfdfd;
 		padding-top: 50rpx;
 	}
