@@ -107,6 +107,7 @@ import Icon from "../../common/Icon.vue";
 import ActionsMenu from "../actions-menu/index.vue";
 import muteIcon from "../../../assets/icon/mute.svg";
 import { isPC, isH5, isUniFrameWork } from "../../../utils/env";
+import { TUIGlobal } from "../../../utils/universal-api/index";
 
 const emits = defineEmits(["handleSwitchConversation", "getPassingRef"]);
 const currentConversation = ref<IConversationModel>();
@@ -128,7 +129,15 @@ TUIStore.watch(StoreName.CONV, {
     currentConversationID.value = id;
   },
   conversationList: (list: Array<IConversationModel>) => {
-    conversationList.value = list;
+    
+    if(list.length === 0) {
+      // 跳转到医生列表
+      TUIGlobal?.navigateTo({
+        url: "/pages/sub-packages-user/my/doctor-introduction/index",
+      });
+    } else {
+      conversationList.value = list;
+    }
   },
   currentConversation: (conversation: IConversationModel) => {
     currentConversation.value = conversation;
@@ -217,7 +226,7 @@ const getActionsMenuPosition = (event: Event, index: number, conversation?: any)
 };
 
 const enterConversationChat = (conversationID: string) => {
-  console.log('conversationID:', conversationID)
+  // console.log('conversationID:', conversationID)
   emits("handleSwitchConversation", conversationID);
   TUIConversationService.switchConversation(conversationID);
 };

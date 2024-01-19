@@ -33,6 +33,8 @@ export default class TUIContactServer {
   public async onCall(method: String, params: Object, callback: Function): Promise<void> {
     this.onCallParamsMap.set(method, params);
     this.onCallCallbackMap.set(method, callback);
+    console.log('method:', method)
+    console.log('params:', params)
     console.log('onCall:', callback)
     if (method === TUIConstants.TUIContact.SERVICE.METHOD.SELECT_FRIEND) {
       TUIStore.update(StoreName.CUSTOM, "isShowSelectFriendComponent", true);

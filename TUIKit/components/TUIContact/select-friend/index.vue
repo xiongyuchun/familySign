@@ -42,6 +42,7 @@ const generateSearchServer = (isNeedSearch: any) => {
 }
 
 watchEffect(() => {
+  console.log('watchEffect：', watchEffect)
   const params = TUIContactServer.getOnCallParams(TUIConstants.TUIContact.SERVICE.METHOD.SELECT_FRIEND);
   selectOptions.value.title = params.title;
   selectOptions.value.isRadio = params.isRadio;

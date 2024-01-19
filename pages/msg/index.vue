@@ -6,36 +6,33 @@
 	</div>
 </template>
 <script>
-// import { TUIChatKit, genTestUserSig } from "../../TUIKit/index.ts";
-// import { TUILogin } from "@tencentcloud/tui-core";
+import { TUIChatKit, genTestUserSig } from "../../TUIKit/index.ts";
+import { TUILogin } from "@tencentcloud/tui-core";
 import TUIChatEngine, {
-  TUITranslateService,
-  TUIConversationService,
   TUIStore,
   StoreName,
-  IMessageModel,
-  IConversationModel,
+  TUIConversationService,
 } from "@tencentcloud/chat-uikit-engine";
-import Server from "@/TUIKit/components/TUIContact/server.ts";
-console.log('Server:', Server)
-const TUIContactServer = Server.getInstance();
-const TUIConstants = TUIContactServer.constants;
 	export default {
+		data() {
+			return {
+				userID: 'xyc'
+			}
+		},
 		mounted() {
-			
+			this.login()
 		},
 		methods: {
 			login() {
-				console.log('TUIChatKit:', TUIChatKit)
+				if(!TUIChatKit) return;
 				TUIChatKit.init();
-				console.log('sub-inig')
 				uni.$chat_userSig = genTestUserSig({
 					userID: uni.$chat_userID,
 					SDKAppID: uni.$chat_SDKAppID,
 					secretKey: uni.$chat_secretKey
 				}).userSig;
-				
 				// login 
+				let _this = this;
 				TUILogin.login({
 					SDKAppID: uni.$chat_SDKAppID,
 					userID: uni.$chat_userID,
@@ -50,28 +47,14 @@ const TUIConstants = TUIContactServer.constants;
 					useProfanityFilterPlugin: false,
 					framework: `vue2` // 当前开发使用框架 vue2 / vue3
 				}).then(() => {
-					uni.showToast({
-					title: "login success"
-					});
+					// uni.showToast({
+					// 	title: "login success"
+					// });
+					// this.openConversation()
 				});
 			},
 			gotoSign() {
-				// console.log('TUIChatKit：', TUIChatKit)
-				this.$U.gotoPage('/pages/sub-packages-user/my/doctor-introduction/index')
-				// this.login();
-				// TUIStore.update(StoreName.CUSTOM, "isShowSelectFriendComponent", false);
-				// console.log('StoreName.CUSTOM:', StoreName.CUSTOM)
-				// console.log('TUIContactServer:', TUIContactServer)
-				// console.log('aaa:', TUIConstants.TUIContact.SERVICE.METHOD.SELECT_FRIEND)
-				//   const callback = TUIContactServer.getOnCallCallback(TUIConstants.TUIContact.SERVICE.METHOD.SELECT_FRIEND);
-				//   console.log('callback:', callback)
-				//   callback && callback({
-				// 	userID: 'simon',
-				// 	nick: '罗文明'
-				//   });
-				// setTimeout(() => {
-				// 	TUIConversationService.switchConversation('C2CSimon');
-				// }, 1000)
+				this.$U.gotoPage('/pages/sub-packages-user/my/doctor-introduction/index');
 			},
 			// 打开 TUIKit 会话列表
 			openConversation() {

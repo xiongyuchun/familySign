@@ -3,7 +3,8 @@ import { vueVersion, onMounted } from "../../adapter-vue";
 import { TUILogin } from "@tencentcloud/tui-core";
 
 // TUIChatKit 初始化
-TUIChatKit.init();
+if(TUIChatKit) {
+  TUIChatKit.init();
 uni.$chat_userSig = genTestUserSig({
 	userID: uni.$chat_userID,
 	SDKAppID: uni.$chat_SDKAppID,
@@ -29,3 +30,4 @@ TUILogin.login({
     title: "login success"
   });
 });
+}

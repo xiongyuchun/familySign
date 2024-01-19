@@ -12,6 +12,7 @@ Vue.prototype.$store = store;
 
 Vue.config.productionTip = false;
 
+
 // 引入全局组件
 import myNavBar from './components/navbar/index.vue';
 Vue.component('my-navbar',myNavBar);

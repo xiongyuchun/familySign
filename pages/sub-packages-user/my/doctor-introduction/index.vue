@@ -88,7 +88,7 @@
 						<view @click.stop="$U.gotoPage('/pages/sub-packages-user/my/online-signing/index?type=user&doctorId=' + item.DoctorId)" class="go-sign mr-3">
 							去签约
 						</view>
-						<view @click.stop="talk()" class="go-seek">医生咨询</view>
+						<view @click.stop="talk(item)" class="go-seek">医生咨询</view>
 					</view>
 				</view>
 			</view>
@@ -97,15 +97,11 @@
 </template>
 
 <script>
-	import {
-	  TUIFriendService,
-	  TUIStore,
-	  StoreName,
-	  TUITranslateService,
+	import { TUIChatKit, genTestUserSig } from "@/TUIKit/index.ts";
+	import { TUILogin } from "@tencentcloud/tui-core";
+	import TUIChatEngine, {
+	  TUIConversationService,
 	} from "@tencentcloud/chat-uikit-engine";
-	import Server from '@/TUIKit/components/TUIContact/server.ts';
-	const TUIContactServer = Server.getInstance();
-	const TUIConstants = TUIContactServer.constants;
 	export default {
 		name: 'docuor-introduction',
 		data() {
@@ -136,12 +132,17 @@
 		},
 		methods: {
 			// 医生咨询
-			talk() {
+			talk(item) {
+				const conversationID = `C2C${item.DoctorId}`;
+				TUIConversationService.switchConversation(conversationID);
+				uni.navigateTo({
+					url: `/TUIKit/components/TUIChat/index?conversationID=${conversationID}`,
+				});
 				// onsole.log('memberList:',  )
-				const memberList = [{nick: '熊宇春', userID: 'xyc', avatar: "https://avatars.githubusercontent.com/u/28173?v=4"}]
-				TUIStore.update(StoreName.CUSTOM, "isShowSelectFriendComponent", false);
-				const callback = TUIContactServer.getOnCallCallback(TUIConstants.TUIContact.SERVICE.METHOD.SELECT_FRIEND);
-				callback && callback(memberList);
+				// const memberList = [{nick: '熊宇春', userID: 'xyc', avatar: "https://avatars.githubusercontent.com/u/28173?v=4"}]
+				// TUIStore.update(StoreName.CUSTOM, "isShowSelectFriendComponent", false);
+				// const callback = TUIContactServer.getOnCallCallback(TUIConstants.TUIContact.SERVICE.METHOD.SELECT_FRIEND);
+				// callback && callback(memberList);
 				// uni.navigateTo({
 				// 	url: "/TUIKit/components/TUIConversation/index",
 				// });

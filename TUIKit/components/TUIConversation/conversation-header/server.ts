@@ -69,6 +69,9 @@ export default class ConversationHeaderServer {
 
   private createConversation(item: IMenuItem) {
     // 创建会话，通过 TUICore.callService 通知 conversationServer
+    console.log('item123:', item)
+    console.log('TUIConstants.TUIConversation.SERVICE.NAME:', TUIConstants.TUIConversation.SERVICE.NAME)
+    console.log('method:', TUIConstants.TUIConversation.SERVICE.METHOD.CREATE_CONVERSATION)
     TUICore.callService({
       serviceName: TUIConstants.TUIConversation.SERVICE.NAME,
       method: TUIConstants.TUIConversation.SERVICE.METHOD.CREATE_CONVERSATION,

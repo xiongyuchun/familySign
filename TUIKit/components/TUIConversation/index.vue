@@ -5,7 +5,7 @@
     @touchstart="handleTouchStart"
     @touchend="handleTouchEnd"
   >
-    <ConversationHeader v-if="isShowConversationHeader" ref="headerRef" />
+    <!-- <ConversationHeader v-if="isShowConversationHeader" ref="headerRef" /> -->
     <ConversationNetwork />
     <ConversationList
       class="tui-conversation-list"
