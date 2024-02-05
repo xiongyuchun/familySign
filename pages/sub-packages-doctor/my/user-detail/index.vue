@@ -5,21 +5,21 @@
 			<view class="doc-list">
 				<view class="doc-list-photo flex align-center">
 					<view class="mr-2">
-						<img class="doc-list-photo_img" src="http://182.61.31.42:1001/static/default.jpg" alt="" srcset="">
+						<img class="doc-list-photo_img" :src="webUrl + '/' + userInfo.HeadImgUrl" alt="" srcset="">
 					</view>
 					<view class="flex flex-column justify-between">
 						<view class="flex align-center mb-2">
-							<view class="doc-list-username">和天真</view>
+							<view class="doc-list-username">{{userInfo.Name}}</view>
 							<view class="flex">
-								<view class="doc-list-dep">男</view>
-								<view class="doc-list-dep">26岁</view>
+								<view class="doc-list-dep">{{ userInfo.Sex === 1 ? '男' : '女' }}</view>
+								<view v-if="userInfo.Age" class="doc-list-dep">{{userInfo.Age}}岁</view>
 							</view>
 						</view>
 						<view class="doc-list-name mb-2">
-							身份证号：410*************10
+							身份证号：{{ userInfo.IDCard }}
 						</view>
 						<view class="doc-list-name mb-2">
-							手机号码：158*****925
+							手机号码：{{ userInfo.PhoneNumber }}
 						</view>
 					</view>
 				</view>
@@ -54,6 +54,34 @@
 </template>
 
 <script>
+	export default {
+		data() {
+			return {
+				userInfo: {},
+				webUrl: ''
+			}
+		},
+		onLoad(options) {
+			this.getUserInfo(options.id)
+		},
+		mounted() {
+			this.webUrl = this.$C.webUrl;
+		},
+		methods: {
+			// 获取用户信息
+			getUserInfo(userId) {
+				if(userId == 'undefined') return;
+				this.$H.get('/api/APP/WXUser/GetUserInfo?userId=' + userId)
+					.then(res => {
+						if(res.Data) {
+							this.userInfo = res.Data;
+						}
+					}).catch(err => {
+						console.log('err:', err)
+					})
+			}
+		}
+	}
 </script>
 
 <style>

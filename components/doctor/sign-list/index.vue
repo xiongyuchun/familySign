@@ -1,28 +1,28 @@
 <template>
-	<view @click="$U.gotoPage('/pages/sub-packages-doctor/my/user-detail/index')" class="doc-list position-relative">
+	<view @click="$U.gotoPage('/pages/sub-packages-doctor/my/user-detail/index?id='+info.UserId)" class="doc-list position-relative">
 		<view class="doc-list-photo flex align-center">
 			<view class="mr-2">
-				<img class="doc-list-photo_img" src="http://182.61.31.42:1001/static/default.jpg" alt="" srcset="">
+				<img class="doc-list-photo_img" :src="webUrl + '/' + info.HeadImgUrl" alt="" srcset="">
 			</view>
 			<view class="flex flex-column justify-between">
 				<view class="flex align-center mb-2">
-					<view class="doc-list-username">和天真</view>
+					<view class="doc-list-username">{{info.Name}}</view>
 					<view class="flex">
-						<view class="doc-list-dep">男</view>
-						<view class="doc-list-dep">26岁</view>
+						<view class="doc-list-dep">{{info.Sex == 1 ? '男' : '女'}}</view>
+						<!-- <view class="doc-list-dep">26岁</view> -->
 					</view>
 				</view>
 			</view>
 		</view>
 		<view class="flex justify-end">
-			<view @click.stop="btnClick(item.btns[0])" class="" v-if="item.btns.length === 1">
-				<view class="width-160 go-seek">{{item.btns[0]['name']}}</view>
+			<view @click.stop="btnClick({item: item.btns[0], info: info})" class="" v-if="item.btns.length === 1">
+				<view class="width-160 go-seek" :class="item.btns[0].type === 2 ? 'c999' : ''">{{item.btns[0]['name']}}</view>
 			</view>
 			<template v-else>
-				<view @click.stop="btnClick(item.btns[0])" class="width-160 go-sign mr-3">
+				<view @click.stop="btnClick({item: item.btns[0], info: info})" class="width-160 go-sign mr-3">
 					{{item.btns[0]['name'] || ''}}
 				</view>
-				<view @click.stop="btnClick(item.btns[1])" class="width-160 go-seek">{{item.btns[1]['name'] || ''}}</view>
+				<view @click.stop="btnClick({item: item.btns[1], info: info})" class="width-160 go-seek">{{item.btns[1]['name'] || ''}}</view>
 			</template>
 		</view>
 		<!-- 箭头 -->
@@ -34,14 +34,23 @@
 	export default {
 		data() {
 			return {
-				
+				webUrl: '',
 			}
 		},
 		props: {
 			item: {
-				type: Object,
+				type: Object | undefined,
+				default: {}
+			},
+			info: {
+				type: Object | undefined,
 				default: {}
 			}
+		},
+		mounted() {
+			console.log('item:', this.item)
+			console.log('info:', this.info)
+			this.webUrl = this.$C.webUrl;
 		},
 		methods: {
 			btnClick(item) {
@@ -124,5 +133,10 @@
 			color: #666666;
 			font-size: 24rpx;
 		}
+	}
+	.c999 {
+		color: #999;
+		background: #fff;
+		border: 2rpx solid #999;
 	}
 </style>

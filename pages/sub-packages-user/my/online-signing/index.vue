@@ -65,8 +65,20 @@
 			this.type = options.type;
 			this.signId = options.signId;
 			this.doctorId = options.doctorId;
+			this.getUserInfo();
 		},
 		methods: {
+			// 获取用户信息
+			getUserInfo() {
+				this.$H.get('/api/APP/WXUser/GetUserInfo')
+					.then(res => {
+						if(res.Data) {
+							this.$store.dispatch('user/setUserInfo', res.Data);
+						}
+					}).catch(err => {
+						console.log('err:', err)
+					})
+			},
 			submit() {
 				const signPath = this.$store.getters.signPath;
 				if(this.type === 'doctor') {
@@ -77,16 +89,22 @@
 							this.$store.dispatch('sign/setSignPath', '')
 						})
 					// 跳转到首页
-					this.$U.gotoPageTab('/pages/sub-packages-doctor/my/online-signing-list/index')
+					this.$U.gotoPageTab('/pages/index/index');
 				} else {
 					// 用户-发起签约
 					const UserId = this.$store.getters.userInfo.UserId;
 					this.$H.post('/api/APP/WXUser/CreateSignInfo', { DoctorId: this.doctorId, UserId, UserSignImg: signPath }, {}, {show: true, text: '申请成功，请等待医生审核！'})
 						.then(res => {
-							// 清除signPath
-							this.$store.dispatch('sign/setSignPath', '')
-							// 返回上一页
-							this.$U.backPage(-1)
+							console.log('res.Message:', res.Message)
+							uni.showLoading({
+								title: '等待医生审核'
+							});
+							setTimeout(() => {
+								// 清除signPath
+								this.$store.dispatch('sign/setSignPath', '')
+								// 返回上一页
+								this.$U.backPage(-1)
+							}, 1000)
 						})
 				}
 			}

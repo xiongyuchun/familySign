@@ -11,7 +11,7 @@
 		<view class="user-info pl-3">
 			<view class="user-info-main flex">
 				<view class="user-info-main_left">
-					<img class="user-photo" src="http://182.61.31.42:1001/static/default.jpg" alt="" srcset="">
+					<img class="user-photo" src="https://qyapi.cuixiaoler.com:1002/static/default.jpg" alt="" srcset="">
 				</view>
 				<view class="user-info-main_right w-100">
 					<view class="user-info-main_right_top flex justify-between align-end w-100">

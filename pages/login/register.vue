@@ -1,7 +1,7 @@
 <template>
 	<view class="">
 		<view class="top-bg">
-			<img style="width: 100%;" src="http://182.61.31.42:1001/static/my/user-register.png" alt="" srcset="">
+			<img style="width: 100%;" src="https://qyapi.cuixiaoler.com:1002/static/my/user-register.png" alt="" srcset="">
 		</view>
 		<view class="register-main">
 			<view class="bg-white px-3 register-main-item">

@@ -17,7 +17,7 @@
 						<view class="flex flex-column justify-center align-center" @click="chooseImage('HeadImgUrl')">
 							<img v-if="baseFormData.HeadImgUrl" style="width: 128rpx; height: 128rpx;"
 								:src="baseFormData.HeadImgUrl" alt="" srcset="">
-							<img v-else style="width: 128rpx; height: 128rpx;" src="http://182.61.31.42:1001/static/default.jpg" alt=""
+							<img v-else style="width: 128rpx; height: 128rpx;" src="https://qyapi.cuixiaoler.com:1002/static/default.jpg" alt=""
 								srcset="">
 							<view style="color: #5581FF; font-size: 20rpx;">更换头像</view>
 						</view>

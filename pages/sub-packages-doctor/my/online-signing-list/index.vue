@@ -39,8 +39,10 @@
 			<swiper-item v-for="(item,index) in newsList" :key="index">
 				<scroll-view scroll-y="true" :style="'height:'+scrollH+'px;'"
 				@scrolltolower="loadmore(index)">
-					<view class="user-list w-100 px-3">
-						<sign-list :item="signList" @btnClick="popupHander"></sign-list>
+					<view style="padding-top: 20rpx;">
+						<view v-for="(v, i) in unSignList" class="user-list w-100 px-3">
+							<sign-list :info="v" :item="signList" @btnClick="popupHander"></sign-list>
+						</view>
 					</view>
 				</scroll-view>
 			</swiper-item>
@@ -116,7 +118,9 @@
 					{
 						id: 2
 					}
-				]
+				],
+				unSignList: [],
+				signId: '',
 			}
 		},
 		mounted() {
@@ -125,29 +129,34 @@
 		methods: {
 			// 获取签约列表
 			getSignList() {
-				this.$H.post('/api/APP/WXUser/GetSignList')
-					.then(res => {
-						
-					})
+				const doctorUserinfo = uni.getStorageSync('doctor-userinfo');
+				if(doctorUserinfo) {
+					this.$H.get(`/api/APP/WXUser/GetSignList?doctorId=${doctorUserinfo.DoctorId}&type=${Number(this.tabIndex) + 1}`)
+						.then(res => {
+							this.unSignList = res.Data;
+						})
+				}
 			},
 			// 签约列表按钮事件
-			popupHander(item) {
+			popupHander(obj) {
 				// type 0:拒签  1: 待签约
-				if(item.type === 0) {
+				console.log('obj:', obj)
+				if(obj.item.type == 0) {
+					this.signId = obj.info.SignId;
 					this.$refs.inputDialog.open()
 				}
-				if(item.type === 1) {
-					if(item.path) {
-						this.$U.gotoPage(item.path + '?type=doctor&signId=123')
+				if(obj.item.type == 1) {
+					if(obj.item.path) {
+						this.$U.gotoPage(obj.item.path + `?type=doctor&signId=${obj.info.SignId}`)
 					}
 				}
 			},
 			// 拒签-确定
 			dialogInputConfirm(val) {
 				console.log('拒签:', val)
-				this.$H.post('/api/APP/WXUser/RefuseSign', { RefuseReason: val, SignId: '' })
+				this.$H.post('/api/APP/WXUser/RefuseSign', { RefuseReason: val, SignId: this.signId }, {}, {show: true})
 					.then(res => {
-						
+						this.getSignList()
 					})
 				this.$refs.inputDialog.close()
 			},
@@ -166,12 +175,41 @@
 			},
 			// 切换选项
 			changeTab(index){
-				if (this.tabIndex === index) {
+				if (this.tabIndex == index) {
 					return;
+				}
+				if(index == 1) {
+					this.signList.btns = [
+						{
+							name: '签约',
+							type: 1,
+							path: '/pages/sub-packages-user/my/online-signing/index'
+						}
+					]
+				} else if(index == 2) {
+					this.signList.btns = [
+						{
+							name: '已拒签',
+							type: 2,
+						}
+					]
+				} else {
+					this.signList.btns = [
+						{
+							name: '拒签',
+							type: 0
+						},
+						{
+							name: '去签约',
+							type: 1,
+							path: '/pages/sub-packages-user/my/online-signing/index'
+						}
+					]
 				}
 				this.tabIndex = index
 				// 滚动到指定元素
 				this.scrollInto = 'tab'+index
+				this.getSignList();
 			},
 		},
 	}
@@ -185,7 +223,6 @@
 
 <style scoped lang="scss">
 	.user-list {
-		height: 213rpx;
 		background-color: #FFFFFF;
 		box-shadow: 0rpx 0rpx 50rpx 0rpx rgba(0,0,0,0.04);
 		border-radius: 30rpx;
