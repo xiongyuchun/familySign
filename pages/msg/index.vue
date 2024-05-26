@@ -1,12 +1,18 @@
 <template>
 	<div class="index">
+		<conversations></conversations>
+		
 		<p v-if="userType === 'user'" class="index-button" @click="gotoSign">去签约</p>
-		<!-- <p class="index-button" @click="openConversation">打开消息列表</p> -->
+		<p class="index-button" @click="chat">发消息</p>
 		<!-- <p class="index-button" @click="openContact">打开 TUIKit 联系人</p> -->
 	</div>
 </template>
 <script>
+	import conversations from '@/pages/im/conversations.vue';
 	export default {
+		components: {
+			conversations,
+		},
 		computed: {
 			userType() {
 				return this.$store.getters.userType
@@ -21,6 +27,9 @@
 		methods: {
 			gotoSign() {
 				this.$U.gotoPage('/pages/sub-packages-user/my/doctor-introduction/index');
+			},
+			chat() {
+				this.$U.gotoPage(`/pages/im/privateChat?to=08c0a6ec-a42b-47b2-bb1e-15e0f5f9a19a`)
 			},
 		},
 	};

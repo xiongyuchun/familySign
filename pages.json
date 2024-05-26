@@ -76,6 +76,12 @@
 				"navigationBarTitleText": "",
 				"navigationStyle": "custom"
 			}
+		},
+		{
+			"path": "pages/im/conversations"
+		},
+		{
+			"path": "pages/im/privateChat"
 		}
 	],
 	"subPackages": [{

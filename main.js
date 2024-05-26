@@ -5,6 +5,23 @@ import './uni.promisify.adaptor'
 import VueCompositionAPI from "@vue/composition-api";
 Vue.use(VueCompositionAPI);
 
+
+
+import GoEasy from './lib/GOEASY-IM/js_sdk/goeasy-2.12.4.esm.min.js'
+import GRTC from './lib/goeasy-rtc-0.1.8.esm.min.js'
+
+GoEasy.init({
+    host:"hangzhou.goeasy.io",//应用所在的区域地址: 【hangzhou.goeasy.io |singapore.goeasy.io】
+    appkey:"BC-c94a3e06d5c2485ebe7dc4690cb86af9",// common key
+    modules: ['im']
+});
+GRTC.init(GoEasy);
+
+uni.$GoEasy = GoEasy;
+uni.$GRTC = GRTC;
+
+
+
 Vue.prototype.$store = store;
 
 Vue.config.productionTip = false;

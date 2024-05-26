@@ -119,6 +119,7 @@
   "main": "main.js",
   "dependencies": {
     "@tencentcloud/chat-uikit-uniapp": "^2.0.2",
+    "goeasy": "^2.12.4",
     "unplugin-vue2-script-setup": "^0.11.4"
   }
 }
