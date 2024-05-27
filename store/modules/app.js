@@ -5,19 +5,16 @@ function getToken() {
 	try {
 		if ($store && $store.getters.token) {
 			token = $store.getters.token;
-			console.log('$store：', $store.getters.token)
 		} else {
 			const value = uni.getStorageSync('token');
 			if (value.Token) {
 				token = value.Token;
 			}
-			console.log('value：', value.token)
 		}
 	} catch (e) {
 		// error
 		console.log(e)
 	}
-	console.log('getToken：', token)
 	return token;
 }
 

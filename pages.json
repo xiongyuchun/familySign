@@ -295,7 +295,7 @@
 			"pages": [{
 					"path": "components/TUIConversation/index",
 					"style": {
-						"navigationBarTitleText": "消息列表"
+						"navigationBarTitleText": "腾讯云 IM"
 					}
 				},
 				{

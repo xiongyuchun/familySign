@@ -1,7 +1,7 @@
 <template>
 	<view class="">
 		<view class="doctor-top">
-			<img class="doctor-top-bg" src="https://qyapi.cuixiaoler.com:1002/static/index/doctor-bg.png" alt="" srcset="">
+			<img class="doctor-top-bg" src="http://182.61.31.42:1001/static/index/doctor-bg.png" alt="" srcset="">
 			<!-- 状态栏 -->
 			<view :style="{ height: statusBarHeight }" class="w-100"></view>
 			<view class="top-navbar">
@@ -32,12 +32,12 @@
 		<view class="grid px-3 mt-5">
 			<view class="flex">
 				<view @click="$U.gotoPage(`/pages/sub-packages-doctor/my/online-signing-list/index?title=在线续约`)" class="grid-shadow flex align-center bg-white flex-1 mr-3 bg-white px-2">
-					<img src="https://qyapi.cuixiaoler.com:1002/static/index/container.png" alt="" srcset=""
+					<img src="http://182.61.31.42:1001/static/index/container.png" alt="" srcset=""
 						style="width: 93rpx; height: 101rpx;margin-right: 9rpx;">
 					<text class="font-30 text-333">在线续约</text>
 				</view>
 				<view @click="$U.gotoPage(`/pages/sub-packages-doctor/my/online-signing-list/index?title=在线签约`)" class="grid-shadow flex align-center bg-white flex-1 bg-white px-3">
-					<img src="https://qyapi.cuixiaoler.com:1002/static/index/sign.png" alt="" srcset=""
+					<img src="http://182.61.31.42:1001/static/index/sign.png" alt="" srcset=""
 						style="width: 95rpx; height: 101rpx;margin-right: 19rpx;">
 					<text class="font-30 text-333">在线签约</text>
 				</view>
@@ -46,15 +46,15 @@
 		<view class="px-3">
 			<view class="px-3 bg-white icon-list flex my-3 grid-shadow">
 				<view class="flex flex-column justify-center align-center">
-					<img src="https://qyapi.cuixiaoler.com:1002/static/index/consultation.png" alt="" srcset="" style="width: 105rpx; height: 90rpx;">
+					<img src="http://182.61.31.42:1001/static/index/consultation.png" alt="" srcset="" style="width: 105rpx; height: 90rpx;">
 					<text class="font-small text-333">在线咨询</text>
 				</view>
 				<view class="flex flex-column justify-center align-center">
-					<img src="https://qyapi.cuixiaoler.com:1002/static/index/review.png" alt="" srcset="" style="width: 82rpx; height: 85rpx;">
+					<img src="http://182.61.31.42:1001/static/index/review.png" alt="" srcset="" style="width: 82rpx; height: 85rpx;">
 					<text class="font-small text-333">查阅健康档案</text>
 				</view>
 				<view @click="$U.gotoPage('/pages/sub-packages-doctor/my/statistics-manage/index')" class="flex flex-column justify-center align-center">
-					<img src="https://qyapi.cuixiaoler.com:1002/static/index/tongji.png" alt="" srcset="" style="width: 85rpx; height: 90rpx;">
+					<img src="http://182.61.31.42:1001/static/index/tongji.png" alt="" srcset="" style="width: 85rpx; height: 90rpx;">
 					<text class="font-small text-333">统计管理</text>
 				</view>
 			</view>

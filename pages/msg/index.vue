@@ -1,8 +1,8 @@
 <template>
 	<div class="index">
-		<p v-if="userType === 'user'" class="index-button" @click="gotoSign">去签约</p>
-		<p class="index-button" @click="openConversation">打开消息列表</p>
-		<!-- <p class="index-button" @click="openContact">打开 TUIKit 联系人</p> -->
+		<p class="index-button" @click="gotoSign">去签约</p>
+		<!-- <p class="index-button" @click="openConversation">打开 TUIKit 会话</p>
+		<p class="index-button" @click="openContact">打开 TUIKit 联系人</p> -->
 	</div>
 </template>
 <script>
@@ -14,13 +14,9 @@ import TUIChatEngine, {
   TUIConversationService,
 } from "@tencentcloud/chat-uikit-engine";
 	export default {
-		computed: {
-			userType() {
-				return this.$store.getters.userType
-			},
-		},
 		data() {
 			return {
+				userID: 'xyc'
 			}
 		},
 		mounted() {
@@ -30,22 +26,8 @@ import TUIChatEngine, {
 			login() {
 				if(!TUIChatKit) return;
 				TUIChatKit.init();
-				uni.showLoading({
-					title: '加载中'
-				})
-				// 获取登录的userid
-				// 用户端登录
-				let userID = '';
-				console.log('this.userType:', this.userType === 'user')
-				if(this.userType === 'user') {
-					console.log('this.$store.getters.userInfo:', this.$store.getters.userInfo)
-					userID = this.$store.getters.userInfo.UserId
-				} else {
-					console.log('this.$store.getters.userInfoDoctor:', this.$store.getters.userInfoDoctor)
-					userID = this.$store.getters.userInfoDoctor.DoctorId
-				}
 				uni.$chat_userSig = genTestUserSig({
-					userID: userID,
+					userID: uni.$chat_userID,
 					SDKAppID: uni.$chat_SDKAppID,
 					secretKey: uni.$chat_secretKey
 				}).userSig;
@@ -53,7 +35,7 @@ import TUIChatEngine, {
 				let _this = this;
 				TUILogin.login({
 					SDKAppID: uni.$chat_SDKAppID,
-					userID: userID,
+					userID: uni.$chat_userID,
 					// UserSig 是用户登录即时通信 IM 的密码，其本质是对 UserID 等信息加密后得到的密文。
 					// 该方法仅适合本地跑通 Demo 和功能调试，详情请参见 https://cloud.tencent.com/document/product/269/32688     
 					userSig: uni.$chat_userSig, 
@@ -65,13 +47,11 @@ import TUIChatEngine, {
 					useProfanityFilterPlugin: false,
 					framework: `vue2` // 当前开发使用框架 vue2 / vue3
 				}).then(() => {
-					uni.hideLoading()
 					// uni.showToast({
 					// 	title: "login success"
 					// });
 					// this.openConversation()
 				});
-				uni.hideLoading()
 			},
 			gotoSign() {
 				this.$U.gotoPage('/pages/sub-packages-user/my/doctor-introduction/index');

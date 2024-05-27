@@ -1,6 +1,9 @@
 import Vue from 'vue'
 import App from './App'
 import store from './store/index.js';
+// 引入主包依赖
+import TencentCloudChat  from "@tencentcloud/chat";
+import TUICore from "@tencentcloud/tui-core";
 import './uni.promisify.adaptor'
 import VueCompositionAPI from "@vue/composition-api";
 Vue.use(VueCompositionAPI);
@@ -29,7 +32,55 @@ Vue.prototype.$U = $U
 // 引入请求库
 import $H from './api/request.js';
 Vue.prototype.$H = $H
+// 权限验证操作
+Vue.prototype.checkAuth = (callback,checkPhone = true)=>{
+	// 权限验证
+	if (!store.state.loginStatus) {
+		uni.showToast({
+			title: '请先登录',
+			icon: 'none'
+		});
+		return uni.navigateTo({
+			url: '/pages/login/login'
+		});
+	}
+	// 验证是否绑定手机号
+	if(checkPhone && !store.state.user.phone){
+		uni.showToast({
+			title: '请先登录',
+			icon: 'none'
+		});
+		return uni.navigateTo({
+			url: '/pages/user-phone/user-phone'
+		});
+	}
+	callback()
+}
 
+// 权限验证跳转
+Vue.prototype.navigateTo = (options,checkPhone = true)=>{
+	// 权限验证
+	if (!store.state.loginStatus) {
+		uni.showToast({
+			title: '请先登录',
+			icon: 'none'
+		});
+		return uni.navigateTo({
+			url: '/pages/login/login'
+		});
+	}
+	// 验证是否绑定手机号
+	if(checkPhone && !store.state.user.phone){
+		uni.showToast({
+			title: '请先登录',
+			icon: 'none'
+		});
+		return uni.navigateTo({
+			url: '/pages/user-phone/user-phone'
+		});
+	}
+	uni.navigateTo(options);
+}
 
 
 App.mpType = 'app'

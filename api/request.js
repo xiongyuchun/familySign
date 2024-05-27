@@ -5,6 +5,7 @@ export default {
 		method: 'GET',
 		header:{
 			"content-type":"application/json",
+			"Token": $store.getters.token || ''
 		},
 		data:{},
 		loading: {
@@ -16,13 +17,11 @@ export default {
 		options.url = $C.webUrl + options.url
 		options.method = options.method || this.common.method
 		options.header = options.header || this.common.header
-		const params = {
-			...options,
-			header: {
-				"content-type":"application/json",
-				"Token": $store.getters.token
-			}
+		// 验证权限token
+		if(!options.header.Token){
+			options.header.Token = $store.getters.token
 		}
+		
 		return new Promise((res,rej)=>{
 			if(this.common.loading.show) {
 				uni.showLoading({
@@ -30,18 +29,17 @@ export default {
 				});
 			}
 			uni.request({
-				...params,
+				...options,
 				success: (result) => {
 					// 返回原始数据
 					// 请求服务端失败
 					// 401  跳转到登录页
 					if(result.data.Code === 401) {
-						uni.hideLoading();
+						console.log('401')
 						this.$U.gotoPageAndClosePage('/pages/login/index')
 						return rej(result.data)
 					}
 					if (result.data.Code !== 200) {
-						uni.hideLoading();
 						uni.showToast({
 							title:result.data.Message || '请求失败',
 							icon: 'none'
