@@ -1,7 +1,7 @@
 <template>
   <view class="chatInterface" @contextmenu.prevent="">
     <view class="scroll-view">
-      <image v-if="history.loading" class="history-loaded" src="/static/images/loading.svg"/>
+      <image v-if="history.loading" class="history-loaded" src="http://182.61.31.42:1001/images/loading.svg"/>
       <view v-else :class="history.allLoaded ? 'history-loaded':'load'" @click="loadHistoryMessage(false)">
         <view>{{ history.allLoaded ? '已经没有更多的历史消息' : '点击获取历史消息' }}</view>
       </view>
@@ -57,7 +57,7 @@
                       <span class="file-name">{{ message.payload.name }}</span>
                       <span class="file-size">{{ (message.payload.size / 1024).toFixed(2) }}KB</span>
                     </view>
-                    <image class="file-img" src="/static/images/file-icon.png"></image>
+                    <image class="file-img" src="http://182.61.31.42:1001/images/file-icon.png"></image>
                   </view>
                   <view v-if="message.type ==='audio'" class="audio-content" @click="playAudio(message)">
                     <view class="audio-facade" :style="{width:Math.ceil(message.payload.duration)*7 + 50 + 'px'}">
@@ -94,8 +94,8 @@
     <view class="action-box" v-if="!videoPlayer.visible && !messageSelector.visible">
       <view class="action-top">
         <view @click="switchAudioKeyboard">
-          <image class="more" v-if="audio.visible" src="/static/images/jianpan.png"></image>
-          <image class="more" v-else src="/static/images/audio.png"></image>
+          <image class="more" v-if="audio.visible" src="http://182.61.31.42:1001/images/jianpan.png"></image>
+          <image class="more" v-else src="http://182.61.31.42:1001/images/audio.png"></image>
         </view>
         <view v-if="audio.visible" class="record-input" @touchend.stop="onRecordEnd" @touchstart.stop="onRecordStart">
           {{ recorderManager.recording ? '松开发送' : '按住录音' }}
@@ -103,11 +103,11 @@
         <!-- GoEasyIM最大支持3k的文本消息，如需发送长文本，需调整输入框maxlength值 -->
         <input v-else v-model="text" @confirm="sendTextMessage" class="consult-input" maxlength="700" placeholder="发送消息" type="text" />
         <view @click="switchEmojiKeyboard">
-          <image class="more" v-if="emoji.visible" src="/static/images/jianpan.png"></image>
-          <image class="more" v-else src="/static/images/emoji.png"></image>
+          <image class="more" v-if="emoji.visible" src="http://182.61.31.42:1001/images/jianpan.png"></image>
+          <image class="more" v-else src="http://182.61.31.42:1001/images/emoji.png"></image>
         </view>
         <view>
-          <image @click="showOtherTypesMessagePanel()" class="more" src="/static/images/more.png"/>
+          <image @click="showOtherTypesMessagePanel()" class="more" src="http://182.61.31.42:1001/images/more.png"/>
         </view>
         <view v-if="text" class="send-btn-box">
           <text class="btn" @click="sendTextMessage()">发送</text>
@@ -121,21 +121,21 @@
       <!--其他类型消息面板-->
       <view v-if="otherTypesMessagePanelVisible" class="action-bottom">
         <view class="more-icon">
-          <image @click="sendImageMessage()" class="operation-icon" src="/static/images/picture.png"></image>
+          <image @click="sendImageMessage()" class="operation-icon" src="http://182.61.31.42:1001/images/picture.png"></image>
           <view class="operation-title">图片</view>
         </view>
         <view class="more-icon">
-          <image @click="sendVideoMessage()" class="operation-icon" src="/static/images/video.png"></image>
+          <image @click="sendVideoMessage()" class="operation-icon" src="http://182.61.31.42:1001/images/video.png"></image>
           <view class="operation-title">视频</view>
         </view>
         <view class="more-icon">
-          <image @click="showOrderMessageList()" class="operation-icon" src="/static/images/order.png"></image>
+          <image @click="showOrderMessageList()" class="operation-icon" src="http://182.61.31.42:1001/images/order.png"></image>
           <view class="operation-title">订单</view>
         </view>
-        <view class="more-icon">
-          <image @click="privateCall()" class="operation-icon" src="/static/images/rtc.png"></image>
+        <!-- <view class="more-icon">
+          <image @click="privateCall()" class="operation-icon" src="http://182.61.31.42:1001/images/rtc.png"></image>
           <view class="operation-title">视频通话</view>
-        </view>
+        </view> -->
       </view>
     </view>
     <view class="action-popup" @touchmove.stop.prevent v-if="actionPopup.visible">
@@ -148,7 +148,7 @@
       </view>
     </view>
     <view class="messageSelector-box" v-if="messageSelector.visible">
-      <image class="messageSelector-btn" @click="deleteMultipleMessages" src="/static/images/delete.png"></image>
+      <image class="messageSelector-btn" @click="deleteMultipleMessages" src="http://182.61.31.42:1001/images/delete.png"></image>
     </view>
     <view class="record-loading" v-if="recorderManager.recording"></view>
     <video v-if="videoPlayer.visible" :src="videoPlayer.url" id="videoPlayer"
@@ -191,7 +191,7 @@
   const IMAGE_MAX_HEIGHT = 150;
   const recorderManager = new RecorderManager();
   const GoEasy = uni.$GoEasy;
-  const GRTC = uni.$GRTC;
+  // const GRTC = uni.$GRTC;
   export default {
     name: 'privateChat',
     data() {

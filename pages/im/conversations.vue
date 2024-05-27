@@ -62,7 +62,7 @@
 	// import restApi from '../lib/restapi';
 
 	const GoEasy = uni.$GoEasy;
-	const GRTC = uni.$GRTC;
+	// const GRTC = uni.$GRTC;
 	export default {
 		name: 'conversation',
 		data() {
@@ -129,7 +129,7 @@
 				GoEasy.im.on(GoEasy.IM_EVENT.CONVERSATIONS_UPDATED, this.renderConversations); //监听会话列表变化
 				GoEasy.im.on(GoEasy.IM_EVENT.CONVERSATIONS_UPDATED, this.setUnreadAmount); // 设置角标
 				// #ifdef APP-PLUS
-				GRTC.on(GRTC.EVENT.RING, this.onRing); //监听来电事件
+				// GRTC.on(GRTC.EVENT.RING, this.onRing); //监听来电事件
 				// #endif
 			},
 			onRing() {
@@ -330,7 +330,7 @@
 		width: 50rpx;
 		height: 50rpx;
 		font-size: 34rpx;
-		background: url("/static/images/action.png") no-repeat center;
+		background: url("http://182.61.31.42:1001/images/action.png") no-repeat center;
 		background-size: 28rpx 30rpx;
 	}
 

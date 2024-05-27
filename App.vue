@@ -1,4 +1,4 @@
-<script lang="ts">
+<script>
 	export default {
 		onLaunch: function () {
 			const token = uni.getStorageSync('token');
