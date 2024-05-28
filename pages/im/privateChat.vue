@@ -259,7 +259,6 @@
     onLoad(options) {
       //聊天对象
       let id = options.to;
-	  console.log('options:', options)
       this.friend = restApi.findUserById(id);
       this.currentUser = uni.$currentUser;
       this.to = {

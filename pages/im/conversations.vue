@@ -42,7 +42,11 @@
 				</view>
 			</view>
 		</view>
-		<view class="no-conversation" v-else>当前没有会话</view>
+		<view class="no-conversation" v-else>
+			<!-- 当前没有会话 -->
+			<p v-if="userType === 'user'" class="sign-button" @click="gotoSign">去签约</p>
+			<text v-else>当前没有会话</text>
+		</view>
 		<view class="action-container" v-if="actionPopup.visible">
 			<view class="layer" @click="actionPopup.visible = false"></view>
 			<view class="action-box">
@@ -65,6 +69,11 @@
 	// const GRTC = uni.$GRTC;
 	export default {
 		name: 'conversation',
+		computed: {
+			userType() {
+				return this.$store.getters.userType
+			},
+		},
 		data() {
 			return {
 				conversations: [],
@@ -103,6 +112,9 @@
 				}
 				this.loadConversations(); //加载会话列表
 				this.initGoEasyListeners();
+			},
+			gotoSign() {
+				this.$U.gotoPage('/pages/sub-packages-user/my/doctor-introduction/index');
 			},
 			formatDate,
 			connectGoEasy() {
@@ -264,6 +276,17 @@
 		display: flex;
 		flex-direction: column;
 		height: 100%;
+	}
+
+	.sign-button {
+		width: 180px;
+		padding: 10px 40px;
+		color: #fff;
+		background-color: #006eff;
+		font-size: 16px;
+		margin-top: 65px;
+		border-radius: 30px;
+		text-align: center;
 	}
 
 	.conversations .scroll-item {

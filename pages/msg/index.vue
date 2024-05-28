@@ -1,10 +1,6 @@
 <template>
 	<div class="index">
 		<conversations></conversations>
-		
-		<p v-if="userType === 'user'" class="index-button" @click="gotoSign">去签约</p>
-		<p class="index-button" @click="chat">发消息</p>
-		<!-- <p class="index-button" @click="openContact">打开 TUIKit 联系人</p> -->
 	</div>
 </template>
 <script>
