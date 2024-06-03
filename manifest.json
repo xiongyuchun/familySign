@@ -182,7 +182,7 @@
             "disableHostCheck" : true,
             "proxy" : {
                 "/" : {
-                    "target" : "https://qyapi.cuixiaoler.com:1002",
+                    "target" : "http://182.61.31.42:1001",
                     "changeOrigin" : true,
                     "secure" : false
                 }

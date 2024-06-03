@@ -44,8 +44,8 @@
 		</view>
 		<view class="no-conversation" v-else>
 			<!-- 当前没有会话 -->
-			<p v-if="userType === 'user'" class="sign-button" @click="gotoSign">去签约</p>
-			<text v-else>当前没有会话</text>
+			<!-- <p v-if="userType === 'user'" class="sign-button" @click="gotoSign">去签约</p> -->
+			<text>当前没有消息</text>
 		</view>
 		<view class="action-container" v-if="actionPopup.visible">
 			<view class="layer" @click="actionPopup.visible = false"></view>

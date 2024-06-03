@@ -146,7 +146,8 @@
 			},
 			// 医生咨询
 			talk(item) {
-				this.$U.gotoPage(`/pages/im/privateChat?to=${item.DoctorId}`)
+				console.log('item:', item)
+				this.$U.gotoPage(`/pages/im/privateChat?to=${item}`)
 			},
 			// 地区列表-change
 			handelAreaList(e) {
