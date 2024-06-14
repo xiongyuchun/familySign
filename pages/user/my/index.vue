@@ -4,7 +4,7 @@
 			<view class="flex flex-column" style="position: relative;">
 				<view class="top-title">我的</view>
 				<view class="navbar-info flex">
-					<view class="navbar-info_photo"><img :src="userInfo.HeadImgUrl" class="navbar-info_photo_img" alt="" srcset=""></view>
+					<view class="navbar-info_photo"><img :src="webUrl + '/' + userInfo.HeadImgUrl" class="navbar-info_photo_img" alt="" srcset=""></view>
 					<view class="navbar-info_introduce flex flex-column w-100">
 						<view class="navbar-info_introduce_name mb-3 font flex justify-between align-center w-100">
 							<view class="flex align-center">
@@ -17,7 +17,7 @@
 							</view>
 						</view>
 						<view class="navbar-info_introduce_main flex align-center">
-							<text class="font-small flex justify-center align-center text">{{userInfo.Sex === '1' ? '男' : '女'}}</text>
+							<text class="font-small flex justify-center align-center text">{{userInfo.Sex == 1 ? '男' : '女'}}</text>
 							<text v-if="userInfo.Age" class="font-small flex justify-center align-center text">{{userInfo.Age}}</text>
 						</view>
 					</view>

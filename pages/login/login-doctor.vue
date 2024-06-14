@@ -2,7 +2,7 @@
 	<view class="">
 		<view class="top-bg">
 			<img style="width: 100%;" src="http://182.61.31.42:1001/static/my/user-login.png" alt="" srcset="">
-			<text class="top-bg-txt">登录</text>
+			<text class="top-bg-txt">医生登录</text>
 		</view>
 		<view class="register-main">
 			<view class="bg-white register-main-item">

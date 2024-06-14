@@ -97,11 +97,6 @@
 </template>
 
 <script>
-	import { TUIChatKit, genTestUserSig } from "@/TUIKit/index.ts";
-	import { TUILogin } from "@tencentcloud/tui-core";
-	import TUIChatEngine, {
-	  TUIConversationService,
-	} from "@tencentcloud/chat-uikit-engine";
 	export default {
 		name: 'docuor-introduction',
 		data() {
@@ -131,21 +126,25 @@
 			this.statusBarHeight = uni.getSystemInfoSync().statusBarHeight + 44 + 'px'
 		},
 		methods: {
+			// 获取用户信息
+			getUserInfo() {
+				this.$H.get('/api/APP/WXUser/GetUserInfo')
+					.then(res => {
+						if(res.Data) {
+							this.$store.dispatch('user/setUserInfo', res.Data);
+						}
+					}).catch(err => {
+						console.log('err:', err)
+					})
+			},
 			// 医生咨询
 			talk(item) {
-				const conversationID = `C2C${item.DoctorId}`;
-				TUIConversationService.switchConversation(conversationID);
-				uni.navigateTo({
-					url: `/TUIKit/components/TUIChat/index?conversationID=${conversationID}`,
-				});
-				// onsole.log('memberList:',  )
-				// const memberList = [{nick: '熊宇春', userID: 'xyc', avatar: "https://avatars.githubusercontent.com/u/28173?v=4"}]
-				// TUIStore.update(StoreName.CUSTOM, "isShowSelectFriendComponent", false);
-				// const callback = TUIContactServer.getOnCallCallback(TUIConstants.TUIContact.SERVICE.METHOD.SELECT_FRIEND);
-				// callback && callback(memberList);
-				// uni.navigateTo({
-				// 	url: "/TUIKit/components/TUIConversation/index",
-				// });
+				let obj = {
+					id: item.DoctorId,
+					name: item.Name,
+					avatar: item.HeadImgUrl
+				}
+				this.$U.gotoPage(`/pages/im/privateChat?to=${JSON.stringify(obj)}`)
 			},
 			// 地区列表-change
 			handelAreaList(e) {
