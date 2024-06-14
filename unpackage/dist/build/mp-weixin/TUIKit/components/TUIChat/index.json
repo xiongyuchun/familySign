@@ -1,0 +1,10 @@
+{
+  "navigationBarTitleText": "腾讯云 IM",
+  "usingComponents": {
+    "chat-header": "/TUIKit/components/TUIChat/chat-header/index",
+    "forward": "/TUIKit/components/TUIChat/forward/index",
+    "message-list": "/TUIKit/components/TUIChat/message-list/index",
+    "message-input-toolbar": "/TUIKit/components/TUIChat/message-input-toolbar/index",
+    "message-input": "/TUIKit/components/TUIChat/message-input/index"
+  }
+}

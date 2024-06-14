@@ -1,0 +1,7 @@
+{
+  "navigationBarTitleText": "消息列表",
+  "usingComponents": {
+    "conversation-network": "/TUIKit/components/TUIConversation/conversation-network/index",
+    "conversation-list": "/TUIKit/components/TUIConversation/conversation-list/index"
+  }
+}

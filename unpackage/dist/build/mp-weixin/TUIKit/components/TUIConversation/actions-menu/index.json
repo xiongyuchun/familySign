@@ -1,0 +1,7 @@
+{
+  "component": true,
+  "usingComponents": {
+    "overlay": "/TUIKit/components/common/Overlay/index",
+    "dialog": "/TUIKit/components/common/Dialog/index"
+  }
+}

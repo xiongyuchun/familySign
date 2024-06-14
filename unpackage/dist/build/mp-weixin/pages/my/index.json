@@ -1,0 +1,9 @@
+{
+  "navigationBarTitleText": "",
+  "backgroundColor": "#f8f8f8",
+  "navigationStyle": "custom",
+  "usingComponents": {
+    "my-index": "/pages/user/my/index",
+    "doctor-index": "/pages/doctor/my/index"
+  }
+}

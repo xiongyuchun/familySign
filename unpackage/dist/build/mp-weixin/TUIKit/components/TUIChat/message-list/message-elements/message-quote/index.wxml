@@ -1,0 +1,1 @@
+<block wx:if="{{quoteContent}}"><view data-event-opts="{{[['tap',[['scrollToOriginalMessage',['$event']]]]]}}" class="{{['reference-content','_div','data-v-6c0bd634',props.message.flow==='in'||'reverse']}}" bindtap="__e"><view class="max-double-line _div data-v-6c0bd634">{{''+quoteContent.messageSender+": "+quoteContent.messageAbstract+''}}</view></view></block>

@@ -1,0 +1,1 @@
+<view data-ref="skeleton" class="message-image _div data-v-1275dd01 vue-ref"><image class="message-image _img data-v-1275dd01" src="{{data.url}}"></image></view>

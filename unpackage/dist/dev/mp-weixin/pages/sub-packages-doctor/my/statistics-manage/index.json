@@ -1,0 +1,7 @@
+{
+  "navigationBarTitleText": "",
+  "navigationStyle": "custom",
+  "usingComponents": {
+    "my-echarts": "/pages/sub-packages-doctor/components/mpvue-echarts/echarts"
+  }
+}

@@ -1,0 +1,6 @@
+{
+  "component": true,
+  "usingComponents": {
+    "select-user": "/TUIKit/components/common/SelectUser/index"
+  }
+}

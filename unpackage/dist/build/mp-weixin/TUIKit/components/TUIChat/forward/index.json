@@ -1,0 +1,7 @@
+{
+  "component": true,
+  "usingComponents": {
+    "overlay": "/TUIKit/components/common/Overlay/index",
+    "transfer": "/TUIKit/components/common/Transfer/index"
+  }
+}

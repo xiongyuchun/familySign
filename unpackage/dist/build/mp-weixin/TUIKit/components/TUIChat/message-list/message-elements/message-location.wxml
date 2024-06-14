@@ -1,0 +1,1 @@
+<navigator class="message-location _a data-v-a8b5ce10" href="{{data.href}}" target="_blank" title="点击查看详情"><label class="el-icon-location-outline _span data-v-a8b5ce10">{{data.description}}</label><image src="{{data.url}}" class="_img data-v-a8b5ce10"></image></navigator>

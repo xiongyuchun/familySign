@@ -1,0 +1,7 @@
+{
+  "component": true,
+  "usingComponents": {
+    "toolbar-item-container": "/TUIKit/components/TUIChat/message-input-toolbar/toolbar-item-container/index",
+    "icon": "/TUIKit/components/common/Icon"
+  }
+}

@@ -1,0 +1,116 @@
+{
+  "pages": [
+    "pages/index/index",
+    "pages/msg/index",
+    "pages/my/index",
+    "pages/user/my/index",
+    "pages/login/register",
+    "pages/login/register-doctor",
+    "pages/login/index",
+    "pages/login/login-doctor"
+  ],
+  "subPackages": [
+    {
+      "root": "pages/sub-packages-doctor",
+      "pages": [
+        "my/statistics-manage/index",
+        "my/number-of-services/index",
+        "my/number-of-signatories/index",
+        "my/online-signing-list/index",
+        "my/put-on-record/index",
+        "my/user-detail/index"
+      ]
+    },
+    {
+      "root": "pages/sub-packages-user",
+      "pages": [
+        "my/about/index",
+        "my/add-file/index",
+        "my/change-user/index",
+        "my/contact-us/index",
+        "my/doctor-details/index",
+        "my/doctor-introduction/index",
+        "my/review-file/index",
+        "my/sign-tip/index",
+        "my/unbound-user/index",
+        "my/un-sign/index",
+        "my/upload-info/index",
+        "my/online-signing/index",
+        "index/news-info/index",
+        "my/signature/index"
+      ]
+    },
+    {
+      "root": "TUIKit",
+      "pages": [
+        "components/TUIConversation/index",
+        "components/TUIChat/index",
+        "components/TUIChat/video-play",
+        "components/TUIChat/web-view",
+        "components/TUIContact/index",
+        "components/TUIGroup/index"
+      ]
+    }
+  ],
+  "window": {
+    "navigationBarTextStyle": "black",
+    "navigationBarTitleText": "家庭签约",
+    "navigationBarBackgroundColor": "#FFFFFF",
+    "backgroundColor": "#FFFFFF"
+  },
+  "tabBar": {
+    "color": "#333333",
+    "selectedColor": "#4EB4F8",
+    "backgroundColor": "#FFFFFF",
+    "borderStyle": "black",
+    "list": [
+      {
+        "pagePath": "pages/index/index",
+        "text": "首页",
+        "iconPath": "static/tabbar/index.png",
+        "selectedIconPath": "static/tabbar/indexed.png"
+      },
+      {
+        "pagePath": "pages/msg/index",
+        "text": "消息",
+        "iconPath": "static/tabbar/news.png",
+        "selectedIconPath": "static/tabbar/newsed.png"
+      },
+      {
+        "pagePath": "pages/my/index",
+        "text": "我的",
+        "iconPath": "static/tabbar/home.png",
+        "selectedIconPath": "static/tabbar/homeed.png"
+      }
+    ]
+  },
+  "preloadRule": {
+    "pages/index/index": {
+      "network": "all",
+      "packages": [
+        "pages/sub-packages-doctor"
+      ]
+    },
+    "TUIKit/components/TUIConversation/index": {
+      "network": "all",
+      "packages": [
+        "TUIKit"
+      ]
+    }
+  },
+  "permission": {
+    "scope.userLocation": {
+      "desc": "演示定位能力"
+    }
+  },
+  "requiredPrivateInfos": [
+    "getLocation",
+    "onLocationChange",
+    "startLocationUpdateBackground",
+    "chooseAddress"
+  ],
+  "usingComponents": {
+    "my-navbar": "/components/navbar/index",
+    "special-navbar": "/components/special-navbar/index"
+  }
+}

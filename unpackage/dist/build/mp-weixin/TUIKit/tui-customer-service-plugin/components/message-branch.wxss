@@ -1,0 +1,1 @@
+.branchCard{min-width:250px;max-width:350px}.branchCard .branchTitle{margin-bottom:8px;border-radius:0 10px 10px 10px}.branchCard .branchItem{display:flex;justify-content:space-between;border-style:dotted;border-color:#d8d8d8;font-weight:400;color:#368dff;padding-top:5px;cursor:pointer;padding-bottom:5px}

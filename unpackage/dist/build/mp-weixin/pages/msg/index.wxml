@@ -1,0 +1,1 @@
+<view class="index _div data-v-073d9ca8"><block wx:if="{{userType==='user'}}"><view data-event-opts="{{[['tap',[['gotoSign',['$event']]]]]}}" class="index-button _p data-v-073d9ca8" bindtap="__e">去签约</view></block><view data-event-opts="{{[['tap',[['openConversation',['$event']]]]]}}" class="index-button _p data-v-073d9ca8" bindtap="__e">打开消息列表</view></view>

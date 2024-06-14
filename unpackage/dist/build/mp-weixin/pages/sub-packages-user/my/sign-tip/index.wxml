@@ -1,0 +1,1 @@
+<view><my-navbar vue-id="3181ebaf-1" title="在线续约" bind:__l="__l"></my-navbar><sign-tip vue-id="3181ebaf-2" title="{{signObj.title}}" desc="{{signObj.desc}}" imgPath="{{signObj.imgPath}}" bind:__l="__l"></sign-tip></view>

@@ -1,0 +1,9 @@
+{
+  "component": true,
+  "usingComponents": {
+    "search-result-loading": "/TUIKit/components/TUISearch/search-result/search-result-loading/index",
+    "search-result-default": "/TUIKit/components/TUISearch/search-result/search-result-default/index",
+    "search-result-item": "/TUIKit/components/TUISearch/search-result/search-result-item/index",
+    "icon": "/TUIKit/components/common/Icon"
+  }
+}

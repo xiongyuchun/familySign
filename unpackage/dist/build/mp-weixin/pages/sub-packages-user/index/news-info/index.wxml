@@ -1,0 +1,1 @@
+<view class="news data-v-97a2c23a"><my-navbar vue-id="43d1dc9c-1" title="{{newsInfo.Title}}" class="data-v-97a2c23a" bind:__l="__l"></my-navbar><view class="news-info data-v-97a2c23a"><rich-text nodes="{{newsInfo.Content}}" class="data-v-97a2c23a"></rich-text></view></view>

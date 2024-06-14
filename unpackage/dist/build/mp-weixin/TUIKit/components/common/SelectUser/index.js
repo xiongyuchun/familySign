@@ -1,0 +1,10 @@
+require('../../../common/vendor.js');(global["webpackJsonp"]=global["webpackJsonp"]||[]).push([["TUIKit/components/common/SelectUser/index"],{"67c5":function(e,n,t){"use strict";t.r(n);var o=t("9659"),r=t("a7cd");for(var c in r)["default"].indexOf(c)<0&&function(e){t.d(n,e,(function(){return r[e]}))}(c);var i=t("f0c5"),u=Object(i["a"])(r["default"],o["b"],o["c"],!1,null,null,null,!1,o["a"],void 0);n["default"]=u.exports},"87f2":function(e,n,t){"use strict";Object.defineProperty(n,"__esModule",{value:!0}),n.default=void 0;var o=t("d31c"),r={};r.props={isRadio:{type:Boolean,default:!1},isNeedSearch:{type:Boolean,default:!1},title:{type:String,default:""},userList:{type:Array,default:[]},total:{type:Number,default:0}},r.setup=function(e,n){var t=n.emit,r=e;return{isPC:o.isPC,props:r,reset:function(){t("complete",[])},submit:function(e){t("complete",e)},handleSearchUser:function(e){t("search",e)},handleGetMore:function(){t("getMore")}}},r.components=Object.assign({Dialog:function(){Promise.all([t.e("TUIKit/common/vendor"),t.e("TUIKit/components/common/Dialog/index")]).then(function(){return resolve(t("f0db"))}.bind(null,t)).catch(t.oe)},Transfer:function(){Promise.all([t.e("TUIKit/common/vendor"),t.e("TUIKit/components/common/Transfer/index")]).then(function(){return resolve(t("e892"))}.bind(null,t)).catch(t.oe)}},r.components);var c=r;n.default=c},9659:function(e,n,t){"use strict";t.d(n,"b",(function(){return o})),t.d(n,"c",(function(){return r})),t.d(n,"a",(function(){}));var o=function(){var e=this.$createElement;this._self._c},r=[]},a7cd:function(e,n,t){"use strict";t.r(n);var o=t("87f2"),r=t.n(o);for(var c in o)["default"].indexOf(c)<0&&function(e){t.d(n,e,(function(){return o[e]}))}(c);n["default"]=r.a}}]);
+;(global["webpackJsonp"] = global["webpackJsonp"] || []).push([
+    'TUIKit/components/common/SelectUser/index-create-component',
+    {
+        'TUIKit/components/common/SelectUser/index-create-component':(function(module, exports, __webpack_require__){
+            __webpack_require__('543d')['createComponent'](__webpack_require__("67c5"))
+        })
+    },
+    [['TUIKit/components/common/SelectUser/index-create-component']]
+]);

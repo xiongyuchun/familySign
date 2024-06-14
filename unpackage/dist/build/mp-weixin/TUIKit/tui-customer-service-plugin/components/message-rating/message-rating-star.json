@@ -1,0 +1,6 @@
+{
+  "component": true,
+  "usingComponents": {
+    "icon": "/TUIKit/tui-customer-service-plugin/components/Icon"
+  }
+}

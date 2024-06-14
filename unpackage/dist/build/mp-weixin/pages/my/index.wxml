@@ -1,0 +1,1 @@
+<view class="data-v-3b228093"><block wx:if="{{userType==='user'}}"><my-index vue-id="4a180d5e-1" class="data-v-3b228093" bind:__l="__l"></my-index></block><block wx:else><doctor-index vue-id="4a180d5e-2" class="data-v-3b228093" bind:__l="__l"></doctor-index></block></view>

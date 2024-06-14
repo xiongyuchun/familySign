@@ -1,0 +1,9 @@
+{
+  "component": true,
+  "usingComponents": {
+    "message-bubble": "/TUIKit/components/TUIChat/message-list/message-elements/message-bubble",
+    "t-u-i-customer-service-plugin": "/TUIKit/tui-customer-service-plugin/index",
+    "message-call-group": "/TUIKit/plugins/plugin-components/message-call/message-call-group",
+    "message-call-c2-c": "/TUIKit/plugins/plugin-components/message-call/message-call-c2c"
+  }
+}

@@ -1,0 +1,1 @@
+<block wx:if="{{isNotNetwork}}"><view class="network _div data-v-acf9e6e0"><view class="icon icon-error _i data-v-acf9e6e0">!</view><view class="network-content _p data-v-acf9e6e0">{{''+$root.g0+''}}</view></view></block>

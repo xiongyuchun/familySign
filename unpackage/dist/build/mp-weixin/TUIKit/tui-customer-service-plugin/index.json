@@ -1,0 +1,7 @@
+{
+  "component": true,
+  "usingComponents": {
+    "message-customer-service": "/TUIKit/tui-customer-service-plugin/components/message-customer-service",
+    "message-rating": "/TUIKit/tui-customer-service-plugin/components/message-rating/index"
+  }
+}

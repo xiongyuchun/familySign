@@ -1,0 +1,1 @@
+<view class="{{['_div','data-v-cce54258','TUI-switch',value?'TUI-switch-checked':'TUI-switch-no-checked']}}"></view>

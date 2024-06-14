@@ -1,0 +1,9 @@
+{
+  "component": true,
+  "usingComponents": {
+    "dialog": "/TUIKit/components/common/Dialog/index",
+    "icon": "/TUIKit/components/common/Icon",
+    "avatar": "/TUIKit/components/common/Avatar/index",
+    "group-introduction": "/TUIKit/components/TUIGroup/create-group/group-introduction/index"
+  }
+}

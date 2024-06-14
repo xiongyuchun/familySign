@@ -1,0 +1,1 @@
+<view class="{{['_div','data-v-76380444','message-abstract-video']}}"><view class="message-abstract-video-box _div data-v-76380444"><image class="{{['_img','data-v-76380444','messageVideo']}}" src="{{messageContent.snapshotUrl}}"></image><icon class="video-play data-v-76380444" file="{{playIcon}}"></icon></view></view>

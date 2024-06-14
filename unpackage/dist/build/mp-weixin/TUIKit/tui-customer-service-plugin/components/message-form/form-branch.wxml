@@ -1,0 +1,1 @@
+<view class="_div"><block wx:if="{{props.title}}"><view class="cardTitle _p">{{''+props.title+''}}</view></block><block wx:for="{{props.list}}" wx:for-item="item" wx:for-index="index" wx:key="index"><view data-event-opts="{{[['tap',[['listItemClick',['$0'],[[['props.list','',index]]]]]]]}}" class="formBranchItem _div" bindtap="__e">{{''+item.content+''}}</view></block></view>

@@ -1,0 +1,9 @@
+{
+  "enablePullDownRefresh": false,
+  "pageOrientation": "landscape",
+  "navigationBarTitleText": "",
+  "navigationStyle": "custom",
+  "usingComponents": {
+    "my-sign": "/pages/sub-packages-user/components/my-sign/index"
+  }
+}

@@ -1,0 +1,1 @@
+<view data-event-opts="{{[['tap',[['handlePlay',['$event']]]]]}}" class="{{['message-audio','_div','data-v-25c58a34',message.flow==='out'&&'reserve']}}" bindtap="__e"><icon class="icon data-v-25c58a34" file="{{audioIcon}}"></icon><label class="time data-v-25c58a34" style="{{'width:'+(data.second*10+20+'px')+';'}}">{{''+(data.second||1)+' "'}}</label></view>

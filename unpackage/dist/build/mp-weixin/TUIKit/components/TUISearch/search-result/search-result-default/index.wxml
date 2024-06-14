@@ -1,0 +1,1 @@
+<view class="{{['_div','data-v-0195c63d','search-result-default',!isPC&&'search-result-default-h5']}}"><view class="search-result-default-main _div data-v-0195c63d"><icon file="{{SearchDefaultIcon}}" width="88px" height="75px" class="data-v-0195c63d"></icon><view class="default-text _div data-v-0195c63d">{{$root.g0}}</view></view></view>

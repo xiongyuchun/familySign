@@ -1,0 +1,10 @@
+require('../../../common/vendor.js');(global["webpackJsonp"]=global["webpackJsonp"]||[]).push([["TUIKit/components/TUIChat/chat-header/index"],{"1f9f":function(e,t,n){"use strict";n.d(t,"b",(function(){return a})),n.d(t,"c",(function(){return u})),n.d(t,"a",(function(){}));var a=function(){var e=this.$createElement;this._self._c},u=[]},"59ca":function(e,t,n){"use strict";n.r(t);var a=n("1f9f"),u=n("fbb2");for(var o in u)["default"].indexOf(o)<0&&function(e){n.d(t,e,(function(){return u[e]}))}(o);var l=n("f0c5"),i=Object(l["a"])(u["default"],a["b"],a["c"],!1,null,null,null,!1,a["a"],void 0);t["default"]=i.exports},"9e73":function(e,t,n){"use strict";Object.defineProperty(t,"__esModule",{value:!0}),t.default=void 0;var a=n("a6ed"),u=n("e6e8"),o=n("2ab0"),l=n("8e85"),i={setup:function(e,t){var n=(0,o.ref)(),i=(0,o.ref)(!1),r=function(e){null===l.TUIGlobal||void 0===l.TUIGlobal||l.TUIGlobal.setNavigationBarTitle({title:e||"云通信 IM"})};return a.TUIStore.watch(a.StoreName.CONV,{currentConversation:function(e){var t;(n.value=e,i.value)||r(null===n||void 0===n||null===(t=n.value)||void 0===t?void 0:t.getShowName())}}),a.TUIStore.watch(a.StoreName.CHAT,{typingStatus:function(e){var t;switch(i.value=e,i.value){case!0:r(a.TUITranslateService.t("TUIChat.对方正在输入"));break;case!1:r(null===n||void 0===n||null===(t=n.value)||void 0===t?void 0:t.getShowName());break}}}),(0,u.onLoad)((function(e){var t;r(null===n||void 0===n||null===(t=n.value)||void 0===t?void 0:t.getShowName())})),{}}},r=i;t.default=r},fbb2:function(e,t,n){"use strict";n.r(t);var a=n("9e73"),u=n.n(a);for(var o in a)["default"].indexOf(o)<0&&function(e){n.d(t,e,(function(){return a[e]}))}(o);t["default"]=u.a}}]);
+;(global["webpackJsonp"] = global["webpackJsonp"] || []).push([
+    'TUIKit/components/TUIChat/chat-header/index-create-component',
+    {
+        'TUIKit/components/TUIChat/chat-header/index-create-component':(function(module, exports, __webpack_require__){
+            __webpack_require__('543d')['createComponent'](__webpack_require__("59ca"))
+        })
+    },
+    [['TUIKit/components/TUIChat/chat-header/index-create-component']]
+]);

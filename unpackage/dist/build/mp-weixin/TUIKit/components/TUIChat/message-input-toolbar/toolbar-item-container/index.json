@@ -1,0 +1,7 @@
+{
+  "component": true,
+  "usingComponents": {
+    "icon": "/TUIKit/components/common/Icon",
+    "bottom-popup": "/TUIKit/components/common/BottomPopup/index"
+  }
+}

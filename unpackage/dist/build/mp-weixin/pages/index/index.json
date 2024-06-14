@@ -1,0 +1,12 @@
+{
+  "navigationBarTitleText": "",
+  "enablePullDownRefresh": false,
+  "backgroundColor": "#fdfdfd",
+  "navigationStyle": "custom",
+  "usingComponents": {
+    "user-index": "/pages/user/index/index",
+    "doctor-index": "/pages/doctor/index/index",
+    "login": "/pages/login/index",
+    "login-doctor": "/pages/login/login-doctor"
+  }
+}

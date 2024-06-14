@@ -1,0 +1,1 @@
+<block wx:if="{{isShowReadStatus}}"><view data-event-opts="{{[['tap',[['openReadUserPanel',['$event']]]]]}}" class="{{['_div','data-v-0642fb84',(true)?'message-label':'',(isUseUnreadStyle)?'unread':'',(isHoverFingerPointer)?'finger-point':'']}}" bindtap="__e"><label class="_span data-v-0642fb84">{{readStatusText}}</label></view></block>

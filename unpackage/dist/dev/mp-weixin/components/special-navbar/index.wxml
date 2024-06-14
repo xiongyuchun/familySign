@@ -1,0 +1,1 @@
+<view class="{{[(mode===0)?'navbar':'',(mode===1)?'navbar-childer':'']}}"><view class="w-100" style="{{'height:'+(statusBarHeight)+';'}}"></view><slot></slot></view>

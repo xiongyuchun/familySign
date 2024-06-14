@@ -1,0 +1,8 @@
+{
+  "navigationBarTitleText": "腾讯云 IM",
+  "usingComponents": {
+    "create-group": "/TUIKit/components/TUIGroup/create-group/index",
+    "manage-group": "/TUIKit/components/TUIGroup/manage-group/index",
+    "select-member": "/TUIKit/components/TUIGroup/select-member/index"
+  }
+}

@@ -1,0 +1,10 @@
+require('../../../../common/vendor.js');(global["webpackJsonp"]=global["webpackJsonp"]||[]).push([["TUIKit/components/TUIChat/message-list/message-elements/message-video"],{2410:function(n,e,t){"use strict";t.d(e,"b",(function(){return o})),t.d(e,"c",(function(){return u})),t.d(e,"a",(function(){}));var o=function(){var n=this.$createElement;this._self._c},u=[]},"254b":function(n,e,t){"use strict";t.r(e);var o=t("9278"),u=t.n(o);for(var c in o)["default"].indexOf(c)<0&&function(n){t.d(e,n,(function(){return o[n]}))}(c);e["default"]=u.a},9278:function(n,e,t){"use strict";(function(n){var o=t("4ea4");Object.defineProperty(e,"__esModule",{value:!0}),e.default=void 0;var u=o(t("f7f3")),c={props:{content:{key:"content",required:!1,type:null,default:function(){return{}}},messageItem:{key:"messageItem",required:!1,type:null,default:function(){return{}}}},setup:function(e,t){var o=e;return{playIcon:u.default,props:o,handlerVideoPlay:function(){n.navigateTo({url:"/TUIKit/components/TUIChat/video-play?videoUrl=".concat(o.content.url)})}}}};c.components=Object.assign({Icon:function(){t.e("TUIKit/components/common/Icon").then(function(){return resolve(t("b42b"))}.bind(null,t)).catch(t.oe)}},c.components);var a=c;e.default=a}).call(this,t("543d")["default"])},ce1e:function(n,e,t){"use strict";var o=t("cf79"),u=t.n(o);u.a},cf79:function(n,e,t){},d695:function(n,e,t){"use strict";t.r(e);var o=t("2410"),u=t("254b");for(var c in u)["default"].indexOf(c)<0&&function(n){t.d(e,n,(function(){return u[n]}))}(c);t("ce1e");var a=t("f0c5"),r=Object(a["a"])(u["default"],o["b"],o["c"],!1,null,"2370dbfd",null,!1,o["a"],void 0);e["default"]=r.exports}}]);
+;(global["webpackJsonp"] = global["webpackJsonp"] || []).push([
+    'TUIKit/components/TUIChat/message-list/message-elements/message-video-create-component',
+    {
+        'TUIKit/components/TUIChat/message-list/message-elements/message-video-create-component':(function(module, exports, __webpack_require__){
+            __webpack_require__('543d')['createComponent'](__webpack_require__("d695"))
+        })
+    },
+    [['TUIKit/components/TUIChat/message-list/message-elements/message-video-create-component']]
+]);

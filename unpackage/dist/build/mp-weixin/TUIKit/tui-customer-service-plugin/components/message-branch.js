@@ -1,0 +1,10 @@
+require('../../common/vendor.js');(global["webpackJsonp"]=global["webpackJsonp"]||[]).push([["TUIKit/tui-customer-service-plugin/components/message-branch"],{a1d7:function(n,t,e){"use strict";var o=e("4ea4");Object.defineProperty(t,"__esModule",{value:!0}),t.default=void 0;var u=o(e("cda2")),c=o(e("2d6c")),i=u.default.computed,a={props:["payload"],emits:["sendMessage"],components:{Icon:function(){Promise.all([e.e("TUIKit/common/vendor"),e.e("TUIKit/tui-customer-service-plugin/components/Icon")]).then(function(){return resolve(e("10c9"))}.bind(null,e)).catch(e.oe)}},setup:function(n,t){var e=t.emit,o=i((function(){var t;return(null===n||void 0===n||null===(t=n.payload)||void 0===t?void 0:t.content)||{header:void 0,items:[]}}));return{content:o,handleContentListItemClick:function(n){e("sendMessage",{text:n.content})},iconRight:c.default}}};t.default=a},ea59:function(n,t,e){"use strict";e.d(t,"b",(function(){return o})),e.d(t,"c",(function(){return u})),e.d(t,"a",(function(){}));var o=function(){var n=this.$createElement;this._self._c},u=[]},edc7:function(n,t,e){"use strict";e.r(t);var o=e("ea59"),u=e("f799");for(var c in u)["default"].indexOf(c)<0&&function(n){e.d(t,n,(function(){return u[n]}))}(c);e("fa0b");var i=e("f0c5"),a=Object(i["a"])(u["default"],o["b"],o["c"],!1,null,null,null,!1,o["a"],void 0);t["default"]=a.exports},f5bd:function(n,t,e){},f799:function(n,t,e){"use strict";e.r(t);var o=e("a1d7"),u=e.n(o);for(var c in o)["default"].indexOf(c)<0&&function(n){e.d(t,n,(function(){return o[n]}))}(c);t["default"]=u.a},fa0b:function(n,t,e){"use strict";var o=e("f5bd"),u=e.n(o);u.a}}]);
+;(global["webpackJsonp"] = global["webpackJsonp"] || []).push([
+    'TUIKit/tui-customer-service-plugin/components/message-branch-create-component',
+    {
+        'TUIKit/tui-customer-service-plugin/components/message-branch-create-component':(function(module, exports, __webpack_require__){
+            __webpack_require__('543d')['createComponent'](__webpack_require__("edc7"))
+        })
+    },
+    [['TUIKit/tui-customer-service-plugin/components/message-branch-create-component']]
+]);

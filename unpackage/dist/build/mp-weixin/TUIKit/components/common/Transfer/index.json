@@ -1,0 +1,10 @@
+{
+  "componentGenerics": {
+    "scoped-slots-left": true,
+    "scoped-slots-right": true
+  },
+  "component": true,
+  "usingComponents": {
+    "icon": "/TUIKit/components/common/Icon"
+  }
+}

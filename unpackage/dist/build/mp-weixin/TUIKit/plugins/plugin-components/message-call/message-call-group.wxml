@@ -1,0 +1,1 @@
+<block wx:if="{{isCallMessage&&conversationType===TYPES.CONV_GROUP}}"><view class="{{['_div','data-v-658e47eb',(isBlink)?'blinkText':'']}}">{{''+custom+''}}</view></block>

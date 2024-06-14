@@ -1,0 +1,10 @@
+{
+  "component": true,
+  "usingComponents": {
+    "message-abstract-text": "/TUIKit/components/TUISearch/search-result/search-result-item/message-abstract/message-abstract-text",
+    "message-abstract-file": "/TUIKit/components/TUISearch/search-result/search-result-item/message-abstract/message-abstract-file",
+    "message-abstract-custom": "/TUIKit/components/TUISearch/search-result/search-result-item/message-abstract/message-abstract-custom",
+    "message-abstract-image": "/TUIKit/components/TUISearch/search-result/search-result-item/message-abstract/message-abstract-image",
+    "message-abstract-video": "/TUIKit/components/TUISearch/search-result/search-result-item/message-abstract/message-abstract-video"
+  }
+}

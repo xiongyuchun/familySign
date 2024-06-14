@@ -1,0 +1,1 @@
+<block wx:if="{{showMask}}"><view data-event-opts="{{[['tap',[['e0',['$event']]]]]}}" class="mask _div data-v-62e9e174" bindtap="__e"><slot></slot></view></block>

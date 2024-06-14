@@ -1,0 +1,24 @@
+{
+  "component": true,
+  "usingComponents": {
+    "message-timestamp": "/TUIKit/components/TUIChat/message-list/message-elements/message-timestamp",
+    "message-tip": "/TUIKit/components/TUIChat/message-list/message-elements/message-tip",
+    "message-bubble": "/TUIKit/components/TUIChat/message-list/message-elements/message-bubble",
+    "message-text": "/TUIKit/components/TUIChat/message-list/message-elements/message-text",
+    "progress-message": "/TUIKit/components/common/ProgressMessage/index",
+    "message-image": "/TUIKit/components/TUIChat/message-list/message-elements/message-image",
+    "message-video": "/TUIKit/components/TUIChat/message-list/message-elements/message-video",
+    "message-audio": "/TUIKit/components/TUIChat/message-list/message-elements/message-audio",
+    "message-file": "/TUIKit/components/TUIChat/message-list/message-elements/message-file",
+    "message-face": "/TUIKit/components/TUIChat/message-list/message-elements/message-face",
+    "message-location": "/TUIKit/components/TUIChat/message-list/message-elements/message-location",
+    "message-custom": "/TUIKit/components/TUIChat/message-list/message-elements/message-custom",
+    "message-plugin": "/TUIKit/plugins/plugin-components/message-plugin",
+    "message-revoked": "/TUIKit/components/TUIChat/message-list/message-tool/message-revoked",
+    "message-tool": "/TUIKit/components/TUIChat/message-list/message-tool/index",
+    "dialog": "/TUIKit/components/common/Dialog/index",
+    "image-previewer": "/TUIKit/components/common/ImagePreviewer/index",
+    "message-group-system": "/TUIKit/components/TUIChat/message-list/message-elements/message-group-system",
+    "read-recipt-panel": "/TUIKit/components/TUIChat/message-list/read-receipt-panel/index"
+  }
+}

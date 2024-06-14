@@ -1,0 +1,13 @@
+{
+  "component": true,
+  "usingComponents": {
+    "emoji-picker": "/TUIKit/components/TUIChat/message-input-toolbar/emoji-picker/index",
+    "image-upload": "/TUIKit/components/TUIChat/message-input-toolbar/image-upload/index",
+    "file-upload": "/TUIKit/components/TUIChat/message-input-toolbar/file-upload/index",
+    "video-upload": "/TUIKit/components/TUIChat/message-input-toolbar/video-upload/index",
+    "evaluate": "/TUIKit/components/TUIChat/message-input-toolbar/evaluate/index",
+    "words": "/TUIKit/components/TUIChat/message-input-toolbar/words/index",
+    "toolbar-item-container": "/TUIKit/components/TUIChat/message-input-toolbar/toolbar-item-container/index",
+    "user-selector": "/TUIKit/components/TUIChat/message-input-toolbar/user-selector/index"
+  }
+}

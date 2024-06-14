@@ -1,0 +1,9 @@
+{
+  "component": true,
+  "usingComponents": {
+    "overlay": "/TUIKit/components/common/Overlay/index",
+    "icon": "/TUIKit/components/common/Icon",
+    "avatar": "/TUIKit/components/common/Avatar/index",
+    "fetch-more": "/TUIKit/components/common/FetchMore/index"
+  }
+}

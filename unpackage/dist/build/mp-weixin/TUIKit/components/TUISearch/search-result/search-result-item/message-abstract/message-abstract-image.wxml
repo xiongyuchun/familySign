@@ -1,0 +1,1 @@
+<view class="{{['_div','data-v-10174c67','message-abstract-image']}}"><image class="{{['_img','data-v-10174c67','messageImage']}}" src="{{messageContent.url}}"></image></view>

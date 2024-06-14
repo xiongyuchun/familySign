@@ -1,0 +1,7 @@
+{
+  "component": true,
+  "usingComponents": {
+    "actions-menu": "/TUIKit/components/TUIConversation/actions-menu/index",
+    "icon": "/TUIKit/components/common/Icon"
+  }
+}

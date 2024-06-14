@@ -1,0 +1,1 @@
+<view data-event-opts="{{[['tap',[['toggleSlider',['$event']]]]]}}" class="{{['slider-box','_div','data-v-16bdc4ea',isSliderOpen&&'slider-open']}}" bindtap="__e"><label class="slider-block _span data-v-16bdc4ea"></label></view>

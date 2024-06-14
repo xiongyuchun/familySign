@@ -1,0 +1,9 @@
+{
+  "navigationBarTitleText": "腾讯云 IM",
+  "usingComponents": {
+    "select-friend": "/TUIKit/components/TUIContact/select-friend/index",
+    "contact-search": "/TUIKit/components/TUIContact/contact-search/index",
+    "contact-list": "/TUIKit/components/TUIContact/contact-list/index",
+    "contact-info": "/TUIKit/components/TUIContact/contact-info/index"
+  }
+}

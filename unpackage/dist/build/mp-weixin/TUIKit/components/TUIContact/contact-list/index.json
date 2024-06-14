@@ -1,0 +1,7 @@
+{
+  "component": true,
+  "usingComponents": {
+    "icon": "/TUIKit/components/common/Icon",
+    "contact-list-item": "/TUIKit/components/TUIContact/contact-list/contact-list-item/index"
+  }
+}

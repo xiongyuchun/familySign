@@ -1,0 +1,6 @@
+{
+  "component": true,
+  "usingComponents": {
+    "loading": "/TUIKit/components/common/Loading/index"
+  }
+}

@@ -1,0 +1,1 @@
+<view class="{{['_div','data-v-09fdfb7c','search-result-loading',!isPC&&'search-result-loading-h5']}}"><loading vue-id="2198a4b4-1" width="40px" height="40px" class="data-v-09fdfb7c" bind:__l="__l"></loading></view>

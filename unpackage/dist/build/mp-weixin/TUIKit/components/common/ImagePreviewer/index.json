@@ -1,0 +1,7 @@
+{
+  "component": true,
+  "usingComponents": {
+    "image-item": "/TUIKit/components/common/ImagePreviewer/image-item",
+    "icon": "/TUIKit/components/common/Icon"
+  }
+}

@@ -1,0 +1,14 @@
+{
+  "component": true,
+  "usingComponents": {
+    "icon": "/TUIKit/components/common/Icon",
+    "manage-name": "/TUIKit/components/TUIGroup/manage-group/manage-name",
+    "manage-member": "/TUIKit/components/TUIGroup/manage-group/manage-member",
+    "manage-profile": "/TUIKit/components/TUIGroup/manage-group/manage-profile",
+    "manage-notification": "/TUIKit/components/TUIGroup/manage-group/manage-notification",
+    "manage-admin": "/TUIKit/components/TUIGroup/manage-group/manage-admin",
+    "mask-layer": "/TUIKit/components/common/MaskLayer/index",
+    "transfer": "/TUIKit/components/common/Transfer/index",
+    "dialog": "/TUIKit/components/common/Dialog/index"
+  }
+}

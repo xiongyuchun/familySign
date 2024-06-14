@@ -1,0 +1,9 @@
+{
+  "component": true,
+  "usingComponents": {
+    "search-input": "/TUIKit/components/TUISearch/search-input/index",
+    "search-more": "/TUIKit/components/TUISearch/search-more/index",
+    "search-container": "/TUIKit/components/TUISearch/search-container/index",
+    "search-result": "/TUIKit/components/TUISearch/search-result/index"
+  }
+}

@@ -1,0 +1,7 @@
+{
+  "component": true,
+  "usingComponents": {
+    "icon": "/TUIKit/components/common/Icon",
+    "date-table": "/TUIKit/components/common/DatePicker/date-table"
+  }
+}

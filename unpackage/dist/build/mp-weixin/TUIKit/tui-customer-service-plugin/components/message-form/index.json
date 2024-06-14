@@ -1,0 +1,7 @@
+{
+  "component": true,
+  "usingComponents": {
+    "form-branch": "/TUIKit/tui-customer-service-plugin/components/message-form/form-branch",
+    "form-input": "/TUIKit/tui-customer-service-plugin/components/message-form/form-input"
+  }
+}

@@ -1,0 +1,8 @@
+{
+  "component": true,
+  "usingComponents": {
+    "message-branch": "/TUIKit/tui-customer-service-plugin/components/message-branch",
+    "message-form": "/TUIKit/tui-customer-service-plugin/components/message-form/index",
+    "message-product-card": "/TUIKit/tui-customer-service-plugin/components/message-product-card"
+  }
+}

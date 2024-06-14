@@ -1,0 +1,9 @@
+{
+  "component": true,
+  "usingComponents": {
+    "avatar": "/TUIKit/components/common/Avatar/index",
+    "icon": "/TUIKit/components/common/Icon",
+    "read-status": "/TUIKit/components/TUIChat/message-list/message-elements/read-status/index",
+    "message-quote": "/TUIKit/components/TUIChat/message-list/message-elements/message-quote/index"
+  }
+}
