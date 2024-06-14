@@ -146,8 +146,12 @@
 			},
 			// 医生咨询
 			talk(item) {
-				console.log('item:', item)
-				this.$U.gotoPage(`/pages/im/privateChat?to=${item}`)
+				let obj = {
+					id: item.DoctorId,
+					name: item.Name,
+					avatar: item.HeadImgUrl
+				}
+				this.$U.gotoPage(`/pages/im/privateChat?to=${JSON.stringify(obj)}`)
 			},
 			// 地区列表-change
 			handelAreaList(e) {

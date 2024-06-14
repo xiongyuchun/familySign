@@ -255,7 +255,13 @@
 				})
 			},
 			chat(conversation) {
-				this.$U.gotoPage(`/pages/im/privateChat?to=${conversation.userId}`)
+				// console.log('conversation:', conversation)
+				let obj = {
+					id: conversation.userId,
+					name: conversation.data.name,
+					avatar: conversation.data.avatar
+				}
+				this.$U.gotoPage(`/pages/im/privateChat?to=${JSON.stringify(obj)}`)
 			},
 			showAction(conversation) {
 				this.actionPopup.conversation = conversation;
@@ -353,7 +359,7 @@
 		width: 50rpx;
 		height: 50rpx;
 		font-size: 34rpx;
-		background: url("http://182.61.31.42:1001/images/action.png") no-repeat center;
+		background: url("http://182.61.31.42:1001/static/images/action.png") no-repeat center;
 		background-size: 28rpx 30rpx;
 	}
 

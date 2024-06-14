@@ -8,10 +8,9 @@
 			}
 			const user = {
 				id:"lwm007", //im必填，最大长度60字符
-				data: {
-					"avatar":"https://img1.baidu.com/it/u=3113252500,2974603579&fm=253&fmt=auto&app=138&f=JPEG?w=800&h=1440",
-					"name":"Simon"
-				}
+				"avatar":"https://img1.baidu.com/it/u=3113252500,2974603579&fm=253&fmt=auto&app=138&f=JPEG?w=800&h=1440",
+				"name":"Simon"
+				
 			}
 			uni.setStorageSync('currentUser', user);
 		},
