@@ -1,84 +1,101 @@
 <template>
-	<view class="upload-info">
-		<view class="top-bg">
-			<img class="w-100 bg-upload" src="@/pages/sub-packages-doctor/static/bg-upload.png" alt="" srcset="">
-			<view :style="{ height: statusBarHeight }" class="w-100"></view>
-			<view class="title text-white font flex justify-center align-center">
-				<view @click="$U.backPage(1)">
-					<uni-icons class="back" type="back" size="20" color="#fff"></uni-icons>
+	<scroll-view ref="scrollView" scroll-y="true">
+		<view class="upload-info">
+			<view class="top-bg">
+				<img class="w-100 bg-upload" src="@/pages/sub-packages-doctor/static/bg-upload.png" alt="" srcset="">
+				<view :style="{ height: statusBarHeight }" class="w-100"></view>
+				<view class="title text-white font flex justify-center align-center">
+					<view @click="$U.backPage(1)">
+						<uni-icons class="back" type="back" size="20" color="#fff"></uni-icons>
+					</view>
+					<view class="">注册</view>
 				</view>
-				<view class="">注册</view>
 			</view>
-		</view>
-		<view style="padding: 0 30rpx; position: relative; margin-top: -300rpx;">
-			<view class="upload-info_item">
-				<uni-forms ref="baseForm" :modelValue="alignmentFormData" label-position="top">
-					<uni-forms-item label="头像" required>
-						<view class="flex flex-column justify-center align-center" @click="chooseImage('HeadImgUrl')">
-							<img v-if="baseFormData.HeadImgUrl" style="width: 128rpx; height: 128rpx;"
-								:src="baseFormData.HeadImgUrl" alt="" srcset="">
-							<img v-else style="width: 128rpx; height: 128rpx;" src="http://182.61.31.42:1001/static/default.jpg" alt=""
-								srcset="">
-							<view style="color: #5581FF; font-size: 20rpx;">更换头像</view>
-						</view>
-					</uni-forms-item>
-					<uni-forms-item label="姓名" required>
-						<uni-easyinput v-model="baseFormData.Name" placeholder="请输入姓名" />
-					</uni-forms-item>
-					<uni-forms-item label="身份证号" required>
-						<uni-easyinput v-model="baseFormData.IDCard" placeholder="请输入身份证号" />
-					</uni-forms-item>
-					<uni-forms-item label="性别" required>
-						<uni-data-checkbox v-model="baseFormData.Sex" :localdata="sexs" />
-					</uni-forms-item>
-					<uni-forms-item label="手机号" required>
-						<uni-easyinput v-model="baseFormData.PhoneNumber" placeholder="请输入手机号码" />
-					</uni-forms-item>
-					<uni-forms-item label-width="300" label="工作单位" required>
-						<uni-data-picker placeholder="请输入工作单位" popup-title="请选择所在地区" :localdata="dataTree" v-model="baseFormData.UnitId"
-							@change="onchange" @nodeclick="onnodeclick" @popupopened="onpopupopened" @popupclosed="onpopupclosed">
-						</uni-data-picker>
-					</uni-forms-item>
-					<uni-forms-item label-width="300" label="上传身份证正反面" required>
-						<text class="tip flex">请拍摄并上传你的有效身份证</text>
-						<view class="flex">
-							<img @click="chooseImage('IDCardFrontUrl')" v-if="baseFormData.IDCardFrontUrl" class="id-card" :src="baseFormData.IDCardFrontUrl" alt=""
-								srcset="" style="margin-right: 40rpx;">
-							<img @click="chooseImage('IDCardFrontUrl')" v-else class="id-card" src="@/pages/sub-packages-doctor/static/idcard1.png" alt="" srcset=""
-								style="margin-right: 40rpx;">
-							<img @click="chooseImage('IDCardBackUrl')" v-if="baseFormData.IDCardBackUrl" class="id-card" :src="baseFormData.IDCardBackUrl" alt=""
-								srcset="" style="margin-right: 40rpx;">
-							<img @click="chooseImage('IDCardBackUrl')" v-else class="id-card" src="@/pages/sub-packages-doctor/static/idcard2.png" alt="" srcset="">
-						</view>
-					</uni-forms-item>
-					<uni-forms-item label-width="300" label="职业资格证书" required>
-						<text class="tip flex">请拍摄并上传你的职业资格证书</text>
-						<view class="flex justify-center">
-							<img @click="chooseImage('CertificationUrl')" v-if="baseFormData.CertificationUrl" class="id-card" :src="baseFormData.CertificationUrl" alt=""
-								srcset="" style="margin-right: 40rpx;">
-							<img @click="chooseImage('CertificationUrl')" v-else class="id-card" src="@/pages/sub-packages-doctor/static/professionalCertificate.png" alt="" srcset=""
-								style="margin-right: 40rpx;">
-						</view>
-					</uni-forms-item>
-					<uni-forms-item label-width="280rpx" label="登录密码" name="Password" label-align="left" required>
-						<uni-easyinput v-model="baseFormData.Password" placeholder="请输入8到16位密码" />
-					</uni-forms-item>
-					<uni-forms-item label-width="280rpx" label="确认密码" name="confirmPassword" label-align="left" required>
-						<uni-easyinput v-model="baseFormData.confirmPassword" placeholder="请再次确认密码" />
-					</uni-forms-item>
-				</uni-forms>
+			<view style="padding: 0 30rpx; position: relative; margin-top: -300rpx;">
+				<view class="upload-info_item">
+					<uni-forms ref="baseForm" :modelValue="alignmentFormData" label-position="top">
+						<uni-forms-item label="头像" required>
+							<view class="flex flex-column justify-center align-center" @click="chooseImage('HeadImgUrl')">
+								<img v-if="baseFormData.HeadImgUrl" style="width: 128rpx; height: 128rpx;"
+									:src="baseFormData.HeadImgUrl" alt="" srcset="">
+								<img v-else style="width: 128rpx; height: 128rpx;" src="https://jtysqy.cuixiaoler.com:1703/static/default.jpg" alt=""
+									srcset="">
+								<view style="color: #5581FF; font-size: 20rpx;">更换头像</view>
+							</view>
+						</uni-forms-item>
+						<uni-forms-item label="姓名" required>
+							<uni-easyinput v-model="baseFormData.Name" placeholder="请输入姓名" />
+						</uni-forms-item>
+						<uni-forms-item label="身份证号" required>
+							<uni-easyinput v-model="baseFormData.IDCard" placeholder="请输入身份证号" />
+						</uni-forms-item>
+						<uni-forms-item label="性别" required>
+							<uni-data-checkbox v-model="baseFormData.Sex" :localdata="sexs" />
+						</uni-forms-item>
+						<uni-forms-item label="手机号" required>
+							<uni-easyinput v-model="baseFormData.PhoneNumber" placeholder="请输入手机号码" />
+						</uni-forms-item>
+						<uni-forms-item label-width="300" label="工作单位" required>
+							<uni-data-picker placeholder="请输入工作单位" popup-title="请选择所在地区" :localdata="dataTree" v-model="baseFormData.UnitId"
+								@change="onchange" @nodeclick="onnodeclick" @popupopened="onpopupopened" @popupclosed="onpopupclosed">
+							</uni-data-picker>
+						</uni-forms-item>
+						<uni-forms-item label-width="300" label="上传身份证正反面" required>
+							<text class="tip flex">请拍摄并上传你的有效身份证</text>
+							<view class="flex">
+								<img @click="chooseImage('IDCardFrontUrl')" v-if="baseFormData.IDCardFrontUrl" class="id-card" :src="baseFormData.IDCardFrontUrl" alt=""
+									srcset="" style="margin-right: 40rpx;">
+								<img @click="chooseImage('IDCardFrontUrl')" v-else class="id-card" src="@/pages/sub-packages-doctor/static/idcard1.png" alt="" srcset=""
+									style="margin-right: 40rpx;">
+								<img @click="chooseImage('IDCardBackUrl')" v-if="baseFormData.IDCardBackUrl" class="id-card" :src="baseFormData.IDCardBackUrl" alt=""
+									srcset="" style="margin-right: 40rpx;">
+								<img @click="chooseImage('IDCardBackUrl')" v-else class="id-card" src="@/pages/sub-packages-doctor/static/idcard2.png" alt="" srcset="">
+							</view>
+						</uni-forms-item>
+						<uni-forms-item label-width="300" label="职业资格证书" required>
+							<text class="tip flex">请拍摄并上传你的职业资格证书</text>
+							<view class="flex justify-center">
+								<img @click="chooseImage('CertificationUrl')" v-if="baseFormData.CertificationUrl" class="id-card" :src="baseFormData.CertificationUrl" alt=""
+									srcset="" style="margin-right: 40rpx;">
+								<img @click="chooseImage('CertificationUrl')" v-else class="id-card" src="@/pages/sub-packages-doctor/static/professionalCertificate.png" alt="" srcset=""
+									style="margin-right: 40rpx;">
+							</view>
+						</uni-forms-item>
+						<uni-forms-item label-width="280rpx" label="登录密码" name="Password" label-align="left" required>
+							<uni-easyinput v-model="baseFormData.Password" placeholder="请输入8到16位密码" />
+						</uni-forms-item>
+						<uni-forms-item label-width="280rpx" label="确认密码" name="confirmPassword" label-align="left" required>
+							<uni-easyinput v-model="baseFormData.confirmPassword" placeholder="请再次确认密码" />
+						</uni-forms-item>
+					</uni-forms>
+				</view>
 			</view>
+			<view class="auth">
+				<label @click="handAuth" class="auth-radio">
+					<radio color="rgb(0, 122, 255)" :checked="auth" />
+					<text style="line-height: 1;">
+						我已阅读
+						<text @click.stop="queryPrivacyAuth" class="auth-text">(用户协议及隐私条款)</text>
+					</text>
+				</label>
+			</view>
+			<view @click="register" class="flex justify-center w-100 pb-5 pt-5">
+				<view class="submit flex align-center justify-center">确定</view>
+			</view>
+			<privacy-authorization ref="privacyAuth"></privacy-authorization>
 		</view>
-		<view @click="register" class="flex justify-center w-100 pb-5 pt-5">
-			<view class="submit flex align-center justify-center">确定</view>
-		</view>
-	</view>
+	</scroll-view>
 </template>
 
 <script>
+	import privacyAuthorization from './components/privacy-authorization/privacy-authorization.vue';
 	export default {
+		components: {
+			privacyAuthorization
+		},
 		data() {
 			return {
+				auth: false,
 				statusBarHeight: 25,
 				// 基础表单数据
 				baseFormData: {
@@ -145,6 +162,14 @@
 			this.statusBarHeight = uni.getSystemInfoSync().statusBarHeight + 'px'
 		},
 		methods: {
+			// 隐私协议点击
+			handAuth() {
+				this.auth = !this.auth;
+			},
+			// 查看隐私协议-打开弹窗
+			queryPrivacyAuth() {
+				this.$refs.privacyAuth.open()
+			},
 			// 立即注册
 			async register() {
 				const { Name, Sex, PhoneNumber, IDCard, verify, Password, confirmPassword, UnitId } = this.baseFormData;
@@ -182,6 +207,10 @@
 				}
 				if(Password !== confirmPassword) {
 					this.$U.checkTip('登录密码与确认密码不一致！')
+					return;
+				}
+				if(!this.auth) {
+					this.$U.checkTip('请先阅读用户协议及隐私条款')
 					return;
 				}
 				// 先上传图片
@@ -341,6 +370,24 @@
 		left: 0;
 		width: 100%;
 		height: 493rpx;
+	}
+	
+	.auth {
+		padding: 20rpx;
+		font-size: 30rpx;
+		
+		&-radio {
+			display: flex;
+			align-items: center;
+			
+			radio {
+				transform: scale(0.7);
+			}
+		}
+		
+		&-text {
+			color: #2878ff;
+		}
 	}
 
 	::v-deep .is-input-border {

@@ -1,7 +1,7 @@
 <template>
 	<view class="">
 		<view class="top-bg">
-			<img style="width: 100%;" src="http://182.61.31.42:1001/static/my/user-register.png" alt="" srcset="">
+			<img style="width: 100%;" src="https://jtysqy.cuixiaoler.com:1703/static/my/user-register.png" alt="" srcset="">
 		</view>
 		<view class="register-main">
 			<view class="bg-white px-3 register-main-item">
@@ -21,13 +21,13 @@
 					<uni-forms-item label-width="280rpx" label="手机号" name="PhoneNumber" label-align="left" required>
 						<uni-easyinput v-model="baseFormData.PhoneNumber" placeholder="请输入手机号" />
 					</uni-forms-item>
-					<uni-forms-item label-width="280rpx" label="验证码" label-align="left" required>
+					<!-- <uni-forms-item label-width="280rpx" label="验证码" label-align="left" required>
 						<uni-easyinput v-model="baseFormData.verify" placeholder="请输入验证码">
 							<template v-slot:right>
 								<view class="get-verify">获取验证码</view>
 							</template>
 						</uni-easyinput>
-					</uni-forms-item>
+					</uni-forms-item> -->
 					<uni-forms-item label-width="280rpx" label="选择居住地" name="City" label-align="left" required>
 						<!-- <uni-data-picker placeholder="请选择居住地" popup-title="请选择所在地区" :localdata="dataTree"
 							v-model="baseFormData.City" @change="onchange" @nodeclick="onnodeclick"
@@ -44,22 +44,36 @@
 				</uni-forms>
 			</view>
 		</view>
+		<view class="auth">
+			<label @click="handAuth" class="auth-radio">
+				<radio color="rgb(0, 122, 255)" :checked="auth" />
+				<text style="line-height: 1;">
+					我已阅读
+					<text @click.stop="queryPrivacyAuth" class="auth-text">(用户协议及隐私条款)</text>
+				</text>
+			</label>
+		</view>
 		<view class="submit">
 			<view @click="register()" class="submit-btn">
 				立即注册
 			</view>
 		</view>
+		<privacy-authorization ref="privacyAuth"></privacy-authorization>
 	</view>
 </template>
 
 <script>
 	import Region from './components/city-select/index.vue';
+	import privacyAuthorization from './components/privacy-authorization/privacy-authorization.vue';
 	export default {
 		components: {
-			Region
+			Region,
+			privacyAuthorization
 		},
 		data() {
 			return {
+				// 隐私协议
+				auth: false,
 				// 基础表单数据
 				baseFormData: {
 					Name: '',
@@ -114,6 +128,14 @@
 			}
 		},
 		methods: {
+			// 隐私协议点击
+			handAuth() {
+				this.auth = !this.auth;
+			},
+			// 查看隐私协议-打开弹窗
+			queryPrivacyAuth() {
+				this.$refs.privacyAuth.open()
+			},
 			// 当前选中的地区
 			regionClick(e) {
 				this.baseFormData.Province = e[0];
@@ -165,6 +187,10 @@
 					this.$U.checkTip('登录密码与确认密码不一致！')
 					return;
 				}
+				if(!this.auth) {
+					this.$U.checkTip('请先阅读用户协议及隐私条款')
+					return;
+				}
 				this.$H.post('/api/APP/WXUser/Register', this.baseFormData)
 					.then(res => {
 						if(res.Code === 200) {
@@ -204,6 +230,23 @@
 			box-shadow: 0rpx 0rpx 40rpx 0rpx rgba(0, 0, 0, 0.06);
 		}
 		
+	}
+	.auth {
+		padding: 20rpx;
+		font-size: 30rpx;
+		
+		&-radio {
+			display: flex;
+			align-items: center;
+			
+			radio {
+				transform: scale(0.7);
+			}
+		}
+		
+		&-text {
+			color: #2878ff;
+		}
 	}
 	.submit {
 		width: 100%;
