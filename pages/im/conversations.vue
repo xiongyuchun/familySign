@@ -359,7 +359,7 @@
 		width: 50rpx;
 		height: 50rpx;
 		font-size: 34rpx;
-		background: url("http://182.61.31.42:1001/static/images/action.png") no-repeat center;
+		background: url("https://jtysqy.cuixiaoler.com:1703/static/images/action.png") no-repeat center;
 		background-size: 28rpx 30rpx;
 	}
 

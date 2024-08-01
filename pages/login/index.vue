@@ -1,7 +1,7 @@
 <template>
 	<view class="">
 		<view class="top-bg">
-			<img style="width: 100%;" src="http://182.61.31.42:1001/static/my/user-login.png" alt="" srcset="">
+			<img style="width: 100%;" src="https://jtysqy.cuixiaoler.com:1703/static/my/user-login.png" alt="" srcset="">
 			<text class="top-bg-txt">用户登录</text>
 		</view>
 		<view class="register-main">
@@ -10,7 +10,7 @@
 					<uni-forms-item label-width="280rpx" label="账户" label-align="left">
 						<template v-slot:label>
 							<view class="flex align-center height-50rpx">
-								<img style="width: 38rpx; height: 49rpx;" class="mr-2" src="http://182.61.31.42:1001/static/my/username.png" alt="">
+								<img style="width: 38rpx; height: 49rpx;" class="mr-2" src="https://jtysqy.cuixiaoler.com:1703/static/my/username.png" alt="">
 								<text style="font-size: 34rpx; color: #333;">账户</text>
 							</view>
 						</template>
@@ -19,7 +19,7 @@
 					<uni-forms-item label-width="280rpx" label="密码" label-align="left">
 						<template v-slot:label>
 							<view class="flex align-center height-50rpx">
-								<img style="width: 42rpx; height: 53rpx;" class="mr-2" src="http://182.61.31.42:1001/static/my/password.png" alt="">
+								<img style="width: 42rpx; height: 53rpx;" class="mr-2" src="https://jtysqy.cuixiaoler.com:1703/static/my/password.png" alt="">
 								<text style="font-size: 34rpx; color: #333;">密码</text>
 							</view>
 						</template>
@@ -28,7 +28,7 @@
 					<uni-forms-item label-width="280rpx" label="居住地" label-align="left">
 						<template v-slot:label>
 							<view class="flex align-center height-50rpx">
-								<img style="width: 44rpx; height: 46rpx;" class="mr-2" src="http://182.61.31.42:1001/static/my/address.png" alt="">
+								<img style="width: 44rpx; height: 46rpx;" class="mr-2" src="https://jtysqy.cuixiaoler.com:1703/static/my/address.png" alt="">
 								<text style="font-size: 34rpx; color: #333;">居住地</text>
 							</view>
 						</template>
@@ -40,6 +40,7 @@
 		<view class="submit">
 			<view @click="login" class="submit-btn">
 				立即登录
+				<!-- <button @agreeprivacyauthorization="login" open-type="agreePrivacyAuthorization">立即登录</button> -->
 			</view>
 			<view class="" style="font-size: 27rpx; color: #999; margin-top: 40rpx;">
 				<text>还没有账号？</text><text @click="$U.gotoPage('/pages/login/register')" style="color: #1A85EB;">注册</text>
@@ -69,6 +70,7 @@
 				this.$U.gotoPageAndClosePage('/pages/login/login-doctor');
 			},
 			login() {
+				return;
 				const { Account, Password} = this.baseFormData
 				if(this.$U.dateUtils.isEmpty(Account)) {
 					this.$U.checkTip('账户不能为空！')

@@ -82,6 +82,13 @@
 		},
 		{
 			"path": "pages/im/privateChat"
+		},
+		{
+			"path" : "pages/login/components/privacy-authorization/privacy-authorization",
+			"style" : 
+			{
+				"navigationBarTitleText" : ""
+			}
 		}
 	],
 	"subPackages": [{

@@ -23,7 +23,7 @@
 						</view>
 						<view class="like_img">
 							<!-- <image :src="pic" v-for="pic in item.imgUrl"></image> -->
-							<img style="width: 90rpx; height: 90rpx;" src="http://182.61.31.42:1001/static/default.jpg" alt="" srcset="">
+							<img style="width: 90rpx; height: 90rpx;" src="https://jtysqy.cuixiaoler.com:1703/static/default.jpg" alt="" srcset="">
 						</view>
 					</view>
 				</view>

@@ -103,7 +103,7 @@
     },
     /* 小程序特有相关 */
     "mp-weixin" : {
-        "appid" : "wx19a24cec4d162509",
+        "appid" : "wx246909c328df4c34",
         /* 开启分包配置 */
         "optimization" : {
             "subPackages" : true
@@ -127,7 +127,8 @@
             "onLocationChange",
             "startLocationUpdateBackground",
             "chooseAddress"
-        ]
+        ],
+		"__usePrivacyCheck__": true
     },
     "mp-alipay" : {
         "usingComponents" : true,
@@ -182,7 +183,7 @@
             "disableHostCheck" : true,
             "proxy" : {
                 "/" : {
-                    "target" : "http://182.61.31.42:1001",
+                    "target" : "https://jtysqy.cuixiaoler.com:1703",
                     "changeOrigin" : true,
                     "secure" : false
                 }

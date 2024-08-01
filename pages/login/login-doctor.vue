@@ -1,7 +1,7 @@
 <template>
 	<view class="">
 		<view class="top-bg">
-			<img style="width: 100%;" src="http://182.61.31.42:1001/static/my/user-login.png" alt="" srcset="">
+			<img style="width: 100%;" src="https://jtysqy.cuixiaoler.com:1703/static/my/user-login.png" alt="" srcset="">
 			<text class="top-bg-txt">医生登录</text>
 		</view>
 		<view class="register-main">
@@ -10,7 +10,7 @@
 					<uni-forms-item label-width="280rpx" label="账户" label-align="left">
 						<template v-slot:label>
 							<view class="flex align-center height-50rpx">
-								<img style="width: 38rpx; height: 49rpx;" class="mr-2" src="http://182.61.31.42:1001/static/my/username.png" alt="">
+								<img style="width: 38rpx; height: 49rpx;" class="mr-2" src="https://jtysqy.cuixiaoler.com:1703/static/my/username.png" alt="">
 								<text style="font-size: 34rpx; color: #333;">账户</text>
 							</view>
 						</template>
@@ -19,7 +19,7 @@
 					<uni-forms-item label-width="280rpx" label="密码" label-align="left">
 						<template v-slot:label>
 							<view class="flex align-center height-50rpx">
-								<img style="width: 42rpx; height: 53rpx;" class="mr-2" src="http://182.61.31.42:1001/static/my/password.png" alt="">
+								<img style="width: 42rpx; height: 53rpx;" class="mr-2" src="https://jtysqy.cuixiaoler.com:1703/static/my/password.png" alt="">
 								<text style="font-size: 34rpx; color: #333;">密码</text>
 							</view>
 						</template>
@@ -28,7 +28,7 @@
 					<uni-forms-item label-width="280rpx" label="单位" label-align="left">
 						<template v-slot:label>
 							<view class="flex align-center height-50rpx">
-								<img style="width: 44rpx; height: 46rpx;" class="mr-2" src="http://182.61.31.42:1001/static/my/address.png" alt="">
+								<img style="width: 44rpx; height: 46rpx;" class="mr-2" src="https://jtysqy.cuixiaoler.com:1703/static/my/address.png" alt="">
 								<text style="font-size: 34rpx; color: #333;">单位</text>
 							</view>
 						</template>
