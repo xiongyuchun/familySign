@@ -29,9 +29,9 @@
 	/* 官方css库 */
 	/* @import "./common/uni.css"; */
 	/* 自定义图标库 */
-	@import "./static/iconfont/iconfont.css";
+	/* @import "./static/iconfont/iconfont.css"; */
 	/* 动画库 */
-	@import "./common/animate.css";
+	/* @import "./common/animate.css"; */
 	/* 自定义样式库 */
 	@import "./common/free.css";
 	/* 全局样式 */

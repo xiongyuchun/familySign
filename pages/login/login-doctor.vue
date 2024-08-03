@@ -23,7 +23,7 @@
 								<text style="font-size: 34rpx; color: #333;">密码</text>
 							</view>
 						</template>
-						<uni-easyinput v-model="baseFormData.Password" placeholder="请输入密码" />
+						<uni-easyinput v-model="baseFormData.Password" type="password" placeholder="请输入密码" />
 					</uni-forms-item>
 					<uni-forms-item label-width="280rpx" label="单位" label-align="left">
 						<template v-slot:label>

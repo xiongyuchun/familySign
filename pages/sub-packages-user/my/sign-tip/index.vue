@@ -6,7 +6,7 @@
 </template>
 
 <script>
-	import signTip from '@/components/sign-tip/index.vue';
+	import signTip from '@/pages/sub-packages-user/components/sign-tip/index.vue';
 	export default {
 		components: {
 			signTip

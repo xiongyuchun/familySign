@@ -36,10 +36,10 @@
 						<Region @region="regionClick" :regionStr="regionStr" bg="#fff" />
 					</uni-forms-item>
 					<uni-forms-item label-width="280rpx" label="登录密码" name="Password" label-align="left" required>
-						<uni-easyinput v-model="baseFormData.Password" placeholder="请输入8到16位密码" />
+						<uni-easyinput v-model="baseFormData.Password" type="password" placeholder="请输入8到16位密码" />
 					</uni-forms-item>
 					<uni-forms-item label-width="280rpx" label="确认密码" name="confirmPassword" label-align="left" required>
-						<uni-easyinput v-model="baseFormData.confirmPassword" placeholder="请再次确认密码" />
+						<uni-easyinput v-model="baseFormData.confirmPassword" type="password" placeholder="请再次确认密码" />
 					</uni-forms-item>
 				</uni-forms>
 			</view>
@@ -179,6 +179,10 @@
 					this.$U.checkTip('登录密码不能为空！')
 					return;
 				}
+				if(!this.$U.dateUtils.validatePassword(Password)) {
+					this.$U.checkTip('密码必须8-16位，字母和数字组合！')
+					return;
+				}
 				if(this.$U.dateUtils.isEmpty(confirmPassword)) {
 					this.$U.checkTip('确认密码不能为空！')
 					return;
@@ -191,7 +195,7 @@
 					this.$U.checkTip('请先阅读用户协议及隐私条款')
 					return;
 				}
-				this.$H.post('/api/APP/WXUser/Register', this.baseFormData)
+				this.$H.post('/api/APP/WXUser/Register', this.baseFormData, {}, {show: true, text: '加载中'})
 					.then(res => {
 						if(res.Code === 200) {
 							this.$U.gotoPage('/pages/login/index')

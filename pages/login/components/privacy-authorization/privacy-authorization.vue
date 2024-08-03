@@ -1,7 +1,7 @@
 <template>
 	<view v-if="show" class="privacy-auth">
 		<view @click.stop="hide" class="privacy-auth-container">
-			<scroll-view scroll-y="true" class="privacy-auth-container-main">
+			<scroll-view @click.stop="" scroll-y="true" class="privacy-auth-container-main">
 				<view>
 					<view class="privacy-auth-container-main-title">用户协议及隐私保密条款</view>
 					<view>景德镇市三院家庭医生签约小程序隐私保护说明</view>

@@ -21,7 +21,7 @@
 </template>
 
 <script>
-	import signList from '@/components/doctor/sign-list/index'
+	import signList from '@/pages/sub-packages-doctor/components/doctor/sign-list/index'
 	export default {
 		components: {
 			signList

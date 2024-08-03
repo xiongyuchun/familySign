@@ -147,7 +147,14 @@ var dateUtils = {
 		
 		// 使用test方法检查是否匹配
 		return idCardRegex.test(id);
-	}
+	},
+	validatePassword: function(password) { // 密码复杂度校验  8-16位长度，只能数字和字母组合
+		// 正则表达式，检查密码是否只包含数字和字母，并且长度在8到16位之间
+		const regex = /^(?=.*[0-9])(?=.*[a-zA-Z])[a-zA-Z0-9]{8,16}$/;
+	
+		// 测试密码是否符合规则
+		return regex.test(password);
+	},
 };
 
 export default {

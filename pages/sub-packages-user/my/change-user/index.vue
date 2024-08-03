@@ -94,7 +94,7 @@
 					this.$U.checkTip('请输入搜索的身份证号！')
 					return;
 				}
-				this.$H.post('/api/APP/WXUser/CreateUserRelation', { IdCard: this.addUserSearch })
+				this.$H.post('/api/APP/WXUser/CreateUserRelation', { IdCard: this.addUserSearch }, {}, { loading: true })
 					.then(res => {
 						
 					})

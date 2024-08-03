@@ -54,7 +54,7 @@
 </template>
 
 <script>
-	import signList from '@/components/doctor/sign-list/index'
+	import signList from '@/pages/sub-packages-doctor/components/doctor/sign-list/index'
 	import { mapState } from 'vuex'
 	export default {
 		components: {

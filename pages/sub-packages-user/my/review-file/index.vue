@@ -53,7 +53,7 @@
 </template>
 
 <script>
-	import mySteps from '@/components/my-steps/index.vue';
+	import mySteps from '@/pages/sub-packages-user/components/my-steps/index.vue';
 	export default {
 		components: {
 			mySteps

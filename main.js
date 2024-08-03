@@ -2,8 +2,8 @@ import Vue from 'vue'
 import App from './App'
 import store from './store/index.js';
 // 引入主包依赖
-import TencentCloudChat  from "@tencentcloud/chat";
-import TUICore from "@tencentcloud/tui-core";
+// import TencentCloudChat  from "@tencentcloud/chat";
+// import TUICore from "@tencentcloud/tui-core";
 import './uni.promisify.adaptor'
 import VueCompositionAPI from "@vue/composition-api";
 Vue.use(VueCompositionAPI);

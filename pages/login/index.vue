@@ -23,7 +23,7 @@
 								<text style="font-size: 34rpx; color: #333;">密码</text>
 							</view>
 						</template>
-						<uni-easyinput v-model="baseFormData.Password" placeholder="请输入密码" />
+						<uni-easyinput v-model="baseFormData.Password" type="password" placeholder="请输入密码" />
 					</uni-forms-item>
 					<uni-forms-item label-width="280rpx" label="居住地" label-align="left">
 						<template v-slot:label>
@@ -40,7 +40,6 @@
 		<view class="submit">
 			<view @click="login" class="submit-btn">
 				立即登录
-				<!-- <button @agreeprivacyauthorization="login" open-type="agreePrivacyAuthorization">立即登录</button> -->
 			</view>
 			<view class="" style="font-size: 27rpx; color: #999; margin-top: 40rpx;">
 				<text>还没有账号？</text><text @click="$U.gotoPage('/pages/login/register')" style="color: #1A85EB;">注册</text>
@@ -70,7 +69,6 @@
 				this.$U.gotoPageAndClosePage('/pages/login/login-doctor');
 			},
 			login() {
-				return;
 				const { Account, Password} = this.baseFormData
 				if(this.$U.dateUtils.isEmpty(Account)) {
 					this.$U.checkTip('账户不能为空！')

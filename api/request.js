@@ -1,5 +1,6 @@
 import $C from '@/common/config.js';
 import $store from '@/store/index.js';
+import $U from '@/common/util.js';
 export default {
 	common:{
 		method: 'GET',
@@ -21,13 +22,12 @@ export default {
 		if(!options.header.Token){
 			options.header.Token = $store.getters.token
 		}
-		
+		if(this.common.loading.show) {
+			uni.showLoading({
+				title: this.common.loading.text
+			});
+		}
 		return new Promise((res,rej)=>{
-			if(this.common.loading.show) {
-				uni.showLoading({
-					title: this.common.loading.text
-				});
-			}
 			uni.request({
 				...options,
 				success: (result) => {
@@ -35,8 +35,11 @@ export default {
 					// 请求服务端失败
 					// 401  跳转到登录页
 					if(result.data.Code === 401) {
-						console.log('401')
-						this.$U.gotoPageAndClosePage('/pages/login/index')
+						uni.showToast({
+							title: result.data.Message || '登录过期',
+							icon: 'none'
+						});
+						$U.gotoPageAndClosePage('/pages/login/index')
 						return rej(result.data)
 					}
 					if (result.data.Code !== 200) {
