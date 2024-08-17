@@ -2,10 +2,10 @@
 	<view class="">
 		<my-navbar title="切换成员"></my-navbar>
 		<view class="user-list">
-			<view @longpress="handleLongPress(index)" @click="changeList(item, index)" v-for="(item, index) in sign_list" class="user-item" :class="{'user-item-active' : item.active}">
+			<view @longpress="handleLongPress(index)" @click="changeList(item, index)" v-for="(item, index) in sign_list" :key="index" class="user-item" :class="{'user-item-active' : item.active}">
 				<view class="flex">
 					<img v-if="item.HeadImgUrl" class="user-item_photo" :src="webUrl + '/' + item.HeadImgUrl" alt="" srcset="">
-					<img v-else class="user-item_photo" src="https://jtysqy.cuixiaoler.com:1703/static/default.jpg" alt="" srcset="">
+					<img v-else class="user-item_photo" :src="$C.imgDomain('/static/default.jpg')" alt="" srcset="">
 					<view class="flex flex-column" style="justify-content: space-around;">
 						<text class="font" style="color: #0A1117;">{{ item.Name }}</text>
 						<text class="sign" :class="{'sign-active' : item.SignStatus === 1}">{{item.SignStatus === 1 ? '已签约' : '未签约'}}</text>

@@ -1,7 +1,7 @@
 <template>
 	<view class="">
 		<view class="top-bg">
-			<img style="width: 100%;" src="https://jtysqy.cuixiaoler.com:1703/static/my/user-register.png" alt="" srcset="">
+			<img style="width: 100%;" :src="$C.imgDomain('/static/my/user-register.png')" alt="" srcset="">
 		</view>
 		<view class="register-main">
 			<view class="bg-white px-3 register-main-item">

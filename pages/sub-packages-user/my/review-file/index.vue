@@ -11,7 +11,7 @@
 		<view class="user-info pl-3">
 			<view class="user-info-main flex">
 				<view class="user-info-main_left">
-					<img class="user-photo" src="https://jtysqy.cuixiaoler.com:1703/static/default.jpg" alt="" srcset="">
+					<img class="user-photo" :src="$C.imgDomain('/static/default.jpg')" alt="" srcset="">
 				</view>
 				<view class="user-info-main_right w-100">
 					<view class="user-info-main_right_top flex justify-between align-end w-100">

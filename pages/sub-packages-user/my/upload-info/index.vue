@@ -17,7 +17,7 @@
 						<view class="flex flex-column justify-center align-center" @click="chooseImage('HeadImgUrl')">
 							<img v-if="baseFormData.HeadImgUrl" style="width: 128rpx; height: 128rpx;"
 								:src="webUrl + '/' + baseFormData.HeadImgUrl" alt="" srcset="">
-							<img v-else style="width: 128rpx; height: 128rpx;" src="https://jtysqy.cuixiaoler.com:1703/static/default.jpg" alt=""
+							<img v-else style="width: 128rpx; height: 128rpx;" :src="$C.imgDomain('/static/default.jpg')" alt=""
 								srcset="">
 							<view style="color: #5581FF; font-size: 20rpx;">更换头像</view>
 						</view>
@@ -186,10 +186,10 @@
 			// 确定
 			async submit() {
 				const { HeadImgUrl, Name, IDCard, introduction, Sex, PhoneNumber, City, IDCardFrontUrl, IDCardBackUrl } = this.baseFormData
-				if(this.$U.dateUtils.isEmpty(HeadImgUrl)) {
-					this.$U.checkTip('请上传头像！')
-					return
-				}
+				// if(this.$U.dateUtils.isEmpty(HeadImgUrl)) {
+				// 	this.$U.checkTip('请上传头像！')
+				// 	return
+				// }
 				if(this.$U.dateUtils.isEmpty(Name)) {
 					this.$U.checkTip('姓名不能为空！')
 					return

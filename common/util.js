@@ -1,3 +1,5 @@
+import $C from './config.js';
+
 // 监听网络
 function onNetWork(){
 	let func = (res)=>{

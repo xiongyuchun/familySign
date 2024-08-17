@@ -22,24 +22,24 @@
 		<view class="grid px-3 mt-5">
 			<view class="flex mb-3">
 				<view @click="$U.gotoPage('/pages/sub-packages-user/my/add-file/index')" class="grid-shadow flex align-center bg-white flex-1 mr-3 bg-white px-1">
-					<img src="https://jtysqy.cuixiaoler.com:1703/static/index/uploadInfo.png" alt="" srcset=""
+					<img :src="$C.imgDomain('/static/index/uploadInfo.png')" alt="" srcset=""
 						style="width: 108rpx; height: 103rpx;margin-right: 4rpx;">
 					<text class="font-30 text-333">上传健康档案</text>
 				</view>
 				<view @click="$U.gotoPage('/pages/sub-packages-user/my/un-sign/index?title=在线签约')" class="grid-shadow flex align-center bg-white flex-1 bg-white px-3">
-					<img src="https://jtysqy.cuixiaoler.com:1703/static/index/sign.png" alt="" srcset=""
+					<img :src="$C.imgDomain('/static/index/sign.png')" alt="" srcset=""
 						style="width: 95rpx; height: 101rpx;margin-right: 19rpx;">
 					<text class="font-30 text-333">在线签约</text>
 				</view>
 			</view>
 			<view class="flex">
 				<view @click="$U.gotoPage(`/pages/sub-packages-user/my/online-signing/index?title=在线续约`)" class="grid-shadow flex align-center bg-white flex-1 mr-3 bg-white px-2">
-					<img src="https://jtysqy.cuixiaoler.com:1703/static/index/container.png" alt="" srcset=""
+					<img :src="$C.imgDomain('/static/index/container.png')" alt="" srcset=""
 						style="width: 93rpx; height: 101rpx;margin-right: 9rpx;">
 					<text class="font-30 text-333">在线续约</text>
 				</view>
 				<view @click="$U.gotoPage('/pages/sub-packages-user/my/doctor-introduction/index')" class="grid-shadow flex align-center bg-white flex-1 bg-white px-3">
-					<img src="https://jtysqy.cuixiaoler.com:1703/static/index/signdot.png" alt="" srcset=""
+					<img :src="$C.imgDomain('/static/index/signdot.png')" alt="" srcset=""
 						style="width: 114rpx; height: 83rpx;margin-right: 12rpx;">
 					<text class="font-30 text-333">签约医生</text>
 				</view>
@@ -48,15 +48,15 @@
 		<view class="px-3">
 			<view class="px-3 bg-white icon-list flex my-3 grid-shadow">
 				<view class="flex flex-column justify-center align-center">
-					<img src="https://jtysqy.cuixiaoler.com:1703/static/index/consultation.png" alt="" srcset="" style="width: 105rpx; height: 90rpx;">
+					<img :src="$C.imgDomain('/static/index/consultation.png')" alt="" srcset="" style="width: 105rpx; height: 90rpx;">
 					<text class="font-small text-333">在线咨询</text>
 				</view>
 				<view class="flex flex-column justify-center align-center">
-					<img src="https://jtysqy.cuixiaoler.com:1703/static/index/reservation.png" alt="" srcset="" style="width: 85rpx; height: 90rpx;">
+					<img :src="$C.imgDomain('/static/index/reservation.png')" alt="" srcset="" style="width: 85rpx; height: 90rpx;">
 					<text class="font-small text-333">在线预约</text>
 				</view>
 				<view @click="$U.gotoPage('/pages/sub-packages-user/my/review-file/index')" class="flex flex-column justify-center align-center">
-					<img src="https://jtysqy.cuixiaoler.com:1703/static/index/review.png" alt="" srcset="" style="width: 82rpx; height: 85rpx;">
+					<img :src="$C.imgDomain('/static/index/review.png')" alt="" srcset="" style="width: 82rpx; height: 85rpx;">
 					<text class="font-small text-333">查阅健康档案</text>
 				</view>
 			</view>
@@ -64,7 +64,7 @@
 		<view class="news px-3">
 			<view class="news-main px-3 py-3">
 				<view class="news-title">
-					<img class="news-icon" src="https://jtysqy.cuixiaoler.com:1703/static/index/news.png" alt="">
+					<img class="news-icon" :src="$C.imgDomain('/static/index/news.png')" alt="">
 					<text class="news-tip">新闻公告</text>
 				</view>
 				<block v-for="(item,index) in newsList" :key="index">

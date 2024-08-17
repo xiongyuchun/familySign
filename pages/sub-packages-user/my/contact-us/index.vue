@@ -11,7 +11,7 @@
 					<text class="color-89">0798-8443182</text>
 				</view>
 				<view class="map-info-item flex align-center">
-					<img src="https://jtysqy.cuixiaoler.com:1703/static/my/map.png" alt="" srcset="" style="width: 33rpx; height: 43rpx;">
+					<img :src="$C.imgDomain('/static/my/map.png')" alt="" srcset="" style="width: 33rpx; height: 43rpx;">
 					<text class="color-333">详细地址:</text>
 					<text class="color-89">景德镇市珠山区陶阳中路76号</text>
 				</view>
