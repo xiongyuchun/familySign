@@ -19,6 +19,7 @@ export default {
 		options.method = options.method || this.common.method
 		options.header = options.header || this.common.header
 		// 验证权限token
+		console.log('$store.getters.token:', $store.getters.token)
 		if(!options.header.Token){
 			options.header.Token = $store.getters.token
 		}
@@ -39,6 +40,8 @@ export default {
 							title: result.data.Message || '登录过期',
 							icon: 'none'
 						});
+						// 清除token
+						$store.dispatch('app/CLEAR_TOKEN')
 						$U.gotoPageAndClosePage('/pages/login/index')
 						return rej(result.data)
 					}

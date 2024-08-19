@@ -106,6 +106,15 @@
 			}
 		},
 		created() {
+			// 判断是否绑定用户，没有绑定则跳转到绑定页面
+			const token = uni.getStorageSync('token');
+			if(!token.IsBind) {
+				console.log(token);
+				// 没有登录则隐藏tabbar
+				// uni.hideTabBar({ animation: true });
+				// 没有绑定，跳转到绑定页面
+				this.$U.gotoPageAndClosePage('/pages/sub-packages-user/my/unbound-user/index');
+			}
 			if(this.$store.getters.token) {
 				uni.showTabBar({ animation: true });
 			}

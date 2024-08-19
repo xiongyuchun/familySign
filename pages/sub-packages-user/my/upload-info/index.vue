@@ -233,6 +233,15 @@
 							});
 							this.$U.gotoPageTab('/pages/index/index');
 							this.$store.dispatch('user/setUserInfo', this.baseFormData);
+							// 绑定成功，需要把token中信息改成IsBind:true;
+							const token = uni.getStorageSync('token');
+							uni.setStorage({
+								key: 'token',
+								data: {
+									...token,
+									IsBind: true
+								},
+							})
 						}
 					})
 			},
