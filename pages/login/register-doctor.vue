@@ -18,7 +18,7 @@
 							<view class="flex flex-column justify-center align-center" @click="chooseImage('HeadImgUrl')">
 								<img v-if="baseFormData.HeadImgUrl" style="width: 128rpx; height: 128rpx;"
 									:src="baseFormData.HeadImgUrl" alt="" srcset="">
-								<img v-else style="width: 128rpx; height: 128rpx;" src=":src="$C.imgDomain('/static/default.jpg')" alt="" srcset="">
+								<img v-else style="width: 128rpx; height: 128rpx;" :src="$C.imgDomain('/static/default.jpg')" alt="" srcset="">
 								<view style="color: #5581FF; font-size: 20rpx;">更换头像</view>
 							</view>
 						</uni-forms-item>

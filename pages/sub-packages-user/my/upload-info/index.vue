@@ -13,7 +13,7 @@
 		<view style="padding: 0 30rpx; position: relative; margin-top: -300rpx;">
 			<view class="upload-info_item">
 				<uni-forms ref="form" :modelValue="alignmentFormData" label-position="top">
-					<uni-forms-item label="头像" required>
+					<uni-forms-item label="头像">
 						<view class="flex flex-column justify-center align-center" @click="chooseImage('HeadImgUrl')">
 							<img v-if="baseFormData.HeadImgUrl" style="width: 128rpx; height: 128rpx;"
 								:src="webUrl + '/' + baseFormData.HeadImgUrl" alt="" srcset="">
