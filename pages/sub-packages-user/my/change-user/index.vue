@@ -140,6 +140,10 @@
 					.then(res => {
 						if(res.Code === 200) {
 							const list = res.Data && res.Data.map((item, index) => {
+								// 记录当前选中的索引
+								if(item.IsDefault) {
+									this.sign_current = index;
+								}
 								return {
 									...item,
 									active: item.IsDefault
