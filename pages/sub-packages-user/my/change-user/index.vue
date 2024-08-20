@@ -142,7 +142,7 @@
 							const list = res.Data && res.Data.map((item, index) => {
 								return {
 									...item,
-									active: index === 0 ? true : false
+									active: item.IsDefault
 								}
 							})
 							this.sign_list = list;

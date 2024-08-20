@@ -5,7 +5,7 @@
 				<view class="top-title">我的</view>
 				<view class="navbar-info flex">
 					<view class="navbar-info_photo">
-						<img v-if="userInfo.HeadImgUrl" :src="webUrl + '/' + userInfo.HeadImgUrl" class="navbar-info_photo_img" alt="" srcset="">
+						<img v-if="userInfo.HeadImgUrl" :src="$C.imgDomain('/'+userInfo.HeadImgUrl)" class="navbar-info_photo_img" alt="" srcset="">
 						<img v-else src="@/pages/sub-packages-user/static/default.jpg" class="navbar-info_photo_img" alt="" srcset="">
 					</view>
 					<view class="navbar-info_introduce flex flex-column w-100">
@@ -109,6 +109,7 @@
 		watch: {
 			user: {
 				handler(newValue, oldValue) {
+					console.log('newValue:', newValue)
 					for (let key in newValue.userInfo) {
 						this.$set(this.userInfo, key, newValue.userInfo[key])
 					}
