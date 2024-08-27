@@ -157,6 +157,9 @@ var dateUtils = {
 		// 测试密码是否符合规则
 		return regex.test(password);
 	},
+	validateHeadImgUrl: function(path) { // 校验头像
+		return path ? $C.imgDomain(`/${path}`) : $C.imgDomain('/static/default.jpg')
+	}
 };
 
 export default {

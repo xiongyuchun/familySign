@@ -96,7 +96,8 @@
 </template>
 
 <script>
-	import { mapState } from 'vuex'
+	import { mapState } from 'vuex';
+	const GoEasy = uni.$GoEasy;
 	export default {
 		data() {
 			return {
@@ -125,8 +126,20 @@
 				});
 				setTimeout(() => {
 					this.$store.dispatch('app/clearToken')
+					this.imOff();
 					this.$U.gotoPageAndClosePage('/pages/login/index')
 				}, 100)
+			},
+			// im 断开连接
+			imOff() {
+				GoEasy.disconnect({
+					onSuccess: function(){
+						console.log("GoEasy disconnect successfully.")
+					},
+					onFailed: function(error){
+						console.log("Failed to disconnect GoEasy, code:"+error.code+ ",error:"+error.content);
+					}
+				})
 			}
 		},
 	}

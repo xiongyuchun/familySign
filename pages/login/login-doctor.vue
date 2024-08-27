@@ -87,12 +87,13 @@
 						if(res.Code === 200) {
 							this.$store.dispatch('app/setUserType', 'doctor')
 							this.$store.dispatch('app/setToken', res.Data)
-							// 获取用户信息
-							this.getUserInfo();
+							
 							uni.setStorage({
 								key: 'token',
 								data: { Token: res.Data },
 								success: () => {
+									// 获取用户信息
+									this.getUserInfo();
 									this.$U.gotoPageTab('/pages/index/index');
 									// 显示tabbar
 									uni.showTabBar({ animation: true });

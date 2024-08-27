@@ -83,12 +83,13 @@
 						if(res.Code === 200) {
 							this.$store.dispatch('app/setUserType', 'user')
 							this.$store.dispatch('app/setToken', res.Data.Token)
-							// 获取用户信息
-							this.getUserInfo();
+							
 							uni.setStorage({
 								key: 'token',
 								data: res.Data,
 								success: () => {
+									// 获取用户信息
+									this.getUserInfo();
 									if(!res.Data.IsBind) {
 										// 没有绑定，跳转到绑定页面
 										this.$U.gotoPageAndClosePage('/pages/sub-packages-user/my/unbound-user/index');

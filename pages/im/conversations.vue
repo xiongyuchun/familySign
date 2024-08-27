@@ -96,8 +96,14 @@
 		},
 		methods: {
 			init() {
-				uni.$currentUser = uni.getStorageSync('currentUser');
+				if (this.userType === 'user') {
+					uni.$currentUser = uni.getStorageSync('userInfo');
+				} else {
+					uni.$currentUser = uni.getStorageSync('doctor-userinfo');
+				}
 				this.currentUser = uni.$currentUser;
+				// 根据当前登录的类型来是取UserId还是DoctorId
+				this.currentUser.id = this.userType === 'user' ? this.currentUser.UserId : this.currentUser.DoctorId;
 				console.log('currentUser:', this.currentUser);
 				if (!this.currentUser) {
 					uni.navigateTo({
@@ -122,8 +128,8 @@
 				GoEasy.connect({
 					id: this.currentUser.id,
 					data: {
-						name: this.currentUser.name,
-						avatar: this.currentUser.avatar
+						name: this.currentUser.Name,
+						avatar: this.$U.dateUtils.validateHeadImgUrl(this.currentUser.HeadImgUrl)
 					},
 					onSuccess: () => {
 						console.log('GoEasy connect successfully.')
@@ -139,7 +145,7 @@
 			},
 			initGoEasyListeners() {
 				GoEasy.im.on(GoEasy.IM_EVENT.CONVERSATIONS_UPDATED, this.renderConversations); //监听会话列表变化
-				GoEasy.im.on(GoEasy.IM_EVENT.CONVERSATIONS_UPDATED, this.setUnreadAmount); // 设置角标
+				// GoEasy.im.on(GoEasy.IM_EVENT.CONVERSATIONS_UPDATED, this.setUnreadAmount); // 设置角标
 				// #ifdef APP-PLUS
 				// GRTC.on(GRTC.EVENT.RING, this.onRing); //监听来电事件
 				// #endif

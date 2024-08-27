@@ -18,9 +18,27 @@ function getToken() {
 	return token;
 }
 
+function getUserType() {
+	let userType = '';
+	try {
+		if ($store && $store.getters.userType) {
+			userType = $store.getters.userType;
+		} else {
+			const value = uni.getStorageSync('userType');
+			if (value) {
+				userType = value;
+			}
+		}
+	} catch (e) {
+		// error
+		console.log(e)
+	}
+	return userType;
+}
+
 const state = {
 	token: getToken(),
-	userType: 'user', // user: 用户  doctor：医生
+	userType: getUserType(), // user: 用户  doctor：医生
 }
 
 const mutations = {
@@ -34,6 +52,10 @@ const mutations = {
 		state.token = '';
 	},
 	SET_USER_TYPE: (state, userType) => {
+		uni.setStorage({
+			key: 'userType',
+			data: userType
+		})
 		state.userType = userType
 	}
 }

@@ -97,8 +97,14 @@
 </template>
 
 <script>
+	const GoEasy = uni.$GoEasy;
 	export default {
 		name: 'docuor-introduction',
+		computed: {
+			userType() {
+				return this.$store.getters.userType
+			},
+		},
 		data() {
 			return {
 				statusBarHeight: 20,
@@ -120,12 +126,49 @@
 			this.getDoctorList()
 			// 查询地区列表
 			this.getAreaList()
+			// 连接im
+			this.connectionStatus()
 			
 		},
 		created() {
 			this.statusBarHeight = uni.getSystemInfoSync().statusBarHeight + 44 + 'px'
 		},
 		methods: {
+			// im相关操作
+			connectionStatus() {
+				if (this.userType === 'user') {
+					uni.$currentUser = uni.getStorageSync('userInfo');
+				} else {
+					uni.$currentUser = uni.getStorageSync('doctor-userinfo');
+				}
+				this.currentUser = uni.$currentUser;
+				// 根据当前登录的类型来是取UserId还是DoctorId
+				this.currentUser.id = this.userType === 'user' ? this.currentUser.UserId : this.currentUser.DoctorId;
+				if (GoEasy.getConnectionStatus() === 'disconnected') {
+					this.connectGoEasy(); //连接goeasy
+				}
+			},
+			// 连接goeasy
+			connectGoEasy() {
+				uni.showLoading();
+				GoEasy.connect({
+					id: this.currentUser.id,
+					data: {
+						name: this.currentUser.Name,
+						avatar: this.$U.dateUtils.validateHeadImgUrl(this.currentUser.HeadImgUrl)
+					},
+					onSuccess: () => {
+						console.log('GoEasy connect successfully.')
+					},
+					onFailed: (error) => {
+						console.log('Failed to connect GoEasy, code:' + error.code + ',error:' + error
+						.content);
+					},
+					onProgress: (attempts) => {
+						console.log('GoEasy is connecting', attempts);
+					}
+				});
+			},
 			// 获取用户信息
 			getUserInfo() {
 				this.$H.get('/api/APP/WXUser/GetUserInfo')

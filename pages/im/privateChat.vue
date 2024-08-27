@@ -28,7 +28,7 @@
             </view>
             <view class="message-item-content" :class="{'self' : message.senderId ===  currentUser.id}">
               <view class="avatar">
-                <image :src="message.senderId === currentUser.id? currentUser.avatar : friend.avatar"></image>
+                <image style="border-radius: 20rpx;" :src="message.senderId === currentUser.id? currentUser.avatar : friend.avatar"></image>
               </view>
 
               <view class="content" @click.right="showActionPopup(message)" @longpress="showActionPopup(message)">
@@ -194,6 +194,11 @@
   // const GRTC = uni.$GRTC;
   export default {
     name: 'privateChat',
+	computed: {
+		userType() {
+			return this.$store.getters.userType
+		},
+	},
     data() {
       const emojiUrl = 'https://imgcache.qq.com/open/qcloud/tim/assets/emoji/';
       const emojiMap = {
@@ -260,8 +265,15 @@
       //聊天对象
       this.friend = JSON.parse(options.to);
 	  console.log('this.friend:', this.friend)
-	  uni.$currentUser = uni.getStorageSync('currentUser');
+	  if (this.userType === 'user') {
+	  	uni.$currentUser = uni.getStorageSync('userInfo');
+	  } else {
+	  	uni.$currentUser = uni.getStorageSync('doctor-userinfo');
+	  }
       this.currentUser = uni.$currentUser;
+	  // 根据当前登录的类型来是取UserId还是DoctorId
+	  this.currentUser.id = this.userType === 'user' ? this.currentUser.UserId : this.currentUser.DoctorId;
+	  this.currentUser.avatar = this.$U.dateUtils.validateHeadImgUrl(this.currentUser.HeadImgUrl);
 	  console.log('currentUser:', this.currentUser)
       this.to = {
         id: this.friend.id,
@@ -368,7 +380,7 @@
             to: this.to,
             file: file,
             notification: {
-              title: this.currentUser.name + '发来一段语音',
+              title: this.currentUser.Name + '发来一段语音',
               body: '[语音消息]',		// 字段最长 50 字符
               sound: 'message',
               badge: '+1'
@@ -434,7 +446,7 @@
             text: this.text,
             to: this.to,
             notification: {
-              title: this.currentUser.name + '发来一段文字',
+              title: this.currentUser.Name + '发来一段文字',
               body: body,
               sound: 'message',
               badge: '+1'
@@ -456,7 +468,7 @@
               to: this.to,
               file: res,
               notification: {
-                title: this.currentUser.name + '发来一个视频',
+                title: this.currentUser.Name + '发来一个视频',
                 body: '[视频消息]',		// 字段最长 50 字符
                 sound: 'message',
                 badge: '+1'
@@ -484,7 +496,7 @@
                 to: this.to,
                 file: file,
                 notification: {
-                  title: this.currentUser.name + '发来一张图片',
+                  title: this.currentUser.Name + '发来一张图片',
                   body: '[图片消息]',		// 字段最长 50 字符
                   sound: 'message',
                   badge: '+1'
@@ -511,7 +523,7 @@
           payload: order,
           to: this.to,
           notification: {
-            title: this.currentUser.name + '发来一个订单',
+            title: this.currentUser.Name + '发来一个订单',
             body: '[订单消息]',
             sound: 'message',
             badge: '+1'
@@ -745,7 +757,7 @@
               calleeId: this.friend.id,
               mediaType: mediaType,
               notification: {
-                title: this.currentUser.name,
+                title: this.currentUser.Name,
                 body: notificationBody,
                 sound: 'ring',
                 badge: '+1'

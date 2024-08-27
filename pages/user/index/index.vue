@@ -86,6 +86,11 @@
 <script>
 	export default {
 		name: 'userIndex',
+		computed: {
+			userType() {
+				return this.$store.getters.userType
+			},
+		},
 		data() {
 			return {
 				last_id: '',
@@ -108,7 +113,7 @@
 		created() {
 			// 判断是否绑定用户，没有绑定则跳转到绑定页面
 			const token = uni.getStorageSync('token');
-			if(!token.IsBind) {
+			if(!token.IsBind && (this.userType === 'user')) {
 				console.log(token);
 				// 没有登录则隐藏tabbar
 				// uni.hideTabBar({ animation: true });
