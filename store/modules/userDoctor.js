@@ -20,12 +20,12 @@ function getUserInfo() {
 }
 
 const state = {
-	userDoctor: getUserInfo()
+	userInfo: getUserInfo()
 }
 
 const mutations = {
 	SET_USER_INFO: (state, userInfo) => {
-		state.userDoctor = userInfo;
+		state.userInfo = userInfo;
 	}
 }
 

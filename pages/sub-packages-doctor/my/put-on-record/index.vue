@@ -34,10 +34,8 @@
 					<uni-forms-item label="手机号" required>
 						<uni-easyinput v-model="baseFormData.PhoneNumber" placeholder="请输入手机号码" />
 					</uni-forms-item>
-					<uni-forms-item label-width="300" label="工作单位" required>
-						<uni-data-picker placeholder="请输入工作单位" popup-title="请选择所在地区" :localdata="dataTree" v-model="baseFormData.UnitId"
-							@change="onchange" @nodeclick="onnodeclick" @popupopened="onpopupopened" @popupclosed="onpopupclosed">
-						</uni-data-picker>
+					<uni-forms-item label-width="280rpx" label="工作单位" name="City" label-align="left" required>
+						<Region @region="regionClick" :regionStr="regionStr" bg="#fff" />
 					</uni-forms-item>
 					<uni-forms-item label-width="300" label="上传身份证正反面" required>
 						<text class="tip flex">请拍摄并上传你的有效身份证</text>
@@ -70,7 +68,11 @@
 </template>
 
 <script>
+	import Region from '@/pages/login/components/city-select/index.vue';
 	export default {
+		components: {
+			Region
+		},
 		data() {
 			return {
 				statusBarHeight: 25,
@@ -97,6 +99,7 @@
 					name: '',
 					age: '',
 				},
+				regionStr: '',
 				// 单选数据源
 				sexs: [{
 					text: '男',
@@ -146,6 +149,14 @@
 			this.webUrl = this.$C.webUrl
 		},
 		methods: {
+			// 当前选中的地区
+			regionClick(e) {
+				this.baseFormData.Province = e[0];
+				this.baseFormData.City = e[1];
+				this.baseFormData.Area = e[2];
+				this.baseFormData.Address = e[3];
+				this.regionStr = e[0] + e[1] + e[2] + e[3];
+			},
 			// submit
 			submit() {
 				this.$H.post('/api/APP/WXUser/EditDoctor', this.baseFormData, {}, {show: true})

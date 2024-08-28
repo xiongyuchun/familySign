@@ -102,21 +102,26 @@
 					title: '退出成功',
 				});
 				setTimeout(() => {
-					this.$store.dispatch('app/clearToken')
+					this.$store.dispatch('app/clearToken');
 					this.imOff();
 					this.$U.gotoPageAndClosePage('/pages/login/login-doctor')
 				}, 100)
 			},
 			// im 断开连接
 			imOff() {
-				GoEasy.disconnect({
-					onSuccess: function(){
-						console.log("GoEasy disconnect successfully.")
-					},
-					onFailed: function(error){
-						console.log("Failed to disconnect GoEasy, code:"+error.code+ ",error:"+error.content);
-					}
-				})
+				try{
+					GoEasy.disconnect({
+						onSuccess: function(){
+							console.log("GoEasy disconnect successfully.")
+						},
+						onFailed: function(error){
+							console.log("Failed to disconnect GoEasy, code:"+error.code+ ",error:"+error.content);
+						}
+					})
+				}catch(e){
+					//TODO handle the exception
+					console.log('im-disconnect:', e)
+				}
 			}
 		},
 	}

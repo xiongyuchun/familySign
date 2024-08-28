@@ -2,7 +2,7 @@
 	<scroll-view ref="scrollView" scroll-y="true">
 		<view class="upload-info">
 			<view class="top-bg">
-				<img class="w-100 bg-upload" src="@/pages/sub-packages-doctor/static/bg-upload.png" alt="" srcset="">
+				<img class="w-100 bg-upload" :src="$C.imgDomain('/static/my/bg-upload.png')" alt="" srcset="">
 				<view :style="{ height: statusBarHeight }" class="w-100"></view>
 				<view class="title text-white font flex justify-center align-center">
 					<view @click="$U.backPage(1)">
@@ -34,10 +34,8 @@
 						<uni-forms-item label="手机号" required>
 							<uni-easyinput v-model="baseFormData.PhoneNumber" placeholder="请输入手机号码" />
 						</uni-forms-item>
-						<uni-forms-item label-width="300" label="工作单位" required>
-							<uni-data-picker placeholder="请输入工作单位" popup-title="请选择所在地区" :localdata="dataTree" v-model="baseFormData.UnitId"
-								@change="onchange" @nodeclick="onnodeclick" @popupopened="onpopupopened" @popupclosed="onpopupclosed">
-							</uni-data-picker>
+						<uni-forms-item label-width="280rpx" label="工作单位" name="City" label-align="left" required>
+							<Region @region="regionClick" :regionStr="regionStr" bg="#fff" />
 						</uni-forms-item>
 						<uni-forms-item label-width="300" label="上传身份证正反面" required>
 							<text class="tip flex">请拍摄并上传你的有效身份证</text>
@@ -88,8 +86,10 @@
 
 <script>
 	import privacyAuthorization from './components/privacy-authorization/privacy-authorization.vue';
+	import Region from './components/city-select/index.vue';
 	export default {
 		components: {
+			Region,
 			privacyAuthorization
 		},
 		data() {
@@ -119,6 +119,7 @@
 					name: '',
 					age: '',
 				},
+				regionStr: '',
 				// 单选数据源
 				sexs: [{
 					text: '男',
@@ -168,6 +169,14 @@
 			// 查看隐私协议-打开弹窗
 			queryPrivacyAuth() {
 				this.$refs.privacyAuth.open()
+			},
+			// 当前选中的地区
+			regionClick(e) {
+				this.baseFormData.Province = e[0];
+				this.baseFormData.City = e[1];
+				this.baseFormData.Area = e[2];
+				this.baseFormData.Address = e[3];
+				this.regionStr = e[0] + e[1] + e[2] + e[3];
 			},
 			// 立即注册
 			async register() {

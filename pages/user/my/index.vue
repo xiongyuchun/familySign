@@ -132,14 +132,19 @@
 			},
 			// im 断开连接
 			imOff() {
-				GoEasy.disconnect({
-					onSuccess: function(){
-						console.log("GoEasy disconnect successfully.")
-					},
-					onFailed: function(error){
-						console.log("Failed to disconnect GoEasy, code:"+error.code+ ",error:"+error.content);
-					}
-				})
+				try{
+					GoEasy.disconnect({
+						onSuccess: function(){
+							console.log("GoEasy disconnect successfully.")
+						},
+						onFailed: function(error){
+							console.log("Failed to disconnect GoEasy, code:"+error.code+ ",error:"+error.content);
+						}
+					})
+				}catch(e){
+					console.log('im-disconnect:', e)
+					//TODO handle the exception
+				}
 			}
 		},
 	}

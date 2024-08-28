@@ -87,7 +87,8 @@
 						if(res.Code === 200) {
 							this.$store.dispatch('app/setUserType', 'doctor')
 							this.$store.dispatch('app/setToken', res.Data)
-							
+							// 先清除一遍用户信息
+							uni.removeStorageSync('doctor-userinfo')
 							uni.setStorage({
 								key: 'token',
 								data: { Token: res.Data },
@@ -110,7 +111,10 @@
 							this.$store.dispatch('userDoctor/setUserInfo', res.Data);
 							uni.setStorage({
 								key: 'doctor-userinfo',
-								data: res.Data
+								data: res.Data,
+								success() {
+									console.log('存医生信息成功')
+								}
 							})
 						}
 					}).catch(err => {
